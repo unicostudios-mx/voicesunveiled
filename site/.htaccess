@@ -1,9 +1,9 @@
 DirectoryIndex index.html
 Options -Indexes
-RedirectMatch 301 ^/voicesunveiled/donate/?$ /voicesunveiled/donate-now/
-RedirectMatch 301 ^/voicesunveiled/emergency-fund/?$ /voicesunveiled/donations/emergency-funds-for-ava-and-nima/
-RedirectMatch 301 ^/voicesunveiled/time-is-running-out/?$ /voicesunveiled/donations/time-is-running-out/
-RedirectMatch 301 ^/voicesunveiled/reclamation/?$ /voicesunveiled/reclamation/
+RedirectMatch 301 ^/donate/?$ /donate-now/
+RedirectMatch 301 ^/emergency-fund/?$ /donations/emergency-funds-for-ava-and-nima/
+RedirectMatch 301 ^/time-is-running-out/?$ /donations/time-is-running-out/
+RedirectMatch 301 ^/reclamation/?$ /reclamation/
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpeg "access plus 30 days"

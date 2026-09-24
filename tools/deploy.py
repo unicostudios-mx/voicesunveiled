@@ -7,7 +7,7 @@ Variables de entorno requeridas:
   HOSTGATOR_FTP_USER   usuario cPanel o cuenta FTP
   HOSTGATOR_FTP_PASS   contraseña
   HOSTGATOR_FTP_PORT   22 (SFTP) o 21 (FTP). Por defecto 21.
-  HOSTGATOR_REMOTE_DIR ruta remota destino. Por defecto: unicopartners.com.mx/voicesunveiled
+  HOSTGATOR_REMOTE_DIR ruta remota destino. Por defecto: voicesunveiled.unicopartners.com.mx
                        (relativa al directorio inicial de la cuenta). Si la cuenta FTP ya está
                        limitada a esa carpeta, usar ".".
 
@@ -24,7 +24,7 @@ HOST = os.environ.get("HOSTGATOR_FTP_HOST")
 USER = os.environ.get("HOSTGATOR_FTP_USER")
 PASS = os.environ.get("HOSTGATOR_FTP_PASS")
 PORT = int(os.environ.get("HOSTGATOR_FTP_PORT") or "21")
-REMOTE = os.environ.get("HOSTGATOR_REMOTE_DIR") or "unicopartners.com.mx/voicesunveiled"
+REMOTE = os.environ.get("HOSTGATOR_REMOTE_DIR") or "voicesunveiled.unicopartners.com.mx"
 DRY = "--dry-run" in sys.argv
 FULL = "--full" in sys.argv
 

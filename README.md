@@ -1,7 +1,7 @@
 # Voices Unveiled — sitio estático
 
 Versión en código propio de <https://voicesunveiled.org/>, sin WordPress.
-Se publica en <https://unicopartners.com.mx/voicesunveiled/> (HostGator).
+Se publica en <https://voicesunveiled.unicopartners.com.mx/> (HostGator, carpeta `voicesunveiled.unicopartners.com.mx`).
 
 ## Estructura
 
@@ -10,7 +10,7 @@ Se publica en <https://unicopartners.com.mx/voicesunveiled/> (HostGator).
 | `site/` | Sitio listo para publicar (HTML, CSS, JS, imágenes, PDFs). Es lo que se sube al hosting. |
 | `tools/fetch.sh` | Descarga una copia del sitio WordPress original. |
 | `tools/pages.txt` | Páginas y posts no enlazados desde el menú que también se copian. |
-| `tools/build.py` | Convierte la copia en sitio estático bajo `/voicesunveiled`. |
+| `tools/build.py` | Convierte la copia en sitio estático (rutas desde la raíz del dominio). |
 | `tools/deploy.py` | Sube `site/` a HostGator por SFTP o FTP. |
 
 ## Flujo
@@ -24,10 +24,10 @@ tools/deploy.py                                     # 4. publica
 
 `deploy.py` lee las credenciales de las variables `HOSTGATOR_FTP_HOST`, `HOSTGATOR_FTP_USER`,
 `HOSTGATOR_FTP_PASS`, `HOSTGATOR_FTP_PORT` (22 SFTP / 21 FTP) y opcionalmente
-`HOSTGATOR_REMOTE_DIR` (por defecto `unicopartners.com.mx/voicesunveiled`).
+`HOSTGATOR_REMOTE_DIR` (por defecto `voicesunveiled.unicopartners.com.mx`).
 
-Para servir desde otra ruta (por ejemplo la raíz de un dominio propio) regenera con
-`BASE_PATH=/ tools/build.py …` o `BASE_PATH=""`.
+Para servir desde una subcarpeta regenera con, por ejemplo,
+`BASE_PATH=/voicesunveiled tools/build.py …`.
 
 ## Qué sigue dependiendo del WordPress original (por ahora)
 

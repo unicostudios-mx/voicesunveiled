@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Convierte el mirror de voicesunveiled.org (WordPress) en un sitio estático
-que vive bajo BASE_PATH (por defecto /voicesunveiled) sin depender de WordPress.
+que vive bajo BASE_PATH (por defecto la raíz del dominio, "") sin depender de WordPress.
 
 Uso:  tools/build.py <dir_mirror>/voicesunveiled.org [site/]
 
@@ -19,7 +19,7 @@ import re
 import shutil
 import sys
 
-BASE_PATH = os.environ.get("BASE_PATH", "/voicesunveiled")
+BASE_PATH = os.environ.get("BASE_PATH", "").rstrip("/")
 ORIGIN = "https://voicesunveiled.org"
 
 # Assets que se eliminan del HTML (regex sobre el atributo src/href)
@@ -139,6 +139,7 @@ def process_html(html: str) -> str:
     # Referencias a la API/admin que sobrevivan → al original (evitan 404 en nuestro host)
     for p in ("/wp-json", "/wp-admin", "/wp-login.php", "/xmlrpc.php", "/?give", "/?post_type=give_forms"):
         html = html.replace(BASE_PATH + p, ORIGIN + p)
+    html = html.replace(ORIGIN + ORIGIN, ORIGIN)  # evita duplicar el origen cuando BASE_PATH es ""
     return html
 
 

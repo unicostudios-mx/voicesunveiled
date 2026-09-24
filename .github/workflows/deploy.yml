@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install paramiko
-      - name: Publicar site/ en unicopartners.com.mx/voicesunveiled
+      - name: Publicar site/ en voicesunveiled.unicopartners.com.mx
         env:
           HOSTGATOR_FTP_HOST: ${{ secrets.HOSTGATOR_FTP_HOST }}
           HOSTGATOR_FTP_USER: ${{ secrets.HOSTGATOR_FTP_USER }}
