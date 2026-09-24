@@ -23,8 +23,8 @@ SITE = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "site"))
 HOST = os.environ.get("HOSTGATOR_FTP_HOST")
 USER = os.environ.get("HOSTGATOR_FTP_USER")
 PASS = os.environ.get("HOSTGATOR_FTP_PASS")
-PORT = int(os.environ.get("HOSTGATOR_FTP_PORT", "21"))
-REMOTE = os.environ.get("HOSTGATOR_REMOTE_DIR", "unicopartners.com.mx/voicesunveiled")
+PORT = int(os.environ.get("HOSTGATOR_FTP_PORT") or "21")
+REMOTE = os.environ.get("HOSTGATOR_REMOTE_DIR") or "unicopartners.com.mx/voicesunveiled"
 DRY = "--dry-run" in sys.argv
 FULL = "--full" in sys.argv
 

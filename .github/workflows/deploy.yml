@@ -1,0 +1,34 @@
+name: Deploy a HostGator
+
+on:
+  push:
+    branches: [main, claude/tender-johnson-974p8h]
+    paths: ["site/**", "tools/deploy.py", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Subir todo (ignorar archivos sin cambios)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy-hostgator
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install paramiko
+      - name: Publicar site/ en unicopartners.com.mx/voicesunveiled
+        env:
+          HOSTGATOR_FTP_HOST: ${{ secrets.HOSTGATOR_FTP_HOST }}
+          HOSTGATOR_FTP_USER: ${{ secrets.HOSTGATOR_FTP_USER }}
+          HOSTGATOR_FTP_PASS: ${{ secrets.HOSTGATOR_FTP_PASS }}
+          HOSTGATOR_FTP_PORT: ${{ secrets.HOSTGATOR_FTP_PORT }}
+          HOSTGATOR_REMOTE_DIR: ${{ vars.HOSTGATOR_REMOTE_DIR }}
+        run: python tools/deploy.py ${{ inputs.full && '--full' || '' }}
