@@ -142,7 +142,7 @@ def process_html(html: str) -> str:
     for p in ("/wp-json", "/wp-admin", "/wp-login.php", "/xmlrpc.php", "/?give", "/?post_type=give_forms"):
         esc_p = p.replace("/", "\\/")
         html = html.replace(esc_base + esc_p, esc_origin + esc_p)  # variante escapada (JSON en scripts)
-        html = html.replace(BASE_PATH + p, ORIGIN + p)
+        html = re.sub(r"(?<![\\\w])" + re.escape(BASE_PATH + p), ORIGIN + p, html)  # no tocar la forma escapada
     html = html.replace(ORIGIN + ORIGIN, ORIGIN)  # evita duplicar el origen cuando BASE_PATH es ""
     return html
 
