@@ -26,6 +26,7 @@ PASS = os.environ.get("HOSTGATOR_FTP_PASS")
 PORT = int(os.environ.get("HOSTGATOR_FTP_PORT") or "21")
 REMOTE = os.environ.get("HOSTGATOR_REMOTE_DIR") or "voicesunveiled.unicopartners.com.mx"
 DRY = "--dry-run" in sys.argv
+LIST = "--list" in sys.argv  # solo muestra el directorio inicial y su contenido (diagnóstico)
 FULL = "--full" in sys.argv
 
 
@@ -42,7 +43,16 @@ class Sftp:
         t = paramiko.Transport((HOST, PORT))
         t.connect(username=USER, password=PASS)
         self.c = paramiko.SFTPClient.from_transport(t)
-        self.sizes = {}
+
+    def listing(self):
+        print("pwd:", self.c.normalize("."))
+        for n in sorted(self.c.listdir(".")):
+            print("  ", n)
+        for d in ("voicesunveiled.unicopartners.com.mx", "unicopartners.com.mx", "unicopartners.com.mx/voicesunveiled"):
+            try:
+                print(f"{d}: {len(self.c.listdir(d))} entradas")
+            except IOError:
+                print(f"{d}: no existe")
 
     def mkdirs(self, path):
         cur = ""
@@ -80,6 +90,16 @@ class Ftp:
         c.set_pasv(True)
         self.c = c
         self.known_dirs = set()
+
+    def listing(self):
+        print("pwd:", self.c.pwd())
+        for n in sorted(self.c.nlst()):
+            print("  ", n)
+        for d in ("voicesunveiled.unicopartners.com.mx", "unicopartners.com.mx", "unicopartners.com.mx/voicesunveiled"):
+            try:
+                print(f"{d}: {len(self.c.nlst(d))} entradas")
+            except Exception:
+                print(f"{d}: no existe")
 
     def mkdirs(self, path):
         cur = ""
@@ -119,6 +139,9 @@ def main():
             print(f"  {size:>9}  {rel}")
         return
     client = Sftp() if PORT == 22 else Ftp()
+    if LIST:
+        client.listing()
+        return
     client.mkdirs(REMOTE)
     uploaded = skipped = 0
     for rel, path, size in files:

@@ -10,6 +10,10 @@ on:
         description: "Subir todo (ignorar archivos sin cambios)"
         type: boolean
         default: false
+      list:
+        description: "Solo listar el directorio remoto (diagnóstico)"
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy-hostgator
@@ -31,4 +35,4 @@ jobs:
           HOSTGATOR_FTP_PASS: ${{ secrets.HOSTGATOR_FTP_PASS }}
           HOSTGATOR_FTP_PORT: ${{ secrets.HOSTGATOR_FTP_PORT }}
           HOSTGATOR_REMOTE_DIR: ${{ vars.HOSTGATOR_REMOTE_DIR }}
-        run: python tools/deploy.py ${{ inputs.full && '--full' || '' }}
+        run: python tools/deploy.py ${{ inputs.full && '--full' || '' }} ${{ inputs.list && '--list' || '' }}
