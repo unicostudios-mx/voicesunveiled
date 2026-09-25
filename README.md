@@ -54,9 +54,10 @@ Las URLs antiguas del WordPress redirigen a las nuevas (ver `REDIRECTS` en `tool
 
 ## Backlog
 
-- **Donaciones:** los botones llevan a las páginas de donación del WordPress original (GiveWP + Stripe),
-  igual que las campañas de emergencia. Pendiente migrar a Stripe Payment Links / PayPal propios
-  (`donate_url`, `monthly_url` y `emergency_campaigns` en `content/`).
+- **Donaciones:** `/donate/now/` es una demo del checkout (monto, donante, pago, confirmación) que no procesa
+  pagos. Cuando exista la cuenta en la plataforma de donación (Zeffy / Givebutter / Stripe), reemplazar el paso de
+  pago por su formulario embebido. Las campañas de emergencia siguen enlazando al WordPress original
+  (`emergency_campaigns` en `content/data.yml`; `legacy_donate_url` en `site.yml`).
 - **Formulario de contacto:** sin `contact_endpoint` en `site.yml`, abre el cliente de correo con el mensaje
   prellenado. Configurar un servicio (Formspree, Web3Forms) o endpoint propio.
 - **Formularios de Student Application y WhatsApp Community:** enlazan al WordPress original.

@@ -125,6 +125,7 @@ def main():
         add(f"/blog/{p['slug']}/", "pages/post.html", p["title"], p.get("excerpt"), "Stories", p.get("image"), post=p, related=related)
     add("/volunteer/", "pages/volunteer.html", "Volunteer", "Share your skills as a guest speaker, workshop leader, counselor, or team volunteer.", "Volunteer")
     add("/donate/", "pages/donate.html", "Donate", "Your gift keeps education, connection, and hope alive for Afghan women and girls. Tax-deductible.", None)
+    add("/donate/now/", "pages/donate-now.html", "Donate now", "Complete your gift to Voices Unveiled: choose an amount, one-time or monthly.", None)
     add("/donate/monthly/", "pages/donate-monthly.html", "Become a Monthly Lifeline", "Monthly giving provides the steady support our students rely on.", None)
     add("/donate/emergency-funds/", "pages/emergency-funds.html", "Emergency funds", "Urgent relief campaigns for students and families in crisis.", None)
     add("/contact/", "pages/contact.html", "Contact", "Get in touch with Voices Unveiled.", "Volunteer")

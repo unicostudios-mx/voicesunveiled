@@ -13,8 +13,9 @@ ein: 99-0810138
 founded: 2023
 
 # Enlaces externos que siguen dependiendo del WordPress original (backlog)
-donate_url: https://voicesunveiled.org/donate-now/
-monthly_url: https://voicesunveiled.org/become-a-monthly-donor/
+donate_url: /donate/now/
+monthly_url: /donate/now/?mode=monthly
+legacy_donate_url: https://voicesunveiled.org/donate-now/
 whatsapp_form_url: https://voicesunveiled.org/whatsapp-community/
 student_application_url: https://voicesunveiled.org/student-application/
 shop_url: https://voicesunveiledshop.etsy.com

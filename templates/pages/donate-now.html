@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial, safety_note, checks %}
+{% from 'partials/icons.html' import icon %}
+{% block content %}
+<section class="band" style="padding-bottom:0">
+  <div class="wrap"><div class="demo-flag" role="status">{{ icon('shield') }}<span><strong>Preview.</strong> This donation form is a working demo of the new checkout. Payments are not processed yet; the live version will connect to the donation platform once the account is ready.</span></div></div>
+</section>
+<section class="band">
+  <div class="wrap split split--wide split--start">
+    <div>
+      {{ eyebrow('Urgent') }}
+      <h1>This is our moment to choose hope.</h1>
+      <p class="lead">We must raise $50,000 to keep our programs alive. Without your help, Voices Unveiled will be forced to close, leaving Afghan women and girls without the education and community they depend on.</p>
+      <p>Your donation today protects their dignity, their education, and their dreams.</p>
+      <div class="photo photo--3x2" style="margin:24px 0"><img src="/assets/img/donate-hero.jpg" alt="Students of Voices Unveiled" loading="lazy"></div>
+      <p class="small muted" style="display:flex; gap:8px; align-items:center">{{ icon('check') }} 100% secure &middot; Tax-deductible &middot; Lives changed immediately</p>
+    </div>
+
+    <form class="dcard checkout" id="checkout" data-checkout data-tiers='{{ data.donation_tiers | tojson }}' data-monthly-tiers='{{ data.monthly_tiers | tojson }}' novalidate>
+      <ol class="steps" aria-label="Progress">
+        <li class="is-on" data-step-tab="1"><span>1</span> Amount</li>
+        <li data-step-tab="2"><span>2</span> Your info</li>
+        <li data-step-tab="3"><span>3</span> Payment</li>
+      </ol>
+
+      <fieldset class="step is-on" data-step="1">
+        <legend><h3>How much would you like to donate today?</h3><p class="muted small">Every dollar keeps hope alive. Choose an amount to see what it makes possible.</p></legend>
+        <div class="toggle" role="group" aria-label="Gift frequency">
+          <button type="button" data-mode="once">One-time</button>
+          <button type="button" data-mode="monthly" class="is-on">Monthly</button>
+        </div>
+        <div class="agrid" aria-label="Choose an amount"></div>
+        <div class="field custom-amount" hidden>
+          <label for="custom">Your amount (USD)</label>
+          <input class="input" id="custom" name="custom" type="number" min="1" step="1" inputmode="decimal" placeholder="e.g. 75">
+        </div>
+        <div class="iline">{{ icon('arrow-right') }}<span></span></div>
+        <button class="btn btn--primary btn--lg btn--block" type="button" data-next>Continue</button>
+      </fieldset>
+
+      <fieldset class="step" data-step="2">
+        <legend><h3>Who's giving today?</h3><p class="muted small">We'll never share this information with anyone.</p></legend>
+        <div class="grid2" style="gap:12px">
+          <div class="field"><label for="first">First name <span class="req">*</span></label><input class="input" id="first" name="first" type="text" required autocomplete="given-name" placeholder="Jane"></div>
+          <div class="field"><label for="last">Last name <span class="req">*</span></label><input class="input" id="last" name="last" type="text" required autocomplete="family-name" placeholder="Doe"></div>
+        </div>
+        <div class="field"><label for="email">Email address <span class="req">*</span></label><input class="input" id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"><span class="hint">Your receipt and tax acknowledgment will be sent here.</span></div>
+        <label class="check"><input type="checkbox" name="anonymous"> <span>Make this an anonymous donation. <span class="muted">Prevents your name from being displayed publicly.</span></span></label>
+        <label class="check"><input type="checkbox" name="newsletter" checked> <span>Subscribe me to the newsletter for student stories and impact updates.</span></label>
+        <div class="grid2" style="gap:12px; margin-top:8px"><button class="btn btn--secondary btn--lg" type="button" data-prev>Back</button><button class="btn btn--primary btn--lg" type="button" data-next>Continue</button></div>
+      </fieldset>
+
+      <fieldset class="step" data-step="3">
+        <legend><h3>Payment details</h3><p class="muted small">How would you like to pay for your donation?</p></legend>
+        <dl class="summary">
+          <div><dt>Donation</dt><dd data-sum-amount>$0</dd></div>
+          <div><dt>Frequency</dt><dd data-sum-freq>Monthly</dd></div>
+          <div class="fee-row" hidden><dt>Processing fees</dt><dd data-sum-fee>$0</dd></div>
+          <div class="total"><dt>Total</dt><dd data-sum-total>$0</dd></div>
+        </dl>
+        <label class="check"><input type="checkbox" name="fee" checked> <span>I'd like to cover the processing fees so 100% of my gift goes to Voices Unveiled. <span class="muted">(about 2.9% + $0.30)</span></span></label>
+        <div class="pay-methods" role="group" aria-label="Payment method">
+          <label class="pay is-on"><input type="radio" name="method" value="card" checked> Credit or debit card</label>
+          <label class="pay"><input type="radio" name="method" value="paypal"> PayPal</label>
+          <label class="pay"><input type="radio" name="method" value="bank"> Bank transfer</label>
+        </div>
+        <div class="card-fields" aria-disabled="true">
+          <div class="field"><label>Card number</label><input class="input" type="text" placeholder="•••• •••• •••• 4242" disabled></div>
+          <div class="grid2" style="gap:12px"><div class="field"><label>Expiry</label><input class="input" type="text" placeholder="MM / YY" disabled></div><div class="field"><label>CVC</label><input class="input" type="text" placeholder="•••" disabled></div></div>
+          <p class="small muted">Card fields are disabled in this preview. In the live version they are provided by the payment platform's secure form.</p>
+        </div>
+        <div class="grid2" style="gap:12px"><button class="btn btn--secondary btn--lg" type="button" data-prev>Back</button><button class="btn btn--primary btn--lg" type="submit" data-submit>Donate now</button></div>
+        <p class="fine">Voices Unveiled is a program of Café de la Culture, a 501(c)(3) tax-exempt organization. EIN {{ site.ein }}. Your gift is tax-deductible.</p>
+      </fieldset>
+
+      <div class="step done" data-step="4" hidden>
+        <div class="center">
+          <span class="done-icon">{{ icon('heart') }}</span>
+          <h3>Thank you, <span data-done-name>friend</span>.</h3>
+          <p class="lead">Your <span data-done-amount></span> gift keeps education, connection, and hope alive for Afghan women and girls.</p>
+          <p class="muted small">This is a preview: no payment was processed. In the live version you would receive a receipt at <span data-done-email></span>.</p>
+          <div class="cta-row" style="justify-content:center">{{ btn('Read student stories', '/stories/', 'primary') }}{{ btn('Back to Donate', '/donate/', 'ghost') }}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow("What we've built together") }}
+      <h2 style="margin-bottom:18px">For almost three years, Voices Unveiled has empowered Afghan girls and women with:</h2>
+      {{ checks(["Free online classes for students banned from school by the Taliban", "Mental health support during exile, isolation, and trauma to 20+ families", "13 elective courses in tech, science, humanities, and arts", "6 rounds of our Self-Empowerment Program that helped them rebuild their confidence", "Life-saving relief: food, medicine, financial support", "250+ students have learned, healed, and reimagined their futures. 100% report that their lives have been transformed."]) }}
+      <p style="margin-top:18px"><strong>But without your urgent support, it could all disappear.</strong></p>
+    </div>
+    <div>
+      {{ eyebrow('Your support ensures Afghan women and girls can') }}
+      <h2 style="margin-bottom:18px">Learn, heal, and reclaim their voices.</h2>
+      {{ checks(["Access free online education, systematically denied to them under Taliban restrictions.", "Receive mental health support and community connection, helping them cope with isolation, trauma, and fear.", "Receive urgent, life-saving aid, including food, medicine, and financial assistance in emergencies.", "Reclaim their voices through courses in self-empowerment, English, data analytics, philosophy, meditation, and more."]) }}
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    {{ eyebrow('Their voices') }}
+    <h2 style="margin-bottom:12px">These are the lives your donation supports.</h2>
+    <p class="measure" style="margin-bottom:16px">A safe online space and a community where many can freely learn and express themselves, along with the emergency aid that keeps their families afloat through hunger, illness, and crisis. We need your help to make sure their story doesn't end here.</p>
+    <div style="margin-bottom:28px">{{ safety_note() }}</div>
+    <div class="grid3 reveal">
+      {{ testimonial(data.student_quotes[4], 'ivory', compact=true) }}
+      {{ testimonial(data.student_quotes[5], 'sage', compact=true) }}
+      {{ testimonial(data.student_quotes[3], 'ivory', compact=true) }}
+    </div>
+    <p class="muted" style="margin-top:28px; max-width:720px">Having trouble donating? Contact us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+  </div>
+</section>
+{% endblock %}
