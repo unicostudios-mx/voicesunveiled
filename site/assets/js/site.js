@@ -172,3 +172,22 @@
   });
   renderAmounts();
 })();
+
+/* ---- Popup The Reclamation (portada) ---- */
+(function () {
+  "use strict";
+  var modal = document.getElementById("rec-modal");
+  if (!modal) return;
+  var KEY = "vu-rec-modal-dismissed", DAYS = 7;
+  var dismissed = 0;
+  try { dismissed = Number(localStorage.getItem(KEY) || 0); } catch (e) {}
+  if (dismissed && Date.now() - dismissed < DAYS * 864e5) return;
+  function close() {
+    modal.hidden = true; document.body.style.overflow = "";
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+  }
+  modal.querySelectorAll("[data-modal-close]").forEach(function (el) { el.addEventListener("click", close); });
+  modal.querySelector(".btn--primary").addEventListener("click", function () { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+  setTimeout(function () { modal.hidden = false; document.body.style.overflow = "hidden"; modal.querySelector(".modal__close").focus(); }, 1800);
+})();

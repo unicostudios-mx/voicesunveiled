@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
 {% from 'partials/macros.html' import btn, eyebrow, safety_note, impact_card, program_card, story_card, testimonial, veil_art, campaign_banner, newsletter %}
+{% from 'partials/icons.html' import icon %}
 {% block content %}
+<div class="modal" id="rec-modal" hidden role="dialog" aria-modal="true" aria-labelledby="rec-title">
+  <div class="modal__scrim" data-modal-close></div>
+  <div class="modal__box">
+    <button class="modal__close" type="button" data-modal-close aria-label="Close">{{ icon('x') }}</button>
+    <div class="modal__media"><img src="/assets/img/reclamation/hero.jpg" alt="" loading="lazy"><span class="modal__cap">Come home to yourself.</span></div>
+    <div class="modal__body">
+      <p class="eyebrow">New &middot; Now enrolling</p>
+      <h2 id="rec-title">The Reclamation</h2>
+      <p>A 12-week global immersion for women leaders, creatives, and changemakers &mdash; born from our work with Afghan women, now open to women everywhere.</p>
+      <ul class="pills"><li class="tag tag--plum">Aug 22 &ndash; Nov 7</li><li class="tag tag--plum">Live &middot; Saturdays</li><li class="tag tag--plum">12 seats only</li></ul>
+      <div class="modal__actions">{{ btn('Explore The Reclamation', site.reclamation_url, 'primary', 'lg') }}<button class="btn btn--ghost" type="button" data-modal-close>Maybe later</button></div>
+    </div>
+  </div>
+</div>
 <section class="band">
   <div class="wrap hero">
     <div>

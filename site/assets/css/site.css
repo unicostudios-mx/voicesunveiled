@@ -448,3 +448,20 @@ textarea.input { min-height: 132px; resize: vertical; }
 .checkout .input:invalid.touched { border-color: var(--danger); }
 @media (max-width: 760px) { .checkout { order: -1; } }
 @media (max-width: 480px) { .pay-methods { grid-template-columns: 1fr; } .checkout .grid2 { grid-template-columns: 1fr; } }
+
+/* ---------- Modal (popup The Reclamation) ---------- */
+.modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal[hidden] { display: none; }
+.modal__scrim { position: absolute; inset: 0; background: rgba(36,20,32,.55); backdrop-filter: blur(3px); }
+.modal__box { position: relative; background: var(--ivory); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); max-width: 860px; width: 100%; max-height: calc(100vh - 32px); overflow: auto; display: grid; grid-template-columns: .9fr 1.1fr; animation: modal-in var(--dur-slow) var(--ease-out); }
+@keyframes modal-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.modal__close { position: absolute; top: 12px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-subtle); background: var(--white); color: var(--plum); cursor: pointer; display: grid; place-items: center; }
+.modal__media { position: relative; min-height: 260px; background: var(--midnight); }
+.modal__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.modal__cap { position: absolute; left: 20px; bottom: 16px; color: var(--ivory); font-family: var(--font-serif); font-style: italic; font-size: 17px; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+.modal__body { padding: clamp(24px, 4vw, 40px); }
+.modal__body h2 { margin-bottom: 12px; }
+.modal__body p { color: var(--text-body); }
+.modal__body .pills { margin: 16px 0 22px; }
+.modal__actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+@media (max-width: 700px) { .modal__box { grid-template-columns: 1fr; } .modal__media { min-height: 200px; aspect-ratio: 16 / 9; } .modal { align-items: flex-end; padding: 0; } .modal__box { border-radius: var(--radius-xl) var(--radius-xl) 0 0; max-height: 92vh; } .modal__actions .btn { width: 100%; } }
