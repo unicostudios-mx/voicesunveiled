@@ -110,7 +110,7 @@
 		</script>
 		<!-- All in One SEO -->
 
-
+<link rel='dns-prefetch' href='//js.stripe.com' />
 <link rel='dns-prefetch' href='//www.googletagmanager.com' />
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 
@@ -119,6 +119,7 @@
 
 
 
+<link rel='stylesheet' id='givewp-campaign-blocks-fonts-css' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&#038;display=swap&#038;ver=7.1.2' media='all' />
 
 
 
@@ -128,11 +129,10 @@
 
 
 
-
-
-
-
-
+<link rel='stylesheet' id='give-styles-css' href='/wp-content/plugins/give/build/assets/dist/css/give.css' media='all' />
+<link rel='stylesheet' id='givewp-design-system-foundation-css' href='/wp-content/plugins/give/build/assets/dist/css/design-system/foundation.css' media='all' />
+<link rel='stylesheet' id='give-fee-recovery-css' href='/wp-content/plugins/give-fee-recovery/assets/css/give-fee-recovery-frontend.min.css' media='all' />
+<link rel='stylesheet' id='give_recurring_css-css' href='/wp-content/plugins/give-recurring/assets/css/give-recurring.min.css' media='all' />
 <link rel='stylesheet' id='thrive-theme-landingpage-front-css' href='/wp-content/themes/thrive-theme/inc/assets/dist/landingpage-front.css' media='all' />
 
 <link rel='stylesheet' id='thrive-theme-css' href='/wp-content/themes/thrive-theme/style.css' media='all' />
@@ -145,11 +145,14 @@ jQuery.uiBackCompat = true;
 </script>
 <script id="jquery-ui-core-js" src="/wp-includes/js/jquery/ui/core.min.js"></script>
 <script id="jquery-ui-menu-js" src="/wp-includes/js/jquery/ui/menu.min.js"></script>
-
-
-
-
-
+<script id="wp-dom-ready-js" src="/wp-includes/js/dist/dom-ready.min.js"></script>
+<script id="wp-hooks-js" src="/wp-includes/js/dist/hooks.min.js"></script>
+<script id="wp-i18n-js" src="/wp-includes/js/dist/i18n.min.js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="wp-a11y-js" src="/wp-includes/js/dist/a11y.min.js"></script>
 <script id="jquery-ui-autocomplete-js" src="/wp-includes/js/jquery/ui/autocomplete.min.js"></script>
 <script id="imagesloaded-js" src="/wp-includes/js/imagesloaded.min.js"></script>
 <script id="masonry-js" src="/wp-includes/js/masonry.min.js"></script>
@@ -165,19 +168,32 @@ var tve_frontend_options = {"ajaxurl":"https://voicesunveiled.org/wp-admin/admin
 
 
 
-
-
-
-
-
-
-
+<script id="give-stripe-js-js-extra">
+var give_stripe_vars = {"zero_based_currency":"","zero_based_currencies_list":["JPY","KRW","CLP","ISK","BIF","DJF","GNF","KHR","KPW","LAK","LKR","MGA","MZN","VUV"],"sitename":"Voices Unveiled","checkoutBtnTitle":"Donate","publishable_key":"pk_live_51QsAKFLnB12xHGMNiNgD3prNoXWh6m50mNL3EWXyhiAVbpgNNbHwQbgm78e2aes0zl5Eoo70r1zT9VCywSZz1eAa00Rg9zwIKb","checkout_image":"","checkout_address":"","checkout_processing_text":"Donation Processing...","give_version":"4.16.9","cc_fields_format":"multi","card_number_placeholder_text":"Card Number","card_cvc_placeholder_text":"CVC","donate_button_text":"Donate Now","element_font_styles":{"cssSrc":false},"element_base_styles":{"color":"#32325D","fontWeight":500,"fontSize":"16px","fontSmoothing":"antialiased","::placeholder":{"color":"#222222"},":-webkit-autofill":{"color":"#e39f48"}},"element_complete_styles":{},"element_empty_styles":{},"element_invalid_styles":{},"float_labels":"","base_country":"US","preferred_locale":"en","stripe_card_update":"","stripe_becs_update":""};
+//# sourceURL=give-stripe-js-js-extra
+</script>
+<script id="give-stripe-js-js" src="https://js.stripe.com/v3/?ver=4.16.9"></script>
+<script id="give-stripe-onpage-js-js" src="/wp-content/plugins/give/build/assets/dist/js/give-stripe.js"></script>
+<script id="give-js-extra">
+var give_global_vars = {"ajaxurl":"https://voicesunveiled.org/wp-admin/admin-ajax.php","checkout_nonce":"39ccae3450","currency":"USD","currency_sign":"$","currency_pos":"before","thousands_separator":",","decimal_separator":".","no_gateway":"Please select a payment method.","bad_minimum":"The minimum custom donation amount for this form is","bad_maximum":"The maximum custom donation amount for this form is","general_loading":"Loading...","purchase_loading":"Please Wait...","textForOverlayScreen":"\u003Ch3\u003EProcessing...\u003C/h3\u003E\u003Cp\u003EThis will only take a second!\u003C/p\u003E","number_decimals":"2","is_test_mode":"","give_version":"4.16.9","magnific_options":{"main_class":"give-modal","close_on_bg_click":false},"form_translation":{"payment-mode":"Please select payment mode.","give_first":"Please enter your first name.","give_last":"Please enter your last name.","give_email":"Please enter a valid email address.","give_user_login":"Invalid email address or username.","give_user_pass":"Enter a password.","give_user_pass_confirm":"Enter the password confirmation.","give_agree_to_terms":"You must agree to the terms and conditions."},"confirm_email_sent_message":"Please check your email and click on the link to access your complete donation history.","ajax_vars":{"ajaxurl":"https://voicesunveiled.org/wp-admin/admin-ajax.php","ajaxNonce":"1798d46e85","loading":"Loading","select_option":"Please select an option","default_gateway":"stripe","permalinks":"1","number_decimals":2},"cookie_hash":"f7c25449641052c88b0e05a221d49609","session_nonce_cookie_name":"wp-give_session_reset_nonce_f7c25449641052c88b0e05a221d49609","session_cookie_name":"wp-give_session_f7c25449641052c88b0e05a221d49609","delete_session_nonce_cookie":"0"};
+var giveApiSettings = {"root":"https://voicesunveiled.org/wp-json/give-api/v2/","rest_base":"give-api/v2"};
+//# sourceURL=give-js-extra
+</script>
+<script id="give-js" src="/wp-content/plugins/give/build/assets/dist/js/give.js"></script>
+<script id="give-fee-recovery-js-extra">
+var give_fee_recovery_object = {"give_fee_zero_based_currency":"[\"JPY\",\"KRW\",\"CLP\",\"ISK\",\"BIF\",\"DJF\",\"GNF\",\"KHR\",\"KPW\",\"LAK\",\"LKR\",\"MGA\",\"MZN\",\"VUV\"]"};
+//# sourceURL=give-fee-recovery-js-extra
+</script>
+<script id="give-fee-recovery-js" src="/wp-content/plugins/give-fee-recovery/assets/js/give-fee-recovery-public.min.js"></script>
 <script id="WCPAY_ASSETS-js-extra">
 var wcpayAssets = {"url":"/wp-content/plugins/woocommerce-payments/dist/"};
 //# sourceURL=WCPAY_ASSETS-js-extra
 </script>
-
-
+<script id="give_recurring_script-js-extra">
+var Give_Recurring_Vars = {"email_access":"1","pretty_intervals":{"1":"Every","2":"Every two","3":"Every three","4":"Every four","5":"Every five","6":"Every six"},"pretty_periods":{"day":"Daily","week":"Weekly","month":"Monthly","quarter":"Quarterly","half-year":"Semi-Annually","year":"Yearly"},"messages":{"daily_forbidden":"The selected payment method does not support daily recurring giving. Please select another payment method or supported giving frequency.","confirm_cancel":"Are you sure you want to cancel this subscription?"},"multi_level_message_pre_text":"You have chosen to donate"};
+//# sourceURL=give_recurring_script-js-extra
+</script>
+<script id="give_recurring_script-js" src="/wp-content/plugins/give-recurring/assets/js/give-recurring.min.js"></script>
 <script id="theme-frontend-js-extra">
 var thrive_front_localize = {"comments_form":{"error_defaults":{"email":"Email address invalid","url":"Website address invalid","required":"Required field missing"}},"routes":{"posts":"https://voicesunveiled.org/wp-json/tcb/v1/posts","frontend":"https://voicesunveiled.org/wp-json/ttb/v1/frontend"},"tar_post_url":"?tve=true&action=architect&from_theme=1","is_editor":"","ID":"130","template_url":"?tve=true&action=architect&from_tar=887","pagination_url":{"template":"/donate-now/page/[thrive_page_number]/","base":"/donate-now/"},"sidebar_visibility":[],"is_singular":"1","is_user_logged_in":""};
 //# sourceURL=theme-frontend-js-extra
@@ -239,7 +255,7 @@ var thrive_front_localize = {"comments_form":{"error_defaults":{"email":"Email a
 :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-family--inter: "Inter", sans-serif;--wp--preset--font-family--cardo: Cardo;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-cardo-font-family{font-family: var(--wp--preset--font-family--cardo) !important;}
 /*# sourceURL=global-styles-inline-css */
 </style>
-
+<link rel='stylesheet' id='givewp-donation-form-embed-app-css' href='/wp-content/plugins/give/build/donationFormBlockApp.css' media='all' />
 
 </head>
 		<body data-rsssl=1 class="wp-singular page-template-default page page-id-887 wp-theme-thrive-theme tve_lp"style="" data-css="tve-u-19a8f14ab95"> 				<div class="wrp cnt bSe" style="display: none">
@@ -251,7 +267,7 @@ var thrive_front_localize = {"comments_form":{"error_defaults":{"email":"Email a
 	<div class="tve-page-section-out"></div>
 	<div class="tve-page-section-in" data-css="tve-u-190e6f8a2f2"><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none; --rem: 16;" class="dnXmp"></grammarly-extension><div class="thrv_wrapper tve_image_caption" data-css="tve-u-19ac8737945" style=""><span class="tve_image_frame" style=""><img decoding="async" class="tve_image tcb-moved-image wp-image-2984" alt="" data-id="2984" width="1502" data-init-width="1600" height="1001" data-init-height="1066" title="WhatsApp Image 2026-01-28 at 13.59.11" loading="lazy" src="/wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11.jpeg" data-width="1502" data-height="1001" data-css="tve-u-19ac873a1e1" style="aspect-ratio: auto 1600 / 1066;" mt-d="-228" ml-d="0" center-v-d="false" mt-m="0" ml-m="-139" mt-t="0" ml-t="0" center-h-m="false" srcset="/wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11.jpeg 1600w, /wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11-300x200.jpeg 300w, /wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11-1024x682.jpeg 1024w, /wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11-768x512.jpeg 768w, /wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11-1536x1023.jpeg 1536w, /wp-content/uploads/2026/01/WhatsApp-Image-2026-01-28-at-13.59.11-600x400.jpeg 600w" sizes="auto, (max-width: 1502px) 100vw, 1502px" /></span></div><div class="thrv_wrapper thrv_contentbox_shortcode thrv-content-box tve-elem-default-pad">
 	<div class="tve-content-box-background"></div>
-	<div class="tve-cb"><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-19a7f29f26f" style=""><iframe class="givewp-form-iframe" src="https://voicesunveiled.org/?givewp-route=donation-form-view&form-id=3063" title="Donation form" loading="lazy" style="width:100%;min-height:760px;border:0;display:block"></iframe></div></div>
+	<div class="tve-cb"><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-19a7f29f26f" style=""><div class='root-data-givewp-embed' data-form-locale='en_US' data-form-url='https://voicesunveiled.org/?post_type=give_forms&amp;p=3063' data-form-view-url='https://voicesunveiled.org/?givewp-route=donation-form-view&amp;form-id=3063' data-src='https://voicesunveiled.org/?givewp-route=donation-form-view&amp;form-id=3063' data-givewp-embed-id='give-form-shortcode-1' data-form-format='' data-open-form-button='Donate now' style='--givewp-primary-color: #EB712E; --givewp-secondary-color: #f49420;'></div></div></div>
 </div><div class="thrv_wrapper thrv_contentbox_shortcode thrv-content-box tve-elem-default-pad tcb-mobile-hidden tcb-desktop-hidden" style="" data-css="tve-u-19b108686a7">
 	<div class="tve-content-box-background"></div>
 	<div class="tve-cb"><div class="thrv_wrapper thrv_text_element tcb-desktop-hidden tcb-tablet-hidden" data-css="tve-u-19a7f319595" style=""><h4 class="" data-css="tve-u-19a7f3171fe" style=""><span data-css="tve-u-19a8f09ced7" style="--tcb-applied-color: rgb(217, 144, 88) !important; color: rgb(217, 144, 88) !important;">THIS IS OUR MOMENT TO CHOOSE HOPE</span></h4></div><div class="thrv_wrapper thrv_text_element tcb-desktop-hidden tcb-tablet-hidden" data-css="tve-u-19ac877f536" style=""><p data-css="tve-u-19a8efdef67" data-end="4427" data-start="4210" style="">We must raise <strong data-end="4250" data-start="4224">$50,000</strong> to keep our programs alive.<br data-start="4278" data-end="4281">Without your help, <strong data-end="4343" data-start="4300">Voices Unveiled will be forced to close</strong>, leaving Afghan women and girls without the education and community they depend on.</p><p data-css="tve-u-19a8efdef69" data-end="4507" data-start="4429" style="">Your donation today protects their dignity, their education, and their dreams.</p></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-190e6fcbd4b"><h2 class="" data-css="tve-u-19a8f0741f1" style="">Choose Your Impact</h2><p>Every action matters. Every dollar keeps hope alive.</p></div></div>
@@ -350,7 +366,7 @@ var thrive_front_localize = {"comments_form":{"error_defaults":{"email":"Email a
 	</a>
 </div><div class="thrv_wrapper thrv_contentbox_shortcode thrv-content-box tve-elem-default-pad">
 	<div class="tve-content-box-background"></div>
-	<div class="tve-cb"><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-19a7f29f26f" style=""><iframe class="givewp-form-iframe" src="https://voicesunveiled.org/?givewp-route=donation-form-view&form-id=2068" title="Donation form" loading="lazy" style="width:100%;min-height:760px;border:0;display:block"></iframe></div></div>
+	<div class="tve-cb"><div class="thrv_wrapper thrv_custom_html_shortcode" data-css="tve-u-19a7f29f26f" style=""><div class='root-data-givewp-embed' data-form-locale='en_US' data-form-url='https://voicesunveiled.org/?post_type=give_forms&amp;p=2068' data-form-view-url='https://voicesunveiled.org/?givewp-route=donation-form-view&amp;form-id=2068' data-src='https://voicesunveiled.org/?givewp-route=donation-form-view&amp;form-id=2068' data-givewp-embed-id='give-form-shortcode-2' data-form-format='' data-open-form-button='Donate now' style='--givewp-primary-color: #ce4204; --givewp-secondary-color: #f49420;'></div></div></div>
 </div><div class="thrv_wrapper thrv_contentbox_shortcode thrv-content-box tve-elem-default-pad">
 	<div class="tve-content-box-background"></div>
 	<div class="tve-cb"><div class="thrv_wrapper thrv_text_element" data-css="tve-u-19ac87c6319" style=""><h2 class="">What We’ve Built Together</h2></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-19ac8784134" style=""><p dir="ltr">For almost <strong>three years</strong>, Voices Unveiled has <strong>empowered Afghan girls and women</strong> with:</p><ul class="" data-end="5181" data-start="4856"><li data-end="4925" data-start="4856"><strong data-end="4884" data-start="4861">Free online classes</strong> for these students, who are <strong>banned from school by the Taliban</strong></li><li data-end="4994" data-start="4926"><strong data-end="4956" data-start="4931">Mental health support</strong> during exile, isolation, and trauma to&nbsp;<strong>20+ families</strong></li><li data-end="5055" data-start="4995"><strong data-end="5023" data-start="5000">13 elective courses</strong> in tech, science, humanities, and arts</li><li data-end="5115" data-start="5056"><strong data-end="5089" data-start="5060">6 rounds&nbsp;</strong>of our Self-Empowerment Programs that have helped them rebuild their confidence</li><li data-end="5181" data-start="5116"><strong data-end="5143" data-start="5121">Life-saving relief</strong> — food, medicine, financial support</li></ul><p data-end="5310" data-start="5183"><strong data-end="5200" data-start="5183">250+ students</strong> have learned, healed, and reimagined their futures.<br data-start="5252" data-end="5255"><strong data-end="5263" data-start="5255">100%</strong> report that their lives have been transformed.</p><p data-end="5363" data-start="5312">But without your urgent support, it could all disappear.</p></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-19a7f28e4f9" style=""><h2 class="">Your Support Ensures Afghan Women and Girls Can:</h2></div><div class="thrv_wrapper thrv_text_element" data-css="tve-u-19a7f28b037" style=""><ul class=""><li dir="ltr"><strong>Access to free online education</strong>, systematically denied to them under Taliban restrictions.</li><li dir="ltr"><strong>Receive mental health support and community connection</strong>, helping them cope with isolation, trauma, and fear.</li><li><strong>Receive urgent, life-saving aid</strong> — including food, medicine, and financial assistance in emergencies.</li><li><strong>Reclaim their voices through courses</strong> in self-empowerment, English, data analytics, philosophy, meditation, and more.</li></ul><p>Every dollar keeps hope alive.&nbsp;<strong>Your generosity today protects their education, their dignity, and their dreams.</strong></p></div></div>
@@ -456,61 +472,92 @@ var thrive_front_localize = {"comments_form":{"error_defaults":{"email":"Email a
 		</div>
 		<div class="tve-toast-message-container"></div>
 	</div>
-</div><script type="text/javascript">var tcb_current_post_lists=JSON.parse('[]'); var tcb_post_lists=tcb_post_lists?[...tcb_post_lists,...tcb_current_post_lists]:tcb_current_post_lists;</script><script id="tve_frontend_pricing-table-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/pricing-table.min.js#038;ver=11.0.1"></script>
+</div><script type="text/javascript">var tcb_current_post_lists=JSON.parse('[]'); var tcb_post_lists=tcb_post_lists?[...tcb_post_lists,...tcb_current_post_lists]:tcb_current_post_lists;</script><script id="tve_frontend_pricing-table-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/pricing-table.min.js"></script>
+
+
+
+<script id="react-js" src="/wp-includes/js/dist/vendor/react.min.js"></script>
+<script id="react-jsx-runtime-js" src="/wp-includes/js/dist/vendor/react-jsx-runtime.min.js"></script>
+<script id="wp-private-apis-js" src="/wp-includes/js/dist/private-apis.min.js"></script>
+<script id="wp-url-js" src="/wp-includes/js/dist/url.min.js"></script>
+<script id="wp-api-fetch-js" src="/wp-includes/js/dist/api-fetch.min.js"></script>
+<script id="wp-api-fetch-js-after">
+wp.apiFetch.use( wp.apiFetch.createRootURLMiddleware( "https://voicesunveiled.org/wp-json/" ) );
+wp.apiFetch.nonceMiddleware = wp.apiFetch.createNonceMiddleware( "537860c550" );
+wp.apiFetch.use( wp.apiFetch.nonceMiddleware );
+wp.apiFetch.use( wp.apiFetch.mediaUploadMiddleware );
+wp.apiFetch.nonceEndpoint = "https://voicesunveiled.org/wp-admin/admin-ajax.php?action=rest-nonce";
+(function(){if(!window.wp||!wp.apiFetch||!wp.apiFetch.use){return;}wp.apiFetch.use(function(options,next){var p=String((options&&(options.path||options.url))||"");try{var u=new URL(p,window.location.origin);p=(u.pathname||"")+(u.search||"");}catch(e){}if(p.indexOf("/wp/v2/users/me")!==-1){return Promise.resolve(null);}return next(options);});})();
+//# sourceURL=wp-api-fetch-js-after
+</script>
+<script id="react-dom-js" src="/wp-includes/js/dist/vendor/react-dom.min.js"></script>
+<script id="wp-blob-js" src="/wp-includes/js/dist/blob.min.js"></script>
+<script id="wp-block-serialization-default-parser-js" src="/wp-includes/js/dist/block-serialization-default-parser.min.js"></script>
+<script id="wp-autop-js" src="/wp-includes/js/dist/autop.min.js"></script>
+<script id="wp-deprecated-js" src="/wp-includes/js/dist/deprecated.min.js"></script>
+<script id="wp-dom-js" src="/wp-includes/js/dist/dom.min.js"></script>
+<script id="wp-escape-html-js" src="/wp-includes/js/dist/escape-html.min.js"></script>
+<script id="wp-element-js" src="/wp-includes/js/dist/element.min.js"></script>
+<script id="wp-is-shallow-equal-js" src="/wp-includes/js/dist/is-shallow-equal.min.js"></script>
+<script id="wp-keycodes-js" src="/wp-includes/js/dist/keycodes.min.js"></script>
+<script id="wp-priority-queue-js" src="/wp-includes/js/dist/priority-queue.min.js"></script>
+<script id="wp-undo-manager-js" src="/wp-includes/js/dist/undo-manager.min.js"></script>
+<script id="wp-compose-js" src="/wp-includes/js/dist/compose.min.js"></script>
+<script id="wp-redux-routine-js" src="/wp-includes/js/dist/redux-routine.min.js"></script>
+<script id="wp-data-js" src="/wp-includes/js/dist/data.min.js"></script>
+<script id="wp-data-js-after">
+( function() {
+	var userId = 0;
+	var storageKey = "WP_DATA_USER_" + userId;
+	wp.data
+		.use( wp.data.plugins.persistence, { storageKey: storageKey } );
+} )();
+//# sourceURL=wp-data-js-after
+</script>
+<script id="wp-html-entities-js" src="/wp-includes/js/dist/html-entities.min.js"></script>
+<script id="wp-rich-text-js" src="/wp-includes/js/dist/rich-text.min.js"></script>
+<script id="wp-shortcode-js" src="/wp-includes/js/dist/shortcode.min.js"></script>
+<script id="wp-warning-js" src="/wp-includes/js/dist/warning.min.js"></script>
+<script id="wp-blocks-js" src="/wp-includes/js/dist/blocks.min.js"></script>
+<script id="moment-js" src="/wp-includes/js/dist/vendor/moment.min.js"></script>
+<script id="moment-js-after">
+moment.updateLocale( 'en_US', {"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"week":{"dow":1},"longDateFormat":{"LT":"H:i","LTS":null,"L":null,"LL":"F j, Y","LLL":"F j, Y g:i a","LLLL":null}} );
+//# sourceURL=moment-js-after
+</script>
+<script id="wp-date-js" src="/wp-includes/js/dist/date.min.js"></script>
+<script id="wp-date-js-after">
+wp.date.setSettings( {"l10n":{"locale":"en_US","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"meridiem":{"am":"am","pm":"pm","AM":"AM","PM":"PM"},"relative":{"future":"%s from now","past":"%s ago","s":"a second","ss":"%d seconds","m":"a minute","mm":"%d minutes","h":"an hour","hh":"%d hours","d":"a day","dd":"%d days","M":"a month","MM":"%d months","y":"a year","yy":"%d years"},"startOfWeek":1},"formats":{"time":"H:i","date":"F j, Y","datetime":"F j, Y g:i a","datetimeAbbreviated":"M j, Y g:i a"},"timezone":{"offset":-6,"offsetFormatted":"-6","string":"America/Denver","abbr":"MDT"}} );
+//# sourceURL=wp-date-js-after
+</script>
+<script id="wp-primitives-js" src="/wp-includes/js/dist/primitives.min.js"></script>
+<script id="wp-theme-js" src="/wp-includes/js/dist/theme.min.js"></script>
+<script id="wp-components-js" src="/wp-includes/js/dist/components.min.js"></script>
+<script id="wp-keyboard-shortcuts-js" src="/wp-includes/js/dist/keyboard-shortcuts.min.js"></script>
+<script id="wp-preferences-persistence-js" src="/wp-includes/js/dist/preferences-persistence.min.js"></script>
+<script id="wp-preferences-js" src="/wp-includes/js/dist/preferences.min.js"></script>
+<script id="wp-preferences-js-after">
+( function() {
+				var serverData = false;
+				var userId = "0";
+				var persistenceLayer = wp.preferencesPersistence.__unstableCreatePersistenceLayer( serverData, userId );
+				var preferencesStore = wp.preferences.store;
+				wp.data.dispatch( preferencesStore ).setPersistenceLayer( persistenceLayer );
+			} ) ();
+//# sourceURL=wp-preferences-js-after
+</script>
+<script id="wp-commands-js" src="/wp-includes/js/dist/commands.min.js"></script>
+<script id="wp-notices-js" src="/wp-includes/js/dist/notices.min.js"></script>
+<script id="wp-style-engine-js" src="/wp-includes/js/dist/style-engine.min.js"></script>
+<script id="wp-token-list-js" src="/wp-includes/js/dist/token-list.min.js"></script>
+<script id="wp-upload-media-js" src="/wp-includes/js/dist/upload-media.min.js"></script>
+<script id="wp-block-editor-js" src="/wp-includes/js/dist/block-editor.min.js"></script>
+<script id="wp-core-data-js" src="/wp-includes/js/dist/core-data.min.js"></script>
+<script id="givewp-entities-public-js" src="/wp-content/plugins/give/build/entitiesPublic.js"></script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script id="wp-polyfill-js" src="/wp-includes/js/dist/vendor/wp-polyfill.min.js"></script>
 
 <script id="tve-dash-frontend-js-extra">
 var tve_dash_front = {"ajaxurl":"https://voicesunveiled.org/wp-admin/admin-ajax.php","force_ajax_send":"1","is_crawler":"","recaptcha":{"connection":{"version":"v2","threshold":"0.5"},"site_key":"6Ld4ViwrAAAAAEkFr89WsYFbCo1d63f7rRIUhPnW"},"turnstile":[],"post_id":"887"};
@@ -526,14 +573,14 @@ var tve_dash_front = {"ajaxurl":"https://voicesunveiled.org/wp-admin/admin-ajax.
 
 
 
-<script id="popup-maker-site-js" src="/wp-content/uploads/pum/pum-site-scripts.js#038;generated=1783711946&#038;ver=1.25.0"></script>
 
 
 
 
-<script id="tve_frontend_menu-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/menu.min.js#038;ver=11.0.1"></script>
-<script id="tve_frontend_social-share-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/social-share.min.js#038;ver=11.0.1"></script>
-<script id="tve_frontend_divider-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/divider.min.js#038;ver=11.0.1"></script>
+<script id="givewp-donation-form-embed-app-js" src="/wp-content/plugins/give/build/donationFormBlockApp.js"></script>
+<script id="tve_frontend_menu-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/menu.min.js"></script>
+<script id="tve_frontend_social-share-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/social-share.min.js"></script>
+<script id="tve_frontend_divider-js" src="/wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/divider.min.js"></script>
 <script id="wp-emoji-settings" type="application/json">
 {"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"/wp-includes/js/wp-emoji-release.min.js"}}
 </script>

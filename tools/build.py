@@ -26,11 +26,23 @@ ORIGIN = "https://voicesunveiled.org"
 DROP_ASSETS = re.compile(
     r"(wp-content/plugins/(woocommerce|woocommerce-payments|give|give-recurring|give-fee-recovery|"
     r"mailchimp-for-woocommerce|google-site-kit|akismet|popup-maker)/"
+    r"|wp-content/uploads/pum/"
     r"|wp-includes/js/dist/"
     r"|wp-includes/js/comment-reply"
     r"|wp-includes/js/plupload/"
     r"|wp-includes/css/dist/"
     r"|wp-includes/blocks/"
+    r"|wp-content/plugins/thrive-visual-editor/editor/js/dist/woo\.min\.js"
+    r"|wp-content/themes/thrive-theme/inc/assets/dist/woo(commerce)?\."
+    r"|wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/(login|user-profile|avatar-picker|file-upload)\."
+    r")"
+)
+# En páginas con formulario GiveWP se conservan el editor de bloques y los scripts de Give
+DROP_ASSETS_LIGHT = re.compile(
+    r"(wp-content/plugins/(woocommerce|woocommerce-payments|mailchimp-for-woocommerce|google-site-kit|akismet|popup-maker)/"
+    r"|wp-content/uploads/pum/"
+    r"|wp-includes/js/comment-reply"
+    r"|wp-includes/js/plupload/"
     r"|wp-content/plugins/thrive-visual-editor/editor/js/dist/woo\.min\.js"
     r"|wp-content/themes/thrive-theme/inc/assets/dist/woo(commerce)?\."
     r"|wp-content/plugins/thrive-visual-editor/editor/js/dist/modules/(login|user-profile|avatar-picker|file-upload)\."
@@ -47,6 +59,12 @@ DROP_INLINE = (
     "sbjs", "preferencesStore", "wc-blocks", "wp.blocks", "wp.hooks",
     "wp.data", "moment.updateLocale", "wp.date", "wp.apiFetch",
 )
+DROP_INLINE_LIGHT = (
+    "wc_add_to_cart_params", "woocommerce_params", "wc_cart_fragments_params",
+    "wc_order_attribution", "mailchimp_public_data", "mcPixelConfig", "mailchimp-for-woocommerce",
+    "pum_vars", "pum_popups", "pum_sub_vars", "_googlesitekit", "wpemojiSettings",
+    "window._wpemojiSettings", "sbjs", "wc-blocks",
+)
 # <link> que se eliminan por rel
 DROP_LINK_REL = ("alternate", "pingback", "EditURI", "wlwmanifest", "shortlink", "https://api.w.org/")
 
@@ -61,16 +79,21 @@ REDIRECTS = [
 TAG_RE = re.compile(r"<(script|link|style)\b[^>]*?(?:/>|>.*?</\1>|>)", re.S | re.I)
 
 
-def clean_tag(tag: str) -> str:
-    """Devuelve '' si la etiqueta debe eliminarse, si no la devuelve intacta."""
+def clean_tag(tag: str, light: bool = False) -> str:
+    """Devuelve '' si la etiqueta debe eliminarse, si no la devuelve intacta.
+    light=True conserva GiveWP y el editor de bloques (páginas con formulario de donación)."""
     low = tag.lower()
     m = re.search(r"""(?:src|href)\s*=\s*["']([^"']+)""", tag, re.I)
     ref = m.group(1) if m else ""
-    if ref and DROP_ASSETS.search(ref):
+    drop_assets = DROP_ASSETS_LIGHT if light else DROP_ASSETS
+    drop_inline = DROP_INLINE_LIGHT if light else DROP_INLINE
+    if ref and drop_assets.search(ref):
         return ""
-    if ref and re.search(r"(js\.stripe\.com|/cdn-cgi/|accounts\.google\.com/gsi)", ref):
+    if ref and re.search(r"(/cdn-cgi/|accounts\.google\.com/gsi)", ref):
         return ""
-    if low.startswith("<link") and "fonts.googleapis" in ref and "givewp" in low:
+    if ref and "js.stripe.com" in ref and not light:
+        return ""
+    if low.startswith("<link") and "fonts.googleapis" in ref and "givewp" in low and not light:
         return ""
     if low.startswith("<link"):
         rel = re.search(r"""rel\s*=\s*["']([^"']+)""", tag, re.I)
@@ -79,7 +102,7 @@ def clean_tag(tag: str) -> str:
         if ref and ("/feed" in ref or "wp-json" in ref or "xmlrpc" in ref):
             return ""
     if low.startswith("<script") and not ref:
-        if any(k in tag for k in DROP_INLINE):
+        if any(k in tag for k in drop_inline):
             return ""
     if low.startswith("<style"):
         if "wp-emoji" in tag or "img.wp-smiley" in tag:
@@ -106,24 +129,25 @@ def process_html(html: str) -> str:
     html = CF_A2_RE.sub(lambda m: f'<a href="mailto:{cf_decode(m.group(2))}">{cf_decode(m.group(2))}</a>', html)
     html = CF_A_RE.sub(lambda m: f'<a href="mailto:{cf_decode(m.group(1))}"{m.group(2)}>{m.group(3)}</a>', html)
     html = re.sub(r'href="/cdn-cgi/l/email-protection#([0-9a-f]+)"', lambda m: f'href="mailto:{cf_decode(m.group(1))}"', html)
-    # 1) Donaciones GiveWP: iframe al formulario del sitio original
+    # 1) Donaciones GiveWP: se conserva el embed original (donationFormBlockApp.js crea el iframe
+    #    hacia el sitio original y lo redimensiona), con limpieza ligera de scripts
+    light = "root-data-givewp-embed" in html
+
     def give_iframe(m):
         url = m.group(1).replace("&amp;", "&")
         return (
             f'<iframe class="givewp-form-iframe" src="{url}" title="Donation form" '
             f'loading="lazy" style="width:100%;min-height:760px;border:0;display:block"></iframe>'
         )
-    html = GIVE_EMBED_RE.sub(give_iframe, html)
-
     # 2) Eliminar assets/scripts dependientes de WordPress
-    html = TAG_RE.sub(lambda m: clean_tag(m.group(0)), html)
+    html = TAG_RE.sub(lambda m: clean_tag(m.group(0), light), html)
 
     # 3) Formularios Gravity Forms → envían al sitio original
     html = re.sub(r"(<form[^>]*\bid='gform_\d+'[^>]*action=')/", r"\1" + ORIGIN + "/", html)
 
     # 4) Quitar query strings de assets locales (?ver=…)
     html = re.sub(
-        r"(voicesunveiled\.org/[^\s\"'<>?#]+\.(?:css|js|png|jpe?g|gif|svg|webp|woff2?|ttf|eot|ico|pdf|mp4|mp3|json))\?[^\s\"'<>#]*",
+        r"(voicesunveiled\.org/[^\s\"'<>?#]+\.(?:css|js|png|jpe?g|gif|svg|webp|woff2?|ttf|eot|ico|pdf|mp4|mp3|json))\?[^\s\"'<>]*",
         r"\1",
         html,
     )
@@ -190,7 +214,7 @@ def main():
             elif rel.endswith("modules/image-gallery.min.js"):
                 with open(path, encoding="utf-8", errors="replace") as f:
                     data = f.read()
-                data = data.replace("const t=window.location.origin;this.$gallery", f'const t="{ORIGIN}";this.$gallery')
+                data = data.replace("fetchCaptionsFromMedia(){const t=window.location.origin;", f'fetchCaptionsFromMedia(){{const t="{ORIGIN}";')
                 with open(dst, "w", encoding="utf-8") as f:
                     f.write(data)
             elif rel.endswith(".css"):
