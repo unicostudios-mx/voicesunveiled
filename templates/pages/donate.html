@@ -10,14 +10,36 @@
   <div class="wrap split split--wide split--start">
     <div>
       {{ eyebrow('Make a gift') }}
-      <h2 style="margin-bottom:16px">Your gift keeps education, connection, and hope alive.</h2>
-      <p style="margin-bottom:26px">Every dollar you invest directly impacts the lives of Afghan women and girls. Choose an amount to see what it makes possible. Your donation today protects their dignity, their education, and their dreams.</p>
-      {{ testimonial(data.student_quotes[3], 'sage', compact=true) }}
+      <h2 style="margin-bottom:16px">Support Afghan women's education &mdash; every month.</h2>
+      <p>Your monthly gift keeps our Self-Empowerment and Feminism course and over 13 electives running and reaches Afghan women who have been shut out of school. Sustaining gifts are what let us plan ahead and keep showing up for our students.</p>
+      <p style="margin-bottom:26px">Every dollar you invest directly impacts the lives of Afghan women and girls. Choose an amount to see what it makes possible.</p>
+      {{ testimonial(data.student_quotes[6], 'sage', compact=true) }}
     </div>
-    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 300, 'once', sticky=true) }}
+    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 25, 'monthly', sticky=true) }}
   </div>
 </section>
-<section class="band ground">
+<section class="band ground" id="more-ways">
+  <div class="wrap">
+    {{ eyebrow('More ways to give') }}
+    <h2 style="margin-bottom:28px">Tax-smart giving through your DAF or IRA.</h2>
+    <div class="grid2 reveal">
+      <div class="card card--ivory">
+        <h3 style="margin-top:0">Give through your donor-advised fund (DAF)</h3>
+        <p style="margin-bottom:14px">If you have a donor-advised fund, you can recommend a grant to us in minutes. Please direct your gift to our legal entity:</p>
+        <ul class="levels" style="margin-bottom:14px"><li style="display:block; line-height:1.6"><strong>Café de la Culture</strong><br>Voices Unveiled is a program of Café de la Culture<br>501(c)(3) tax-exempt organization &middot; EIN {{ site.ein }}</li></ul>
+        <p>Search for &ldquo;Café de la Culture&rdquo; in your DAF portal; grants are routed by legal name and EIN, not by our program name.</p>
+      </div>
+      <div class="card card--ivory">
+        <h3 style="margin-top:0">Give from your IRA (Qualified Charitable Distribution)</h3>
+        <p style="margin-bottom:14px">If you are 70&frac12; or older, you can give directly from your IRA to Café de la Culture. A qualified charitable distribution counts toward your required minimum distribution and is generally excluded from your taxable income &mdash; a tax-smart way to make a bigger impact. Ask your IRA custodian to send your gift directly to:</p>
+        <ul class="levels" style="margin-bottom:14px"><li style="display:block; line-height:1.6"><strong>Café de la Culture</strong><br>{{ site.address }}<br>EIN {{ site.ein }}</li></ul>
+        <p>To count for this tax year, your gift must be completed by December 31. We're happy to help: <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:16px">This is general information, not tax advice; please check with your financial or tax advisor.</p>
+  </div>
+</section>
+<section class="band">
   <div class="wrap split split--start">
     <div>
       {{ eyebrow('Your support ensures') }}
@@ -31,15 +53,15 @@
     </div>
   </div>
 </section>
-<section class="band">
+<section class="band ground">
   <div class="wrap">
     {{ eyebrow('Their voices') }}
     <h2 style="margin-bottom:14px">These are the lives your donation supports.</h2>
     <div style="margin-bottom:28px">{{ safety_note() }}</div>
     <div class="grid3 reveal">
-      {{ testimonial(data.student_quotes[1], 'ivory', compact=true) }}
-      {{ testimonial(data.student_quotes[2], 'sage', compact=true) }}
-      {{ testimonial(data.student_quotes[0], 'ivory', compact=true) }}
+      {{ testimonial(data.student_quotes[4], 'ivory', compact=true) }}
+      {{ testimonial(data.student_quotes[5], 'sage', compact=true) }}
+      {{ testimonial(data.student_quotes[3], 'ivory', compact=true) }}
     </div>
   </div>
 </section>

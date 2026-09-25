@@ -84,12 +84,14 @@ donation_tiers:
   - { amount: 300, impact: "One trimester of transformation for one student" }
   - { amount: 600, impact: "One trimester for two students" }
   - { amount: 1000, impact: "A year of education, coaching, counselling, and support" }
+  - { amount: 0, label: "Other", impact: "Choose your own amount on the next step" }
 
 monthly_tiers:
   - { amount: 25, impact: "Keeps one student connected to class every month" }
   - { amount: 50, impact: "Course materials and internet, month after month" }
   - { amount: 100, impact: "Mental health support and emergency aid when it is needed" }
   - { amount: 300, impact: "Sponsors a student each trimester, or feeds a family for a month" }
+  - { amount: 0, label: "Other", impact: "Choose your own monthly amount on the next step" }
 
 sponsorship_levels:
   - { amount: "$300", label: "Full scholarship for one trimester" }
@@ -109,7 +111,7 @@ monthly_benefits:
 
 faq:
   - q: Is my donation tax-deductible?
-    a: Yes. Voices Unveiled / Cafe de la Culture Inc is a registered 501(c)(3) nonprofit (EIN 99-0810138). Your gift is tax-deductible to the full extent allowed by law.
+    a: Yes. Voices Unveiled is a program of Café de la Culture, a registered 501(c)(3) tax-exempt organization (EIN 99-0810138). Your gift is tax-deductible to the full extent allowed by law.
   - q: Where does my money go?
     a: Directly to scholarships, internet access, course materials, mental health support, and emergency assistance for Afghan women and girls. Our annual impact reports show exactly where every gift goes.
   - q: Can I give monthly?
@@ -126,6 +128,9 @@ emergency_campaigns:
   - { title: "Emergency Funds for Roya", body: "Every campaign starts with one donation. Be the one to make it happen.", url: "https://voicesunveiled.org/emergency-funds-for-roya/" }
 
 student_quotes:
+  - { quote: "I believe that the Taliban banned education for us because they're scared of educated women. They know what an educated woman can do.", name: "R.", age: 13, detail: "Afghanistan" }
+  - { quote: "My age doesn't limit my power. If the world forgets me, I won't forget myself.", name: "R.", age: 13, detail: "Afghanistan" }
+  - { quote: "The Wise Woman inside of me keeps telling me to try and never give up.", name: "R.", age: 13, detail: "Afghanistan" }
   - { quote: "I was not confident enough to speak. Now I believe I am valuable, precious, and need to be heard.", name: "Ehsaneh", age: 28, detail: "Afghanistan" }
   - { quote: "I hated being a girl. I thought my life was over. Voices Unveiled helped me love myself again. It gave me hope for my life and future.", name: "Chalipa", age: 14, detail: "Afghanistan" }
   - { quote: "Before joining Voices Unveiled, I wished I could be someone else. Now I thank God that I am a girl.", name: "Dasa", age: 24, detail: "Refugee in Pakistan" }
@@ -142,7 +147,12 @@ student_quotes:
   - { quote: "Freedom feels like an unattainable dream, but I believe in working towards it. I want to acquire all the tools this course offers to empower myself, and I will pass on everything I learn to others.", name: "F.B.", age: 25, detail: "Kabul, Afghanistan" }
 
 supporter_quotes:
+  - { quote: "I will never forget the brilliance, the passion and the sincerity of these women. They were showing me what it looks like to practice Revolutionary Love in the most oppressive circumstances. It's something we need to learn from more and more: how to get innovative, how to keep organizing, how to go underground and how to shine the light inside of us and in between us, no matter how dark it gets.", name: "Valarie Kaur", detail: "Bestselling author and founder of The Revolutionary Love Project" }
+  - { quote: "If you are looking for a meaningful organization to give to, to support the women in Afghanistan, this is the organization. They are directly working with the women who will rebuild their country, fight for justice, and teach their daughters. They are planting the seeds for future generations, and this is one way to plant with them.", name: "Valarie Kaur", detail: "Bestselling author and founder of The Revolutionary Love Project" }
   - { quote: "I am so touched by the work Voices Unveiled does. Everyone should do anything they can to support them.", name: "Zainab Salbi", detail: "Founder, Women for Women International" }
+  - { quote: "This is a grassroots movement: women teaching women, in secret. Girls as young as 13, learning about self-worth, leadership, writing, women's rights, and why their voice matters. Some of them risk it all just to attend. One girl walks into a cow field in the middle of the night with a lantern, just to get enough internet to join class.", name: "@crystaldawnalchemy", detail: "Supporter" }
+  - { quote: "Voices Unveiled is the only safe learning space many of these girls have. This is about keeping the door open for women who are fighting for their rights and future.", name: "@crystaldawnalchemy", detail: "Supporter" }
+  - { quote: "I'm just so grateful to Voices Unveiled for leading these underground classrooms and for giving us a meaningful way to be in relationship with the women and girls in Afghanistan who have been closed off from the rest of the world.", name: "Valarie Kaur", detail: "Bestselling author and founder of The Revolutionary Love Project" }
   - { quote: "Voices Unveiled is a hugely important program. The stories of the women who've attended the Voices classes tell of self-discovery, personal fulfillment, and even individual freedom within the hard frame of Afghanistan today.", name: "John Boylan", detail: "Supporter" }
   - { quote: "Afghan girls and young women are being heard and seen for who they are, who they dream of becoming. They are finding their voices, empowered to become change agents for the country they love. Our support validates their courage.", name: "Mary Faddick", detail: "Supporter" }
   - { quote: "Voices Unveiled is doing cutting edge work with Afghan women and girls, walking alongside them towards their educational goals and mental health healing. We are proud supporters and thankful for their work.", name: "Heidi Henkel", detail: "The Broomfield Resettlement Task Force" }

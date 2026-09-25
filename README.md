@@ -43,6 +43,15 @@ sube el contenido de `site/` con las credenciales guardadas como secretos del re
 
 Las URLs antiguas del WordPress redirigen a las nuevas (ver `REDIRECTS` en `tools/build_site.py`).
 
+## Documentos de la organización implementados (sep 2026)
+
+- **Donate page (DAF/QCD):** donación mensual por defecto, opción "Other", secciones de donor-advised fund y
+  IRA/QCD con el nombre legal (Café de la Culture) y EIN visibles; nombre legal también en el pie.
+- **Website updates 6/26:** citas de Valarie Kaur, @crystaldawnalchemy y R. (13) añadidas a testimonios, portada e impacto.
+- **VU Courses:** página de educación holística alineada con el documento; foto sugerida incorporada.
+- **Website Notes 1/26:** diseño responsivo, un solo flujo de donación (única/mensual), testimonios completos.
+  El termómetro de donantes mensuales no es posible en un sitio estático (queda en backlog).
+
 ## Backlog
 
 - **Donaciones:** los botones llevan a las páginas de donación del WordPress original (GiveWP + Stripe),
@@ -53,4 +62,5 @@ Las URLs antiguas del WordPress redirigen a las nuevas (ver `REDIRECTS` en `tool
 - **Formularios de Student Application y WhatsApp Community:** enlazan al WordPress original.
 - **Newsletter:** usa el formulario alojado de Mailchimp (funciona sin backend).
 - **The Reclamation:** el botón de reserva lleva a la página de pago del WordPress original.
+- **Termómetro de donantes mensuales:** requiere datos en vivo de la plataforma de donación.
 - **Dominio:** cuando se apunte `voicesunveiled.org` a HostGator, cambiar `base_url` en `site.yml`.

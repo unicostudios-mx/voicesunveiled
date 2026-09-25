@@ -6,11 +6,11 @@
     <div>
       {{ eyebrow('Monthly giving') }}
       <h1>Become a Monthly Lifeline.</h1>
-      <p class="lead" style="margin-bottom:18px">Join the global community that has supported 250 students and their families since 2023.</p>
-      <p>Thank you for being here. Your ongoing support fuels education, safety, and opportunity for Afghan women and girls, month after month. Reliable giving means we can act the moment help is needed.</p>
+      <p class="lead" style="margin-bottom:18px">Thank you for showing up. By becoming a monthly donor, you give Afghan women and girls reliable access to education, safety, and opportunity &mdash; month after month.</p>
+      <p>Join the global community that has supported 250 students and their families since 2023. Your monthly gift keeps our Self-Empowerment and Feminism course and over 13 electives running. Reliable giving means we can plan ahead and act the moment help is needed.</p>
       <p>A very generous gift of $300 a month sponsors a student for one trimester, covering learning materials, mentorship, and support, or provides food for a family for one month. Or choose your own monthly amount.</p>
     </div>
-    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 50, 'monthly', sticky=true) }}
+    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 25, 'monthly', sticky=true) }}
   </div>
 </section>
 <section class="band ground">
@@ -28,6 +28,9 @@
   </div>
 </section>
 <section class="band">
-  <div class="wrap reveal">{{ testimonial(data.student_quotes[3], 'ivory', 'Give monthly', site.monthly_url) }}</div>
+  <div class="wrap reveal">{{ testimonial(data.student_quotes[6], 'ivory', 'Give monthly', site.monthly_url) }}</div>
+</section>
+<section class="band ground">
+  <div class="wrap"><div class="callout callout--terra"><div class="t"><h2>Prefer a donor-advised fund or IRA gift?</h2><p>Direct your gift to Café de la Culture, EIN {{ site.ein }}.</p></div>{{ btn('More ways to give', '/donate/#more-ways', 'primary', 'lg') }}</div></div>
 </section>
 {% endblock %}

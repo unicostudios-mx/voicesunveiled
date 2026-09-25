@@ -49,7 +49,7 @@
       list.forEach(function (t) {
         var b = document.createElement("button");
         b.type = "button"; b.className = "achip" + (t.amount === state.amount ? " is-on" : "");
-        b.textContent = fmt(t.amount);
+        b.textContent = t.label || fmt(t.amount);
         b.setAttribute("aria-pressed", t.amount === state.amount ? "true" : "false");
         b.addEventListener("click", function () { state.amount = t.amount; render(); });
         grid.appendChild(b);
@@ -57,7 +57,8 @@
       var sel = list.filter(function (t) { return t.amount === state.amount; })[0];
       if (impact && sel) impact.textContent = sel.impact;
       if (cta) {
-        cta.textContent = (state.monthly ? "Give monthly — " : "Donate now — ") + fmt(state.amount) + (state.monthly ? "/mo" : "");
+        var amt = state.amount ? fmt(state.amount) + (state.monthly ? "/mo" : "") : "your amount";
+        cta.textContent = (state.monthly ? "Give monthly — " : "Give now — ") + amt;
         cta.href = state.monthly ? urls.monthly : urls.once;
       }
       buttons.forEach(function (b) {
@@ -68,6 +69,8 @@
     buttons.forEach(function (b) {
       b.addEventListener("click", function () { state.monthly = b.getAttribute("data-mode") === "monthly"; render(); });
     });
+    var sw = card.querySelector("[data-switch-once]");
+    if (sw) sw.addEventListener("click", function (e) { e.preventDefault(); state.monthly = !state.monthly; render(); sw.textContent = state.monthly ? "Prefer to give once? Switch to a one-time gift." : "Make it monthly instead."; });
     render();
   });
 
