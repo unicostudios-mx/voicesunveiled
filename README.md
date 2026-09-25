@@ -35,3 +35,11 @@ Para servir desde una subcarpeta regenera con, por ejemplo,
 - **Formularios Gravity Forms** (Student Application, WhatsApp Community) envían al sitio original.
 - **Formulario de contacto y suscripción a Mailchimp** (Thrive Lead Generation): el envío requiere el backend de WordPress; hay que reemplazarlo por un servicio de formularios o un endpoint propio.
 - **Tienda (WooCommerce)** y páginas de cuenta/carrito: no se copiaron.
+
+## Backlog
+
+- **Formulario de donación (GiveWP):** no se muestra en la copia estática aunque se conserva el embed original
+  (`donationFormBlockApp.js` + iframe a voicesunveiled.org). Pendiente de diagnosticar en navegador real;
+  alternativa: enlazar a la página de donación del sitio original o migrar a un botón de Stripe/PayPal propio.
+- **Contacto y suscripción a Mailchimp:** el envío depende de `admin-ajax.php` del WordPress original.
+  Reemplazar por un servicio de formularios o un endpoint propio.
