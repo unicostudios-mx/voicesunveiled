@@ -197,20 +197,24 @@ guest_speakers:
     detail: Honoree of the Time100 Impact Award, named one of the "25 Women Changing the World" by People Magazine, founder of Women for Women International, humanitarian, co-founder of Daughters for Earth, best-selling author, TV host, and inspirational speaker.
 
 media:
-  - kind: video
-    title: Voices Unveiled on Channel 9 NBC News
-    body: Colorado's 9NEWS features Voices Unveiled founder Cara Cruickshank on our beginnings and why our work is urgently needed.
-    embed: https://www.youtube.com/embed/K-RBtwREAHE?rel=0&modestbranding=1
-  - kind: video
-    title: A Live Broadcast for Change
-    body: Our live fundraiser featuring courageous stories from Afghan women in our program, special guests, readings, and performances.
-    embed: https://www.youtube.com/embed/nhgEcUw1jpg?rel=0&modestbranding=1
   - kind: audio
     title: Voices Unveiled on Catskill Radio
     body: Listen to our latest conversation with Catskill Radio.
     embed: https://share.transistor.fm/e/b49d5b4b
+    tag: New podcast
+  - kind: video
+    title: Voices Unveiled on the Madness Café Podcast
+    body: A powerful conversation on women's empowerment, identity, and resilience across cultures.
+    embed: https://www.youtube.com/embed/K-RBtwREAHE?rel=0&modestbranding=1
+    tag: Podcast
+  - kind: video
+    title: Voices Unveiled on Channel 9 NBC News
+    body: Colorado's 9NEWS features Voices Unveiled founder Cara Cruickshank on our beginnings and why our work is urgently needed.
+    embed: https://www.youtube.com/embed/nhgEcUw1jpg?rel=0&modestbranding=1
+    tag: TV
   - kind: link
     title: Featured in ROOM, a sketchbook for analytic action
     body: International magazine ROOM features how Afghan students in our Self-Empowerment program are reclaiming education and their voice under Taliban rule.
     url: https://analytic-room.com/community-projects/voices-unveiled/
     image: /assets/img/room-feature.jpg
+    tag: Press

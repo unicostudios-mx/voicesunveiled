@@ -31,11 +31,41 @@
   </div>
 </section>
 
-<section class="band ground mission">
+<section class="band ground" id="featured">
+  <div class="wrap">
+    {{ eyebrow('Featured · What\'s new') }}
+    <h2 style="margin-bottom:28px">Now enrolling, and on air.</h2>
+    <div class="featured reveal">
+      <article class="feature-card">
+        <a class="feature-card__media" href="{{ site.reclamation_url }}"><img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" loading="lazy"></a>
+        <div class="feature-card__body">
+          <span class="tag tag--gold">July 2026 update · Now enrolling</span>
+          <h3>Introducing The Reclamation: a 12-week global immersion for women</h3>
+          <p>Born from our work with Afghan women and now open to women everywhere: a live workshop to reclaim your voice, your boundaries, and your wholeness. Read the latest program update, then explore the full experience.</p>
+          <ul class="pills"><li class="tag tag--plum">Aug 22 &ndash; Nov 7</li><li class="tag tag--plum">Saturdays &middot; Live</li><li class="tag tag--plum">12 seats only</li></ul>
+          <div class="cta-row" style="margin-top:18px">{{ btn('Explore The Reclamation', site.reclamation_url, 'primary') }}{{ btn('Read the July 2026 update', 'https://analytic-room.com/community-projects/voices-unveiled/#update_july2026', 'ghost', external=true) }}</div>
+        </div>
+      </article>
+      <div class="feature-side">
+        {% for m in data.media[:2] %}
+        <div class="media-card">
+          <span class="tag tag--terracotta" style="align-self:flex-start">{{ m.tag }}</span>
+          {% if m.kind == 'audio' %}<div class="audio"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy"></iframe></div>
+          {% else %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>{% endif %}
+          <h3>{{ m.title }}</h3>
+          <p>{{ m.body }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band mission">
   <div class="wrap"><p class="reveal">We believe education is a lifeline. When the world closed its doors to Afghan women, we built a new one &mdash; <em>online, free, and safe.</em></p></div>
 </section>
 
-<section class="band">
+<section class="band ground">
   <div class="wrap">
     {{ eyebrow('Our impact in 2024') }}
     <h2 style="margin-bottom:30px">The difference your support made.</h2>
@@ -46,7 +76,7 @@
   </div>
 </section>
 
-<section class="band ground">
+<section class="band">
   <div class="wrap">
     <div class="sec-head">
       <div>{{ eyebrow('Student stories') }}<h2>Resilience, in their own words.</h2></div>
@@ -59,7 +89,7 @@
   </div>
 </section>
 
-<section class="band">
+<section class="band ground">
   <div class="wrap">
     {{ eyebrow('Programs') }}
     <h2 style="margin-bottom:30px">How we support our students.</h2>
@@ -70,21 +100,16 @@
   </div>
 </section>
 
-<section class="band ground">
+<section class="band">
   <div class="wrap reveal">
     {{ testimonial(data.student_quotes[3], 'ivory', 'Support more students like Ehsaneh', '/donate/') }}
   </div>
 </section>
 
-<section class="band">
+<section class="band ground">
   <div class="wrap reveal">{{ testimonial(data.supporter_quotes[1], 'white', 'Give to Voices Unveiled', '/donate/') }}</div>
 </section>
 
-<section class="band ground">
-  <div class="wrap">
-    {{ campaign_banner('The Reclamation: a 12-week global immersion for women.', 'Born from our work with Afghan women and now open to women everywhere: a live workshop to reclaim your voice, your boundaries, and your wholeness. Saturdays, live and online.', 'Explore The Reclamation', site.reclamation_url, kicker='Now offering') }}
-  </div>
-</section>
 
 <section class="band">
   <div class="wrap">
@@ -97,10 +122,12 @@
         <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary') }}{{ btn('Read our story', '/about/', 'ghost') }}</div>
       </div>
       <div class="grid2" style="gap:18px">
-        {% for m in data.media[:2] %}
+        {% for m in data.media[2:4] %}
         <div class="media-card">
-          <div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          {% if m.kind == 'video' %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          {% else %}<a class="photo photo--3x2" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy" style="object-position:center 20%"></a>{% endif %}
           <h3>{{ m.title }}</h3>
+          {% if m.url %}<div>{{ btn('Read the feature', m.url, 'ghost', 'sm', external=true) }}</div>{% endif %}
         </div>
         {% endfor %}
       </div>
