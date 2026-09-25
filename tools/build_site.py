@@ -37,7 +37,7 @@ REDIRECTS = [
     ("distinguished-guest-speakers", "/programs/guest-speakers/"),
     ("student-stories", "/stories/"), ("student-reviews", "/impact/testimonials/#students"),
     ("supporter-testimonials", "/impact/testimonials/#supporters"),
-    ("donate-now", "/donate/"), ("donate", "/donate/"), ("become-a-monthly-donor", "/donate/monthly/"),
+    ("donate-now", "/donate/"), ("become-a-monthly-donor", "/donate/monthly/"),
     ("donations/.*", "/donate/emergency-funds/"), ("emergency-funds-for-.*", "/donate/emergency-funds/"),
     ("emergency-fund", "/donate/emergency-funds/"), ("time-is-running-out", "/donate/"),
     ("work-with-us", "/volunteer/#work-with-us"), ("get-involved", "/volunteer/"),

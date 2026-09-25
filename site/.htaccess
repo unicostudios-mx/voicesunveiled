@@ -17,7 +17,6 @@ RedirectMatch 301 ^/student-stories/?$ /stories/
 RedirectMatch 301 ^/student-reviews/?$ /impact/testimonials/#students
 RedirectMatch 301 ^/supporter-testimonials/?$ /impact/testimonials/#supporters
 RedirectMatch 301 ^/donate-now/?$ /donate/
-RedirectMatch 301 ^/donate/?$ /donate/
 RedirectMatch 301 ^/become-a-monthly-donor/?$ /donate/monthly/
 RedirectMatch 301 ^/donations/.*/?$ /donate/emergency-funds/
 RedirectMatch 301 ^/emergency-funds-for-.*/?$ /donate/emergency-funds/
