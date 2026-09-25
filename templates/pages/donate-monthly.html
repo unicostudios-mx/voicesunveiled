@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial, donation_selector, checks %}
+{% block content %}
+<section class="band">
+  <div class="wrap split split--wide split--start">
+    <div>
+      {{ eyebrow('Monthly giving') }}
+      <h1>Become a Monthly Lifeline.</h1>
+      <p class="lead" style="margin-bottom:18px">Join the global community that has supported 250 students and their families since 2023.</p>
+      <p>Thank you for being here. Your ongoing support fuels education, safety, and opportunity for Afghan women and girls, month after month. Reliable giving means we can act the moment help is needed.</p>
+      <p>A very generous gift of $300 a month sponsors a student for one trimester, covering learning materials, mentorship, and support, or provides food for a family for one month. Or choose your own monthly amount.</p>
+    </div>
+    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 50, 'monthly', sticky=true) }}
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow('Why monthly giving matters') }}
+      <h2 style="margin-bottom:18px">Crisis doesn't wait for a fundraiser.</h2>
+      {{ checks(["Fund more scholarships for women and girls ready to learn", "Provide emergency aid the moment it's needed", "Expand programs so no one is turned away"]) }}
+    </div>
+    <div>
+      {{ eyebrow('What you\'ll receive') }}
+      <h2 style="margin-bottom:18px">Close to the work, all year.</h2>
+      {{ checks(data.monthly_benefits) }}
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap reveal">{{ testimonial(data.student_quotes[3], 'ivory', 'Give monthly', site.monthly_url) }}</div>
+</section>
+{% endblock %}

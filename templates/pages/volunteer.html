@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, tag, testimonial, checks %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Volunteer') }}
+    <h1>Share your skills. Help create a safe learning space.</h1>
+    <p class="lead">Teachers, counselors, mentors, and organizers &mdash; there's a meaningful place for you on our team. We are a grassroots organization built on volunteer work and heart.</p>
+    <div class="cta-row">{{ btn('Get in touch', 'mailto:' ~ site.email, 'primary', 'lg') }}</div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap">
+    <div class="split split--start" style="margin-bottom:40px">
+      <div>
+        {{ eyebrow('We are actively seeking') }}
+        <h2 style="margin-bottom:16px">Volunteers to teach or lead sessions in:</h2>
+        <ul class="pills">{% for n in data.volunteer_needs %}<li>{{ tag(n, 'plum') }}</li>{% endfor %}</ul>
+        <p style="margin-top:18px">If one of these sounds like you, we'd love you to join our team. Please get in touch via <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+      </div>
+      <div class="photo photo--4x3"><img src="/assets/img/story-3.jpg" alt="A young woman looking thoughtfully toward the light" loading="lazy"></div>
+    </div>
+    <h2 style="margin-bottom:28px">Ways to volunteer with us.</h2>
+    <div class="grid4 reveal" style="grid-template-columns:repeat(2,1fr)">
+      {% for r in data.volunteer_roles %}<div class="card card--ivory">{{ tag(r.tag, r.tone) }}<h3>{{ r.title }}</h3><p>{{ r.body }}</p></div>{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap reveal">
+    {{ testimonial({'quote': "I was quite nervous when beginning teaching English to these students because I didn't know if I would be able to connect with them, but instead I was faced with a classroom of the sweetest, caring and thoughtful students. Although I was meant to be teaching them, they taught me a lot more in their never faltering kindness in the face of adversity.", 'name': 'Bella', 'detail': 'Photographer and Voices Unveiled volunteer, Melbourne, Australia'}, 'sage', 'Volunteer with us', 'mailto:' ~ site.email) }}
+  </div>
+</section>
+<section class="band ground" id="work-with-us">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow('Work with us') }}
+      <h2 style="margin-bottom:16px">Current opportunities.</h2>
+      <p>If you're passionate about gender equality, digital safety, and education, and you want your skills to directly support women in crisis, we'd love to hear from you.</p>
+    </div>
+    <div class="card">
+      {{ tag('Part-time', 'gold') }}
+      <h3>Marketing Director</h3>
+      <p style="margin-bottom:14px">An experienced, creative, and highly self-directed Marketing Director to lead our communications and brand strategy: social media, digital campaigns, content creation, and visual identity, ensuring our message is clear, compelling, and grounded in the lived realities of Afghan women and girls.</p>
+      {{ checks(["At least 3 years' experience in marketing or communications", "Experience in a nonprofit or mission-driven organization", "Social media management, content planning, and analytics", "Design tools, content writing, and brand voice development", "Digital fundraising, email marketing, and donor communications"]) }}
+      <p class="small" style="margin-top:16px">To apply, email your CV, a cover letter, and examples of recent work to <a href="mailto:{{ site.email }}?subject=Marketing%20Director%20Application">{{ site.email }}</a> with the subject line &ldquo;Marketing Director Application&rdquo;.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

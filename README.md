@@ -1,45 +1,56 @@
 # Voices Unveiled — sitio estático
 
-Versión en código propio de <https://voicesunveiled.org/>, sin WordPress.
-Se publica en <https://voicesunveiled.unicopartners.com.mx/> (HostGator, carpeta `voicesunveiled.unicopartners.com.mx`).
+Sitio de <https://voicesunveiled.org/> reconstruido en código propio (HTML, CSS y JS estáticos, sin WordPress),
+siguiendo el design system "The Voice & Dignity" (`design-system/`).
+Se publica en <https://voicesunveiled.unicopartners.com.mx/> (HostGator).
 
 ## Estructura
 
 | Ruta | Contenido |
 |------|-----------|
-| `site/` | Sitio listo para publicar (HTML, CSS, JS, imágenes, PDFs). Es lo que se sube al hosting. |
-| `tools/fetch.sh` | Descarga una copia del sitio WordPress original. |
-| `tools/pages.txt` | Páginas y posts no enlazados desde el menú que también se copian. |
-| `tools/build.py` | Convierte la copia en sitio estático (rutas desde la raíz del dominio). |
-| `tools/deploy.py` | Sube `site/` a HostGator por SFTP o FTP. |
+| `content/site.yml` | Configuración global: nombre, contacto, enlaces externos, navegación, pie. |
+| `content/data.yml` | Datos estructurados: cifras de impacto, programas, electivas, niveles de donación, FAQ, testimonios, prensa. |
+| `content/stories/*.md` | Historias de estudiantes (front matter + Markdown). |
+| `content/blog/*.md` | Artículos del blog (front matter + Markdown). |
+| `templates/` | Plantillas Jinja2: `base.html`, `partials/` (header, footer, macros, iconos) y `pages/`. |
+| `assets/` | `css/site.css` (tokens + componentes), `js/site.js`, `img/`, `docs/` (reportes PDF). |
+| `site/` | **Salida generada.** Es lo que se publica. No editar a mano. |
+| `design-system/` | Handoff de Claude Design con tokens, componentes y guías del diseño. |
+| `tools/build_site.py` | Genera `site/` a partir de contenido, plantillas y assets. |
+| `tools/deploy.py` | Sube `site/` a HostGator por SFTP/FTP (`--prune` borra en el servidor lo que ya no existe). |
+| `tools/legacy/` | Herramientas de la primera fase (copia del WordPress original). |
 
-## Flujo
+## Flujo de trabajo
 
 ```bash
-tools/fetch.sh /tmp/vu-mirror                       # 1. copia del original (solo si se quiere re-sincronizar)
-tools/build.py /tmp/vu-mirror/voicesunveiled.org    # 2. genera site/
-tools/deploy.py --dry-run                           # 3. revisa qué se subiría
-tools/deploy.py                                     # 4. publica
+pip install jinja2 markdown pyyaml
+python3 tools/build_site.py          # genera site/
+python3 -m http.server -d site 8000  # previsualizar en http://localhost:8000
+git add -A && git commit && git push # el workflow de GitHub Actions publica site/ en HostGator
 ```
 
-`deploy.py` lee las credenciales de las variables `HOSTGATOR_FTP_HOST`, `HOSTGATOR_FTP_USER`,
-`HOSTGATOR_FTP_PASS`, `HOSTGATOR_FTP_PORT` (22 SFTP / 21 FTP) y opcionalmente
-`HOSTGATOR_REMOTE_DIR` (por defecto `voicesunveiled.unicopartners.com.mx`).
+Para publicar hace falta que `site/` esté regenerado y commiteado: el workflow `.github/workflows/deploy.yml`
+sube el contenido de `site/` con las credenciales guardadas como secretos del repositorio
+(`HOSTGATOR_FTP_HOST`, `HOSTGATOR_FTP_USER`, `HOSTGATOR_FTP_PASS`, `HOSTGATOR_FTP_PORT`).
 
-Para servir desde una subcarpeta regenera con, por ejemplo,
-`BASE_PATH=/voicesunveiled tools/build.py …`.
+## Cómo editar contenido
 
-## Qué sigue dependiendo del WordPress original (por ahora)
+- **Textos de una página:** edita la plantilla en `templates/pages/`.
+- **Cifras, programas, testimonios, FAQ, niveles de donación:** `content/data.yml`.
+- **Nueva historia de estudiante:** crea `content/stories/<nombre>.md` con `name, age, location, quote, image`.
+- **Nuevo artículo:** crea `content/blog/<slug>.md` con `title, date, image, excerpt` y el cuerpo en Markdown.
+- **Enlaces y navegación:** `content/site.yml`.
 
-- **Formularios de donación (GiveWP + Stripe):** se muestran en un iframe cargado desde voicesunveiled.org.
-- **Formularios Gravity Forms** (Student Application, WhatsApp Community) envían al sitio original.
-- **Formulario de contacto y suscripción a Mailchimp** (Thrive Lead Generation): el envío requiere el backend de WordPress; hay que reemplazarlo por un servicio de formularios o un endpoint propio.
-- **Tienda (WooCommerce)** y páginas de cuenta/carrito: no se copiaron.
+Las URLs antiguas del WordPress redirigen a las nuevas (ver `REDIRECTS` en `tools/build_site.py`).
 
 ## Backlog
 
-- **Formulario de donación (GiveWP):** no se muestra en la copia estática aunque se conserva el embed original
-  (`donationFormBlockApp.js` + iframe a voicesunveiled.org). Pendiente de diagnosticar en navegador real;
-  alternativa: enlazar a la página de donación del sitio original o migrar a un botón de Stripe/PayPal propio.
-- **Contacto y suscripción a Mailchimp:** el envío depende de `admin-ajax.php` del WordPress original.
-  Reemplazar por un servicio de formularios o un endpoint propio.
+- **Donaciones:** los botones llevan a las páginas de donación del WordPress original (GiveWP + Stripe),
+  igual que las campañas de emergencia. Pendiente migrar a Stripe Payment Links / PayPal propios
+  (`donate_url`, `monthly_url` y `emergency_campaigns` en `content/`).
+- **Formulario de contacto:** sin `contact_endpoint` en `site.yml`, abre el cliente de correo con el mensaje
+  prellenado. Configurar un servicio (Formspree, Web3Forms) o endpoint propio.
+- **Formularios de Student Application y WhatsApp Community:** enlazan al WordPress original.
+- **Newsletter:** usa el formulario alojado de Mailchimp (funciona sin backend).
+- **The Reclamation:** el botón de reserva lleva a la página de pago del WordPress original.
+- **Dominio:** cuando se apunte `voicesunveiled.org` a HostGator, cambiar `base_url` en `site.yml`.

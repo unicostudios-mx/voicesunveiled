@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial, safety_note %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Testimonials') }}
+    <h1>Voices of students and supporters.</h1>
+    <p class="lead">What our students say about the course, and why supporters around the world stand with them.</p>
+  </div>
+</section>
+<section class="band ground" id="students">
+  <div class="wrap">
+    {{ eyebrow('Student testimonials') }}
+    <h2 style="margin-bottom:14px">&ldquo;I am free, I am strong, I am a woman.&rdquo;</h2>
+    <div style="margin-bottom:28px">{{ safety_note() }}</div>
+    <div class="quote-grid reveal">
+      {% for q in data.student_quotes %}{{ testimonial(q, 'ivory' if loop.index is odd else 'sage', compact=true) }}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="band" id="supporters">
+  <div class="wrap">
+    {{ eyebrow('Supporter testimonials') }}
+    <h2 style="margin-bottom:28px">Why they stand with Afghan women.</h2>
+    <div class="quote-grid reveal">
+      {% for q in data.supporter_quotes %}{{ testimonial(q, 'white', compact=true) }}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap"><div class="callout callout--terra"><div class="t"><h2>Add your support.</h2><p>Sponsor a student for one trimester, or give monthly.</p></div>{{ btn('Donate Now', '/donate/', 'primary', 'lg') }}</div></div>
+</section>
+{% endblock %}

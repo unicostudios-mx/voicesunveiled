@@ -1,0 +1,64 @@
+/* ============================================================
+   Voices Unveiled — Color Tokens
+   "Voices emerging from silence" — warm, calm, dignified.
+   ============================================================ */
+
+:root {
+  /* ---- Base brand palette ---- */
+  --plum: #4B2142;        /* Deep Plum — voice, depth, dignity */
+  --plum-700: #3A1933;    /* darker plum for hover/press */
+  --plum-300: #7C5470;    /* lightened plum for muted accents */
+
+  --terracotta: #C46A4A;  /* Warm Terracotta — humanity, warmth */
+  --terracotta-700: #A4533A;
+  --terracotta-100: #F1DACF; /* soft terracotta wash */
+
+  --gold: #E5B84B;        /* Hope Gold — hope, light, future */
+  --gold-100: #F8EAC4;
+
+  --sage: #A9B8A4;        /* Soft Sage — healing, care */
+  --sage-100: #E4EAE1;
+
+  --midnight: #1F2A44;    /* Midnight Blue — trust, institutional */
+  --midnight-700: #16203A;
+
+  /* ---- Neutrals ---- */
+  --ivory: #FAF6EF;       /* Soft Ivory — dominant background */
+  --ivory-200: #F2EBDE;   /* slightly deeper ivory for fills */
+  --white: #FFFFFF;
+  --charcoal: #242124;    /* Main text */
+  --warm-gray: #6F6663;   /* Secondary text */
+  --warm-gray-300: #B7AFA9; /* borders, dividers, disabled */
+  --warm-gray-100: #E7E0D7;
+
+  /* ---- Semantic aliases ---- */
+  --color-primary: var(--plum);
+  --color-primary-hover: var(--plum-700);
+  --color-secondary: var(--terracotta);
+  --color-accent: var(--gold);
+  --color-care: var(--sage);
+
+  --surface-page: var(--ivory);
+  --surface-card: var(--white);
+  --surface-sunken: var(--ivory-200);
+  --surface-dark: var(--midnight);
+  --surface-soft: var(--terracotta-100);
+
+  --text-strong: var(--charcoal);
+  --text-body: var(--charcoal);
+  --text-muted: var(--warm-gray);
+  --text-on-dark: var(--ivory);
+  --text-on-primary: var(--ivory);
+
+  --border-subtle: var(--warm-gray-100);
+  --border-default: var(--warm-gray-300);
+  --border-strong: var(--plum-300);
+
+  --focus-ring: var(--terracotta);
+
+  /* ---- Feedback ---- */
+  --success: #3F7D58;
+  --warning: var(--gold);
+  --danger: #B23A48;
+  --info: var(--midnight);
+}

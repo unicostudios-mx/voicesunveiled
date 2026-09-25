@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, impact_card, testimonial, checks %}
+{% from 'partials/icons.html' import icon %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Our impact') }}
+    <h1>2024 marked a transformative year.</h1>
+    <p class="lead">Thanks to your generosity, we created lasting change in the lives of Afghan women and girls.</p>
+  </div>
+</section>
+<section class="band band--flush-top">
+  <div class="wrap">
+    <div class="grid4 reveal">
+      {% for i in data.impact_2024 %}{{ impact_card(i.value, i.label) }}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap split">
+    <div>
+      {{ eyebrow('Program outcomes') }}
+      <h2 style="margin-bottom:20px">Shaping futures, responding to needs.</h2>
+      {{ checks(data.outcomes_2024) }}
+    </div>
+    <div class="photo photo--4x3"><img src="/assets/img/story-8.jpg" alt="A young woman in a red dress standing by an old wall" loading="lazy"></div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    {{ eyebrow('Since 2023') }}
+    <h2 style="margin-bottom:30px">What we've built together.</h2>
+    <div class="grid4 reveal">
+      {% for i in data.impact_since_2023 %}{{ impact_card(i.value, i.label) }}{% endfor %}
+    </div>
+    <p class="muted" style="margin-top:18px; max-width:720px">Free online classes for students banned from school by the Taliban, mental health support during exile and isolation, and life-saving relief. 100% of our students report that their lives have been transformed.</p>
+  </div>
+</section>
+<section class="band ground" id="reports">
+  <div class="wrap">
+    <div class="callout callout--dark reveal">
+      <div class="t"><h2>Read our annual impact reports.</h2><p>Financial transparency and program detail, start to finish.</p></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap">
+        <a class="btn btn--soft btn--lg" href="/assets/docs/voices-unveiled-2025-impact-report.pdf">{{ icon('download') }} 2025 report (PDF)</a>
+        <a class="btn btn--on-dark btn--secondary btn--lg" href="/assets/docs/voices-unveiled-2024-annual-report.pdf">{{ icon('download') }} 2024 report (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head"><div>{{ eyebrow('Testimonials') }}<h2>Students and supporters, in their own words.</h2></div>{{ btn('All testimonials', '/impact/testimonials/', 'soft') }}</div>
+    <div class="quote-grid reveal">
+      {{ testimonial(data.student_quotes[1], 'ivory', compact=true) }}
+      {{ testimonial(data.supporter_quotes[0], 'sage', compact=true) }}
+    </div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap">
+    <div class="callout callout--terra"><div class="t"><h2>Help us write the next report.</h2><p>Every gift is tracked and reported. Sponsor a student or give monthly.</p></div>{{ btn('Donate Now', '/donate/', 'primary', 'lg') }}</div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import eyebrow, newsletter %}
+{% block content %}
+<section class="band">
+  <div class="wrap">
+    <div class="page-hero" style="margin-bottom:32px">{{ eyebrow('Blog') }}<h1>Writing from the underground classroom.</h1><p class="lead">Essays, poetry, and reporting by our students and team.</p></div>
+    <div class="grid3 reveal">
+      {% for p in posts %}
+      <article class="post-card">
+        <a class="ph" href="/blog/{{ p.slug }}/"><img src="{{ p.image }}" alt="" loading="lazy"></a>
+        <div class="body">
+          <span class="date">{{ p.date_display }}</span>
+          <h3><a href="/blog/{{ p.slug }}/">{{ p.title }}</a></h3>
+          <p>{{ p.excerpt }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="band band--flush-top"><div class="wrap">{{ newsletter(site) }}</div></section>
+{% endblock %}

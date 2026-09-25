@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, tag, testimonial, newsletter %}
+{% from 'partials/icons.html' import icon %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('About us') }}
+    <h1>A grassroots lifeline for Afghan women and girls.</h1>
+    <p class="lead">Voices Unveiled is a donor-powered nonprofit opening pathways to education, healing, and leadership &mdash; even where the world's doors have closed.</p>
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap split">
+    <div class="photo photo--4x3"><img src="/assets/img/story-2.jpg" alt="A young woman painting at a table in natural light" loading="lazy"></div>
+    <div>
+      {{ eyebrow('Our mission') }}
+      <h2 style="margin-bottom:18px">Together, we shape brighter futures.</h2>
+      <p>Voices Unveiled launched in February 2023, answering a desperate call from Afghan refugee women in the wake of the Taliban's resurgence after the U.S. troop withdrawal. Their plea was simple: provide free online education in self-empowerment and feminism to Afghan women and girls sidelined from society.</p>
+      <p>Our mission expanded swiftly, reaching beyond borders to empower women in Afghanistan, bolstering mental health and fostering connection in the face of adversity. Voices Unveiled empowers Afghan women with free online education, mental health support, leadership development, and community building.</p>
+      <p>We envision a world where the silenced are heard, where empathy fuels action, and where compassionate leaders rise to drive change. We are committed to building a global community founded on justice, equality, and the profound impact of self-expression, education, and empowerment.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    {{ eyebrow('What guides us') }}
+    <h2 style="margin-bottom:30px">Our values.</h2>
+    <div class="grid3 reveal">
+      <div class="card card--ivory">{{ tag('Dignity', 'plum') }}<h3>Agency, not pity</h3><p>We center resilience and voice &mdash; never trauma as spectacle. Our students are leaders, doctors, artists, and scholars reclaiming their futures.</p></div>
+      <div class="card card--ivory">{{ tag('Care', 'sage') }}<h3>Safety first</h3><p>Every story is shared with care and consent. Students learn anonymously, and their safety guides every choice we make.</p></div>
+      <div class="card card--ivory">{{ tag('Trust', 'gold') }}<h3>Transparency</h3><p>Clear impact, open annual reporting, and responsible stewardship of every gift.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band ground" id="founder">
+  <div class="wrap split split--start">
+    <div>
+      <div class="photo photo--portrait"><img src="/assets/img/cara-cruickshank.jpg" alt="Cara Cruickshank, founder and program director of Voices Unveiled" loading="lazy"></div>
+      <p class="muted small" style="margin-top:12px">Cara Cruickshank, Founder and Program Director</p>
+    </div>
+    <div>
+      {{ eyebrow('Our founder') }}
+      <h2 style="margin-bottom:18px">&ldquo;You are empowering a new generation.&rdquo;</h2>
+      <p>Cara Cruickshank is an educator, community organizer, and women's advocate who has lived in France, Brazil, and the U.S. She is founder and host of Cafe de la Culture, a nonprofit that facilitates cultural exchange and intersectional community conversations, and writer, director, and producer of theater for social change, including <em>On the Subject of Girls</em>, <em>The Alchemy of Imperfection</em>, and <em>The Halloween Journey</em>.</p>
+      <p>Cara has designed and led empowerment, diversity, and gender studies workshops for marginalized and international communities in the U.S., Brazil, Turkey, and France, including programs through LaGuardia Performing Arts Center, New York's Board of Cooperative Educational Services, and the University of Balikesir. She has curated and moderated panels with frontline activists, indigenous leaders, scholars, and artists on topics such as #MeToo, Black Lives Matter, Indigenous rights, and the refugee crisis.</p>
+      <p>In 2022 she co-designed and ran Global Village Day Camp, an empowerment and holistic education summer camp for refugee and immigrant youth in Aurora, Colorado, spoke on women's advocacy at Bard College and the University of Michigan, and was Featured Poet at Spoken Word Paris. In February 2023, Cara launched her Self-Empowerment and Feminism course for Afghan women with the Afghan Youth Leaders Assembly and later partnered with Generations of Change.</p>
+      <p>With the withdrawal of U.S. aid, economic and educational opportunities in Afghanistan have diminished further, making Voices Unveiled one of the few remaining pathways to education and empowerment for Afghan women. Together, we can ensure they have access to education, opportunity, and hope.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="media">
+  <div class="wrap">
+    {{ eyebrow('In the media') }}
+    <h2 style="margin-bottom:30px">Voices Unveiled in the press.</h2>
+    <div class="grid2 reveal">
+      {% for m in data.media %}
+      <div class="media-card">
+        {% if m.kind == 'video' %}
+        <div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        {% elif m.kind == 'audio' %}
+        <div class="audio"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy"></iframe></div>
+        {% else %}
+        <a class="photo photo--3x2" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy" style="object-position:center 20%"></a>
+        {% endif %}
+        <h3>{{ m.title }}</h3>
+        <p>{{ m.body }}</p>
+        {% if m.url %}<div>{{ btn('Read the feature', m.url, 'ghost', 'sm', external=true) }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap">
+    <div class="callout callout--terra reveal">
+      <div class="t"><h2>Join us in empowering women and girls in Afghanistan.</h2><p>Your support keeps education, connection, and hope alive.</p></div>
+      {{ btn('Donate Now', '/donate/', 'primary', 'lg') }}
+    </div>
+  </div>
+</section>
+{% endblock %}

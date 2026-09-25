@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Voices Unveiled — Website Proposal Deck</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: #2A1626; font-family: var(--font-sans); color: var(--text-body);
+    display: grid; place-items: center; overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage { width: 100vw; height: 100vh; display: grid; place-items: center; }
+  .deck {
+    width: 1280px; height: 720px; position: relative;
+    background: var(--ivory); overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  }
+  .slide {
+    position: absolute; inset: 0; padding: 72px 80px;
+    opacity: 0; visibility: hidden; transition: opacity 0.35s var(--ease-out);
+    display: flex; flex-direction: column;
+  }
+  .slide.active { opacity: 1; visibility: visible; }
+
+  .serif { font-family: var(--font-serif); }
+  .eyebrow { text-transform: uppercase; letter-spacing: 0.16em; font-size: 13px; font-weight: 700; color: var(--terracotta); margin: 0 0 20px; }
+  .rule { width: 48px; height: 4px; border-radius: 2px; background: var(--gold); margin: 0 0 26px; }
+  h2.st { font-family: var(--font-serif); font-weight: 700; font-size: 46px; line-height: 1.1; letter-spacing: -0.01em; color: var(--text-strong); margin: 0 0 10px; }
+  .muted { color: var(--text-muted); }
+  .lead { font-size: 22px; line-height: 1.55; color: var(--text-strong); }
+
+  .pageno { position: absolute; bottom: 30px; right: 36px; font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em; }
+  .brandtag { position: absolute; bottom: 28px; left: 80px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray-300); }
+
+  /* Cover */
+  .cover { background: linear-gradient(150deg, #5A2A4F 0%, #4B2142 48%, #1F2A44 100%); justify-content: center; }
+  .cover .veil { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.9; }
+  .cover .inner { position: relative; z-index: 2; }
+  .cover .eyebrow { color: var(--gold); }
+  .cover h1 { font-family: var(--font-serif); font-weight: 700; font-size: 64px; line-height: 1.05; letter-spacing: -0.02em; color: var(--ivory); margin: 0 0 22px; }
+  .cover p.sub { font-size: 22px; line-height: 1.55; color: rgba(250,246,239,0.9); max-width: 720px; margin: 0; }
+  .cover .logo { height: 96px; margin-bottom: 30px; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.3)); }
+  .cover .meta { display: flex; gap: 48px; margin-top: 40px; border-top: 1px solid rgba(250,246,239,0.22); padding-top: 22px; }
+  .cover .meta .k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin: 0 0 4px; }
+  .cover .meta .v { font-size: 16px; color: var(--ivory); margin: 0; }
+
+  /* generic blocks */
+  .card { background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+  .goal { display: flex; gap: 14px; align-items: flex-start; }
+  .goal .num { flex: none; width: 36px; height: 36px; border-radius: 999px; background: var(--terracotta-100); color: var(--plum); font-family: var(--font-serif); font-weight: 700; font-size: 17px; display: grid; place-items: center; }
+  .goal h3 { font-family: var(--font-serif); font-size: 19px; margin: 2px 0 4px; color: var(--text-strong); }
+  .goal p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--text-muted); }
+
+  .stat { font-family: var(--font-serif); font-weight: 700; font-size: 44px; color: var(--plum); line-height: 1; }
+  .stat-rule { width: 30px; height: 3px; background: var(--gold); border-radius: 2px; margin: 8px 0; }
+
+  .map { display: flex; flex-direction: column; align-items: center; }
+  .map .home { background: var(--plum); color: var(--ivory); border-radius: 999px; padding: 11px 30px; font-weight: 600; font-size: 17px; }
+  .map .stem { width: 2px; height: 22px; background: var(--border-default); }
+  .nodes { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; width: 100%; }
+  .node { background: var(--white); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 14px 16px; }
+  .node.donate { background: var(--plum); color: var(--ivory); border-color: var(--plum); }
+  .node .nt { font-weight: 600; font-size: 15.5px; margin: 0 0 3px; }
+  .node .nd { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+  .node.donate .nd { color: rgba(250,246,239,0.8); }
+
+  .pattern { border-left: 3px solid var(--terracotta); padding: 2px 0 2px 16px; }
+  .pattern.sage { border-left-color: var(--sage); }
+  .pattern.gold { border-left-color: var(--gold); }
+  .pattern.plum2 { border-left-color: var(--plum-300); }
+  .pattern h3 { font-family: var(--font-serif); font-size: 19px; margin: 0 0 6px; color: var(--text-strong); }
+  .pattern ul { margin: 0; padding-left: 16px; }
+  .pattern li { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 2px; }
+
+  .swatches { display: flex; gap: 10px; }
+  .sw { flex: 1; }
+  .chip { height: 58px; border-radius: var(--radius-md); box-shadow: var(--shadow-xs); }
+  .sw .nm { font-size: 12px; font-weight: 600; margin: 7px 0 0; }
+  .sw .hx { font-size: 11px; color: var(--text-muted); margin: 0; }
+
+  .phase { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--border-subtle); }
+  .phase:last-child { border-bottom: none; }
+  .phase .when { font-family: var(--font-serif); font-weight: 700; font-size: 17px; color: var(--terracotta); }
+  .phase h3 { font-family: var(--font-serif); font-size: 18px; margin: 0 0 3px; color: var(--text-strong); }
+  .phase p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.45; }
+
+  .tag { display: inline-block; background: rgba(75,33,66,0.08); color: var(--plum); font-size: 12.5px; font-weight: 500; padding: 4px 11px; border-radius: 999px; margin-bottom: 12px; }
+  .note { display: flex; gap: 9px; align-items: flex-start; background: var(--sage-100); border: 1px solid rgba(105,124,99,0.25); border-radius: var(--radius-md); padding: 11px 14px; font-size: 13px; color: #3F4D3C; line-height: 1.45; }
+
+  /* closing */
+  .closing { background: var(--midnight); justify-content: center; align-items: center; text-align: center; }
+  .closing .eyebrow { color: var(--gold); }
+  .closing h2 { font-family: var(--font-serif); font-weight: 700; font-size: 48px; line-height: 1.12; color: var(--ivory); margin: 0 auto 16px; max-width: 820px; }
+  .closing p { font-size: 19px; color: rgba(250,246,239,0.85); max-width: 600px; margin: 0 auto; }
+  .closing .btn { display: inline-block; margin-top: 28px; background: var(--terracotta-100); color: var(--plum); font-weight: 600; font-size: 16px; padding: 13px 30px; border-radius: 999px; }
+
+  /* nav */
+  .nav { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; align-items: center; z-index: 50; }
+  .nav button { width: 42px; height: 42px; border-radius: 999px; border: none; background: rgba(250,246,239,0.9); color: var(--plum); font-size: 18px; cursor: pointer; box-shadow: var(--shadow-md); display: grid; place-items: center; }
+  .nav button:hover { background: #fff; }
+  .nav .count { color: rgba(250,246,239,0.85); font-size: 14px; min-width: 56px; text-align: center; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="deck" id="deck">
+
+      <!-- 1 COVER -->
+      <section class="slide cover active">
+        <svg class="veil" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke-linecap="round">
+            <path d="M180 -80 C560 200 320 480 880 900" stroke="#C46A4A" stroke-width="110" opacity="0.16"/>
+            <path d="M360 -80 C740 200 500 480 1060 900" stroke="#E5B84B" stroke-width="72" opacity="0.13"/>
+            <path d="M40 -80 C420 200 180 480 740 900" stroke="#A9B8A4" stroke-width="52" opacity="0.10"/>
+          </g>
+          <g stroke="#FAF6EF" stroke-width="1.6" opacity="0.30" fill="none">
+            <path d="M820 540 Q870 495 920 540 T1020 540 T1120 540 T1220 540"/>
+            <path d="M820 566 Q870 521 920 566 T1020 566 T1120 566 T1220 566" opacity="0.6"/>
+          </g>
+        </svg>
+        <div class="inner">
+          <img class="logo" src="../assets/logo-full.png" alt="Voices Unveiled"/>
+          <p class="eyebrow">Website Redesign Proposal · Draft</p>
+          <h1>A new home for<br/>Voices Unveiled.</h1>
+          <p class="sub">A warm, dignified, action-focused website that helps donors, volunteers, and students understand the mission, trust the organization, and take meaningful action.</p>
+          <div class="meta">
+            <div><p class="k">Prepared for</p><p class="v">Cara Cruickshank, Executive Director</p></div>
+            <div><p class="k">Scope</p><p class="v">Full marketing site redesign</p></div>
+            <div><p class="k">Status</p><p class="v">Draft for review</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 OPPORTUNITY -->
+      <section class="slide">
+        <p class="eyebrow">The opportunity</p>
+        <div class="rule"></div>
+        <h2 class="st" style="max-width:980px">One of the few remaining lifelines.</h2>
+        <p class="lead" style="max-width:940px;margin:18px 0 0">
+          In 2024 you provided <strong>115 scholarships</strong>, funded internet for
+          <strong>50 students</strong>, and trained <strong>20 interns</strong> — even as the
+          withdrawal of U.S. AID narrowed the paths to education for Afghan women and girls.
+        </p>
+        <p class="muted" style="max-width:900px;font-size:18px;line-height:1.6;margin-top:22px">
+          The new website should carry that weight with clarity and calm — organized around a single
+          promise, <strong style="color:var(--plum)">keep her learning</strong>, where every page
+          makes the next step obvious. It builds directly on the Voice &amp; Dignity design system.
+        </p>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">02</span>
+      </section>
+
+      <!-- 3 GOALS -->
+      <section class="slide">
+        <p class="eyebrow">What the redesign should achieve</p>
+        <h2 class="st">Six goals.</h2>
+        <div class="rule"></div>
+        <div class="grid2" style="gap:22px 44px;margin-top:6px">
+          <div class="goal"><div class="num">1</div><div><h3>Make giving effortless</h3><p>An always-visible Donate path and an impact-based selector that shows what each gift makes possible.</p></div></div>
+          <div class="goal"><div class="num">2</div><div><h3>Lead with dignity</h3><p>Center student agency and resilience — never trauma as spectacle — with consent-first storytelling.</p></div></div>
+          <div class="goal"><div class="num">3</div><div><h3>Build trust</h3><p>Surface real impact numbers, the annual report, partners, and 501(c)(3) transparency near every ask.</p></div></div>
+          <div class="goal"><div class="num">4</div><div><h3>Feel calm, not crowded</h3><p>Generous space and a focused structure that works on any device and connection speed.</p></div></div>
+          <div class="goal"><div class="num">5</div><div><h3>Be safe &amp; accessible</h3><p>WCAG AA contrast, keyboard focus, descriptive alt text, and student-safety practices built in.</p></div></div>
+          <div class="goal"><div class="num">6</div><div><h3>Grow with you</h3><p>A reusable component library so new pages and campaigns stay on-brand without redesign.</p></div></div>
+        </div>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">03</span>
+      </section>
+
+      <!-- 4 SITEMAP -->
+      <section class="slide">
+        <p class="eyebrow">Proposed structure</p>
+        <h2 class="st">A simpler path to action.</h2>
+        <div class="rule"></div>
+        <p class="muted" style="font-size:17px;margin:0 0 26px">Six clear destinations, with Donate visually distinct and always within reach.</p>
+        <div class="map">
+          <div class="home">Homepage</div>
+          <div class="stem"></div>
+          <div class="nodes">
+            <div class="node"><p class="nt">About</p><p class="nd">Mission, team, and the why behind the work.</p></div>
+            <div class="node"><p class="nt">Programs</p><p class="nd">Education, mental health, leadership, mentorship.</p></div>
+            <div class="node"><p class="nt">Impact</p><p class="nd">Numbers, outcomes, annual report, transparency.</p></div>
+            <div class="node"><p class="nt">Stories</p><p class="nd">Consent-first student stories of resilience.</p></div>
+            <div class="node"><p class="nt">Volunteer</p><p class="nd">Share skills; help create a safe learning space.</p></div>
+            <div class="node donate"><p class="nt">Donate</p><p class="nd">Impact selector, monthly giving, trust signals.</p></div>
+          </div>
+        </div>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">04</span>
+      </section>
+
+      <!-- 5 PAGE PATTERNS -->
+      <section class="slide">
+        <p class="eyebrow">How the key pages work</p>
+        <h2 class="st">Page by page.</h2>
+        <div class="rule"></div>
+        <div class="grid2" style="gap:24px 44px;margin-top:6px">
+          <div class="pattern">
+            <h3>Homepage</h3>
+            <ul>
+              <li>Hero: "Keep her learning" + Sponsor a Student</li>
+              <li>Short mission statement &amp; 2024 impact numbers</li>
+              <li>Student story preview &amp; programs overview</li>
+              <li>Testimonial, donation block, volunteer CTA</li>
+            </ul>
+          </div>
+          <div class="pattern gold">
+            <h3>Donation</h3>
+            <ul>
+              <li>Campaign message (urgent or evergreen)</li>
+              <li>Impact-by-amount selector + monthly toggle</li>
+              <li>"Where your money goes" + 501(c)(3) tax info</li>
+              <li>Short student testimonial &amp; FAQ</li>
+            </ul>
+          </div>
+          <div class="pattern sage">
+            <h3>Story</h3>
+            <ul>
+              <li>Story introduction + safety note</li>
+              <li>Student quote &amp; personal journey</li>
+              <li>Program impact</li>
+              <li>CTA: Sponsor a student like her</li>
+            </ul>
+          </div>
+          <div class="pattern plum2">
+            <h3>Impact</h3>
+            <ul>
+              <li>Impact headline + key numbers</li>
+              <li>Program outcomes &amp; testimonials</li>
+              <li>Downloadable annual report</li>
+              <li>Financial transparency + CTA to donate</li>
+            </ul>
+          </div>
+        </div>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">05</span>
+      </section>
+
+      <!-- 6 DESIGN DIRECTION -->
+      <section class="slide">
+        <p class="eyebrow">Design direction</p>
+        <h2 class="st">Warm, protective, hopeful.</h2>
+        <div class="rule"></div>
+        <p class="muted" style="font-size:17px;max-width:960px;margin:0 0 22px">
+          Soft ivory ground, deep plum anchor, terracotta warmth, hope gold for light. Editorial serif
+          headlines carry emotion; a clean sans keeps actions effortless.
+        </p>
+        <div class="card" style="margin-bottom:18px;padding:20px">
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:var(--plum)"></div><p class="nm">Deep Plum</p><p class="hx">#4B2142</p></div>
+            <div class="sw"><div class="chip" style="background:var(--terracotta)"></div><p class="nm">Terracotta</p><p class="hx">#C46A4A</p></div>
+            <div class="sw"><div class="chip" style="background:var(--gold)"></div><p class="nm">Hope Gold</p><p class="hx">#E5B84B</p></div>
+            <div class="sw"><div class="chip" style="background:var(--sage)"></div><p class="nm">Soft Sage</p><p class="hx">#A9B8A4</p></div>
+            <div class="sw"><div class="chip" style="background:var(--midnight)"></div><p class="nm">Midnight</p><p class="hx">#1F2A44</p></div>
+            <div class="sw"><div class="chip" style="background:var(--ivory);border:1px solid var(--border-subtle)"></div><p class="nm">Soft Ivory</p><p class="hx">#FAF6EF</p></div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="card" style="padding:18px 22px"><p class="serif" style="font-size:30px;font-weight:700;color:var(--plum);margin:0 0 4px">Keep her learning.</p><p class="muted" style="margin:0;font-size:14px">Libre Baskerville — headlines, quotes, emotion.</p></div>
+          <div class="card" style="padding:18px 22px"><p style="font-size:17px;margin:0 0 4px;color:var(--text-strong)">Your gift keeps education, connection, and hope alive.</p><p class="muted" style="margin:0;font-size:14px">Inter — navigation, forms, buttons, program copy.</p></div>
+        </div>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">06</span>
+      </section>
+
+      <!-- 7 COMPONENTS -->
+      <section class="slide">
+        <p class="eyebrow">Signature components</p>
+        <h2 class="st">Built from your system.</h2>
+        <div class="rule"></div>
+        <p class="muted" style="font-size:17px;margin:0 0 22px">Every screen assembles from the reusable library — consistent, accessible, fast to ship.</p>
+        <div class="grid4" style="margin-bottom:18px">
+          <div class="card" style="padding:20px"><div class="stat">115</div><div class="stat-rule"></div><p class="muted" style="margin:0;font-size:13.5px">Impact cards turn data into clear proof.</p></div>
+          <div class="card" style="padding:20px"><div class="stat">$50</div><div class="stat-rule"></div><p class="muted" style="margin:0;font-size:13.5px">Donation selector ties amounts to outcomes.</p></div>
+          <div class="card" style="padding:20px"><span class="tag">Story</span><p class="serif" style="font-style:italic;color:var(--plum);margin:0 0 6px;font-size:15px">"It gave me hope and strength."</p><p class="muted" style="margin:0;font-size:13px">Story cards focus on resilience.</p></div>
+          <div class="card" style="padding:20px"><div class="note" style="padding:9px 11px;font-size:12px">Some details may be changed to protect student safety.</div><p class="muted" style="margin:9px 0 0;font-size:13px">Safety note, everywhere.</p></div>
+        </div>
+        <div class="card" style="background:var(--midnight);color:var(--ivory);border:none;padding:22px 26px">
+          <p class="eyebrow" style="color:var(--gold);margin-bottom:10px">Campaign banner</p>
+          <p class="serif" style="font-size:22px;font-weight:700;margin:0 0 12px">Help keep Voices Unveiled open.</p>
+          <div style="height:8px;border-radius:999px;background:rgba(250,246,239,0.18);overflow:hidden;max-width:520px"><div style="width:65%;height:100%;background:var(--gold);border-radius:999px"></div></div>
+          <p style="font-size:13.5px;color:rgba(250,246,239,0.8);margin:8px 0 0">$32,500 raised · Goal $50,000 — warm, urgent, never alarmist.</p>
+        </div>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">07</span>
+      </section>
+
+      <!-- 8 TIMELINE -->
+      <section class="slide">
+        <p class="eyebrow">A phased plan</p>
+        <h2 class="st">From draft to launch.</h2>
+        <div class="rule"></div>
+        <div class="card" style="padding:8px 28px;margin-top:4px">
+          <div class="phase"><div class="when">Phase 1</div><div><h3>Discovery &amp; content</h3><p>Align on goals, gather consented stories and photography, finalize sitemap and copy.</p></div></div>
+          <div class="phase"><div class="when">Phase 2</div><div><h3>Design</h3><p>High-fidelity designs for the homepage, donation, story, and impact pages using the design system.</p></div></div>
+          <div class="phase"><div class="when">Phase 3</div><div><h3>Build</h3><p>Responsive, accessible front-end with the donation flow, a CMS for stories and campaigns, and analytics.</p></div></div>
+          <div class="phase"><div class="when">Phase 4</div><div><h3>Launch &amp; care</h3><p>QA across devices and connection speeds, accessibility audit, soft launch, campaign-ready handoff.</p></div></div>
+        </div>
+        <p class="muted" style="font-size:13.5px;margin-top:16px;background:var(--gold-100);color:#7A5B12;border-radius:var(--radius-md);padding:11px 16px;line-height:1.5">
+          <strong>Draft note:</strong> phases, scope, and any budget are placeholders for discussion.
+          Share your target launch date and must-have features and I'll firm these up.
+        </p>
+        <span class="brandtag">Voices Unveiled</span>
+        <span class="pageno">08</span>
+      </section>
+
+      <!-- 9 CLOSING -->
+      <section class="slide closing">
+        <p class="eyebrow">Next step</p>
+        <h2>Let's build a home worthy of these voices.</h2>
+        <p>Review this draft, mark it up, and let's shape the final scope together.</p>
+        <span class="btn">Share feedback on this draft</span>
+        <p style="font-size:13px;color:rgba(250,246,239,0.6);margin-top:34px">Voices Unveiled is a registered 501(c)(3) nonprofit · voicesunveiled.org</p>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="nav" data-omelette-chrome>
+    <button onclick="goToSlide(idx-1)" aria-label="Previous">‹</button>
+    <span class="count" id="count">1 / 9</span>
+    <button onclick="goToSlide(idx+1)" aria-label="Next">›</button>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let idx = 0;
+    function fit() {
+      const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+      document.querySelector('.deck').style.transform = 'scale(' + s + ')';
+    }
+    function goToSlide(n) {
+      idx = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+      document.getElementById('count').textContent = (idx + 1) + ' / ' + slides.length;
+    }
+    document.querySelector('.deck').style.transformOrigin = 'center center';
+    window.addEventListener('resize', fit);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goToSlide(idx + 1);
+      if (e.key === 'ArrowLeft') goToSlide(idx - 1);
+    });
+    fit();
+  </script>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "Website Proposal Deck";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…}. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false } };
+  }
+
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: ≥2 visible non-fixed children, each with authored px width
+  // AND height, all within ±2px of each other. Off unless the page opts in
+  // via data-om-multi-frame on the stop element — guards against card grids
+  // and pricing tables that match the geometry but aren't separate canvases.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var cands = [];
+    for (var k = 0; k < el.children.length; k++) {
+      var ch = el.children[k];
+      var cs; try { cs = getComputedStyle(ch); } catch (e) { continue; }
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') continue;
+      var rc = rectOf(ch);
+      if (rc.width < 2 || rc.height < 2) continue;
+      if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+      cands.push(rc);
+    }
+    if (cands.length >= 2) {
+      var w0 = cands[0].width, h0 = cands[0].height, ok = true;
+      for (var q = 1; q < cands.length; q++)
+        if (Math.abs(cands[q].width - w0) > 2 || Math.abs(cands[q].height - h0) > 2) ok = false;
+      if (ok) return { kind: 'multi-frame', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (__m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

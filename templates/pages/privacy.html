@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import eyebrow %}
+{% block content %}
+<section class="band">
+  <div class="wrap">
+    <div class="page-hero" style="margin-bottom:28px">{{ eyebrow('Privacy & safety') }}<h1>Privacy policy.</h1><p class="lead">How we handle your information, and how we protect the students we serve.</p></div>
+    <div class="prose">
+      <h2>Who we are</h2>
+      <p>This website is operated by {{ site.legal_name }}, a registered 501(c)(3) nonprofit (EIN {{ site.ein }}), {{ site.address }}. You can reach us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+      <h2>What we collect</h2>
+      <p>This site does not use accounts, comments, or tracking cookies of its own. We receive personal information only when you choose to share it: when you email us, send a message through the contact form, subscribe to our newsletter, apply to volunteer or join our community, or make a donation.</p>
+      <h2>Newsletter</h2>
+      <p>Newsletter subscriptions are managed through Mailchimp. Your email address is stored by Mailchimp on our behalf and used only to send you updates from Voices Unveiled. Every email includes an unsubscribe link.</p>
+      <h2>Donations</h2>
+      <p>Donations are processed on our secure donation pages by our payment providers, which handle your payment details under their own privacy policies. We receive your name, email, and gift details so we can send receipts, tax acknowledgments, and impact updates. We never sell or share donor information.</p>
+      <h2>Embedded content</h2>
+      <p>Some pages embed videos and audio from YouTube and Transistor. These services may set cookies or collect usage data when you interact with the embedded player, in the same way as if you visited their websites directly.</p>
+      <h2>Student safety</h2>
+      <p>The safety of the Afghan women and girls in our programs guides every choice we make. Some names, images, or identifying details on this site may be changed to protect student safety. Students participate anonymously, and we never publish a story or image without consent. Please do not attempt to identify or contact students directly.</p>
+      <h2>Your rights</h2>
+      <p>You may ask us at any time what personal information we hold about you, request a correction, or ask us to delete it. Write to <a href="mailto:{{ site.email }}">{{ site.email }}</a> and we will respond promptly.</p>
+      <p class="muted small">Last updated {{ build_date }}.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

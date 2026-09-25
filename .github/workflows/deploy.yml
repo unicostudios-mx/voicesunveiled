@@ -43,4 +43,4 @@ jobs:
           HOSTGATOR_FTP_PASS: ${{ secrets.HOSTGATOR_FTP_PASS }}
           HOSTGATOR_FTP_PORT: ${{ secrets.HOSTGATOR_FTP_PORT }}
           HOSTGATOR_REMOTE_DIR: ${{ vars.HOSTGATOR_REMOTE_DIR }}
-        run: python tools/deploy.py ${{ inputs.full && '--full' || '' }} ${{ inputs.list && '--list' || '' }}
+        run: python tools/deploy.py --prune ${{ inputs.full && '--full' || '' }}

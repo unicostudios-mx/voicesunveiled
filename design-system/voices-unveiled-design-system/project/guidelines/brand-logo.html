@@ -1,0 +1,27 @@
+<!-- @dsCard group="Brand" viewport="700x260" name="Logo" subtitle="Full-color mark on ivory — clear space = height of the V" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--ivory); font-family: var(--font-sans); }
+  .wrap { display: flex; gap: 28px; padding: 22px 28px; align-items: center; }
+  .tile { flex: none; padding: 18px; border-radius: var(--radius-md); display: grid; place-items: center; }
+  .ivory { background: var(--ivory); border: 1px solid var(--border-subtle); }
+  .dark { background: var(--midnight); }
+  img { height: 170px; display: block; }
+  .note { font-size: 13px; color: var(--text-muted); line-height: 1.5; max-width: 220px; }
+  .note b { color: var(--text-strong); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="tile ivory"><img src="../assets/logo-full.png" alt="Voices Unveiled" /></div>
+    <div class="tile dark"><img src="../assets/logo-full.png" alt="Voices Unveiled on dark" /></div>
+    <p class="note"><b>Place on ivory or white.</b> Keep clear space equal to the
+    height of the "V". Never set over busy photography. A dedicated white / mono
+    version is recommended — pending source files.</p>
+  </div>
+</body>
+</html>

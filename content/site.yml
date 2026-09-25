@@ -1,0 +1,85 @@
+name: Voices Unveiled
+tagline: Educating and empowering Afghan women and girls
+description: >-
+  Voices Unveiled provides free online education, mental health support, and
+  leadership development for Afghan women and girls.
+base_url: https://voicesunveiled.unicopartners.com.mx
+canonical_domain: voicesunveiled.org
+email: hello@voicesunveiled.org
+address: 270 North Ave., Suite 811, New Rochelle, NY 10801
+legal_name: Voices Unveiled / Cafe de la Culture Inc
+ein: 99-0810138
+founded: 2023
+
+# Enlaces externos que siguen dependiendo del WordPress original (backlog)
+donate_url: https://voicesunveiled.org/donate-now/
+monthly_url: https://voicesunveiled.org/become-a-monthly-donor/
+whatsapp_form_url: https://voicesunveiled.org/whatsapp-community/
+student_application_url: https://voicesunveiled.org/student-application/
+shop_url: https://voicesunveiledshop.etsy.com
+reclamation_url: /reclamation/
+
+# Mailchimp: formulario alojado (funciona sin backend)
+mailchimp_action: https://facebook.us21.list-manage.com/subscribe/post?u=80378b116f347d8dca93170d7&id=3ea4a9fb14
+mailchimp_honeypot: b_80378b116f347d8dca93170d7_3ea4a9fb14
+
+# Formulario de contacto: si se define un endpoint (Formspree, Web3Forms, propio) se usa;
+# si está vacío, el formulario abre el cliente de correo con el mensaje prellenado.
+contact_endpoint: ""
+
+social:
+  instagram: https://www.instagram.com/voicesunveiled_afghan
+  facebook: https://www.facebook.com/Lecafedelaculture/
+  linkedin: https://www.linkedin.com/company/voices-unveiled/
+  youtube: https://www.youtube.com/watch?v=nhgEcUw1jpg
+
+nav:
+  - label: About
+    url: /about/
+    children:
+      - { label: Our mission, url: /about/ }
+      - { label: Our founder, url: /about/#founder }
+      - { label: In the media, url: /about/#media }
+  - label: Programs
+    url: /programs/
+    children:
+      - { label: Self-Empowerment Course, url: /programs/self-empowerment-course/ }
+      - { label: Holistic education, url: /programs/holistic-education/ }
+      - { label: Emergency assistance, url: /programs/emergency-assistance/ }
+      - { label: Guest speakers, url: /programs/guest-speakers/ }
+  - label: Impact
+    url: /impact/
+    children:
+      - { label: Impact & reports, url: /impact/ }
+      - { label: Testimonials, url: /impact/testimonials/ }
+  - label: Stories
+    url: /stories/
+    children:
+      - { label: Student stories, url: /stories/ }
+      - { label: Blog, url: /blog/ }
+  - label: Volunteer
+    url: /volunteer/
+    children:
+      - { label: Ways to volunteer, url: /volunteer/ }
+      - { label: Work with us, url: /volunteer/#work-with-us }
+      - { label: Contact, url: /contact/ }
+
+footer:
+  explore:
+    - { label: About, url: /about/ }
+    - { label: Programs, url: /programs/ }
+    - { label: Impact, url: /impact/ }
+    - { label: Stories, url: /stories/ }
+    - { label: Blog, url: /blog/ }
+  action:
+    - { label: Donate, url: /donate/ }
+    - { label: Sponsor a student, url: /donate/ }
+    - { label: Monthly giving, url: /donate/monthly/ }
+    - { label: Emergency funds, url: /donate/emergency-funds/ }
+    - { label: Volunteer, url: /volunteer/ }
+  connect:
+    - { label: Newsletter, url: /contact/#newsletter }
+    - { label: Contact, url: /contact/ }
+    - { label: WhatsApp community, url: /whatsapp-community/ }
+    - { label: Shop, url: https://voicesunveiledshop.etsy.com, external: true }
+    - { label: Student safety guide, url: /safety-guide/ }

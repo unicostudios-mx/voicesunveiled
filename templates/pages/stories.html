@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, story_card, testimonial, safety_note %}
+{% block content %}
+<section class="band">
+  <div class="wrap">
+    <div class="measure" style="margin-bottom:28px">
+      {{ eyebrow('Student stories') }}
+      <h1>Every story is shared with care and consent.</h1>
+      <p class="lead" style="margin-bottom:20px">These are journeys of agency, resilience, and transformation, written by our students.</p>
+      {{ safety_note() }}
+    </div>
+    <div class="grid3 reveal">
+      {% for s in stories %}{{ story_card(s, white=true) }}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap reveal">{{ testimonial(data.student_quotes[0], 'ivory', 'Support more students like Ehsaneh', '/donate/') }}</div>
+</section>
+{% endblock %}

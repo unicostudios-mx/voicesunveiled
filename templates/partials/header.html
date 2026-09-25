@@ -1,0 +1,26 @@
+{% from 'partials/icons.html' import icon %}
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="row">
+    <a class="brand" href="/" aria-label="Voices Unveiled home">
+      <img src="/assets/img/logo-small.png" alt="Voices Unveiled" width="160" height="200">
+      <b>Voices Unveiled</b>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span class="ico-menu">{{ icon('menu') }}</span><span class="ico-close" style="display:none">{{ icon('x') }}</span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul>
+        {% for item in site.nav %}
+        <li class="{% if page.section == item.label %}is-active{% endif %}">
+          <a href="{{ item.url }}">{{ item.label }}</a>
+          {% if item.children %}
+          <ul class="sub">{% for c in item.children %}<li><a href="{{ c.url }}">{{ c.label }}</a></li>{% endfor %}</ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn--primary btn--sm" href="/donate/">Donate</a>
+    </nav>
+  </div>
+</header>

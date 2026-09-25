@@ -1,0 +1,117 @@
+{% from 'partials/icons.html' import icon %}
+
+{% macro btn(label, href, variant='primary', size='', extra='', external=false) -%}
+<a class="btn btn--{{ variant }}{% if size %} btn--{{ size }}{% endif %}{% if extra %} {{ extra }}{% endif %}" href="{{ href }}"{% if external %} target="_blank" rel="noopener"{% endif %}>{{ label }}</a>
+{%- endmacro %}
+
+{% macro eyebrow(text, gold=false) -%}
+<p class="eyebrow{% if gold %} eyebrow--gold{% endif %}">{{ text }}</p>
+{%- endmacro %}
+
+{% macro safety_note(text=None) -%}
+<div class="note" role="note">{{ icon('shield') }}<span>{{ text or 'Some names, images, or identifying details may be changed to protect student safety.' }}</span></div>
+{%- endmacro %}
+
+{% macro impact_card(value, label) -%}
+<div class="icard"><div class="n">{{ value }}</div><div class="r"></div><div class="l">{{ label }}</div></div>
+{%- endmacro %}
+
+{% macro tag(text, tone='plum') -%}
+<span class="tag tag--{{ tone }}">{{ text }}</span>
+{%- endmacro %}
+
+{% macro program_card(p, ivory=false) -%}
+<a class="card card--link{% if ivory %} card--ivory{% endif %}" href="/programs/{{ p.slug }}/{% if p.anchor %}#{{ p.anchor }}{% endif %}">
+  {{ tag(p.tag, p.tone) }}
+  <h3>{{ p.title }}</h3>
+  <p>{{ p.body }}</p>
+</a>
+{%- endmacro %}
+
+{% macro story_card(s, white=false, cta_label='Read her story', cta_href=None) -%}
+<article class="story{% if white %} story--white{% endif %}">
+  <div class="ph"><img src="{{ s.image }}" alt="" loading="lazy" width="1024" height="683"></div>
+  <div class="body">
+    <div><div class="nm">{{ s.name }}, {{ s.age }}</div><div class="co">{{ s.location }}</div></div>
+    <blockquote>&ldquo;{{ s.quote }}&rdquo;</blockquote>
+    <a class="btn btn--secondary btn--sm" href="{{ cta_href or ('/stories/' ~ s.slug ~ '/') }}">{{ cta_label }}</a>
+  </div>
+</article>
+{%- endmacro %}
+
+{% macro testimonial(q, tone='ivory', cta_label=None, cta_href=None, compact=false) -%}
+<figure class="testi testi--{{ tone }}{% if compact %} testi--compact{% endif %}">
+  <span class="mark" aria-hidden="true">&ldquo;</span>
+  <blockquote>{{ q.quote }}</blockquote>
+  <figcaption class="who"><b>{{ q.name }}{% if q.age %}, {{ q.age }}{% endif %}</b><span>{{ q.detail }}</span></figcaption>
+  {% if cta_label %}<a class="btn btn--primary" href="{{ cta_href }}">{{ cta_label }}</a>{% endif %}
+</figure>
+{%- endmacro %}
+
+{% macro checks(items, cols=false) -%}
+<ul class="checks{% if cols %} checks--2col{% endif %}">
+  {% for it in items %}<li>{{ icon('check') }}<span>{{ it }}</span></li>{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro veil_art(height=430) -%}
+<div class="heroart" aria-hidden="true">
+  <svg viewBox="0 0 400 430" preserveAspectRatio="xMidYMid slice">
+    <g fill="none" stroke-linecap="round">
+      <path d="M90 -40 C200 90 120 240 250 480" stroke="#C46A4A" stroke-width="62" opacity="0.22"/>
+      <path d="M150 -40 C260 90 180 240 310 480" stroke="#E5B84B" stroke-width="44" opacity="0.18"/>
+      <path d="M40 -40 C150 90 70 240 200 480" stroke="#A9B8A4" stroke-width="32" opacity="0.16"/>
+    </g>
+    <g stroke="#FAF6EF" stroke-width="1.5" opacity="0.5" fill="none">
+      <path d="M30 340 Q60 310 90 340 T150 340 T210 340 T270 340"/>
+      <path d="M30 362 Q60 332 90 362 T150 362 T210 362 T270 362" opacity="0.6"/>
+    </g>
+    <circle cx="320" cy="80" r="4" fill="#E5B84B" opacity="0.7"/>
+    <circle cx="345" cy="120" r="3" fill="#C46A4A" opacity="0.7"/>
+  </svg>
+</div>
+{%- endmacro %}
+
+{% macro donation_selector(tiers, monthly_tiers, once_url, monthly_url, default_amount=300, mode='once', sticky=false) -%}
+<div class="dcard{% if sticky %} dcard--sticky{% endif %}" data-donation data-tiers='{{ tiers | tojson }}' data-monthly-tiers='{{ monthly_tiers | tojson }}' data-url-once="{{ once_url }}" data-url-monthly="{{ monthly_url }}" data-default-amount="{{ default_amount }}" data-default-mode="{{ mode }}">
+  <div class="toggle" role="group" aria-label="Gift frequency">
+    <button type="button" data-mode="once" class="{% if mode == 'once' %}is-on{% endif %}">One-time</button>
+    <button type="button" data-mode="monthly" class="{% if mode == 'monthly' %}is-on{% endif %}">Monthly</button>
+  </div>
+  <div class="agrid" aria-label="Choose an amount"></div>
+  <div class="iline">{{ icon('arrow-right') }}<span></span></div>
+  <a class="btn btn--primary btn--lg btn--block btn--cta" href="{{ once_url }}" target="_blank" rel="noopener">Donate now</a>
+  <p class="fine">Voices Unveiled is a 501(c)(3). Your gift is tax-deductible. You will complete your gift on our secure donation page.</p>
+</div>
+{%- endmacro %}
+
+{% macro campaign_banner(title, body, cta_label, cta_href, kicker='Urgent', raised=None, goal=None) -%}
+<div class="campaign">
+  <div style="flex:1 1 360px">
+    <span class="kicker">{{ kicker }}</span>
+    <h3>{{ title }}</h3>
+    <p>{{ body }}</p>
+    {% if raised and goal %}
+    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="{{ goal }}" aria-valuenow="{{ raised }}"><div style="width:{{ (100 * raised / goal) | round | int }}%"></div></div>
+    <div class="bar-meta"><span>${{ '{:,}'.format(raised) }} raised</span><span>Goal ${{ '{:,}'.format(goal) }}</span></div>
+    {% endif %}
+  </div>
+  <a class="btn btn--soft btn--lg" href="{{ cta_href }}"{% if cta_href.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ cta_label }}</a>
+</div>
+{%- endmacro %}
+
+{% macro newsletter(site) -%}
+<div class="newsletter" id="newsletter">
+  <div>
+    <p class="eyebrow">Newsletter</p>
+    <h2 style="margin-bottom:10px">Stay close to the work.</h2>
+    <p style="margin:0">Receive updates on student stories, program impact, and ways to help.</p>
+  </div>
+  <form action="{{ site.mailchimp_action }}" method="post" target="_blank" novalidate>
+    <label class="sr-only" for="mce-EMAIL">Email address</label>
+    <input class="input" type="email" name="EMAIL" id="mce-EMAIL" placeholder="Your email" required>
+    <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="{{ site.mailchimp_honeypot }}" tabindex="-1" value=""></div>
+    <button class="btn btn--primary" type="submit">Join our newsletter</button>
+  </form>
+</div>
+{%- endmacro %}

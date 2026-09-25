@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, tag, testimonial %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Programs · Mental health & academics') }}
+    <h1>Holistic and integrative education.</h1>
+    <p class="lead">Every woman and girl in Afghanistan deserves not just education, but the emotional strength, healing, and community support to truly thrive. Our approach is trauma-informed and culturally sensitive, helping students feel understood, not judged.</p>
+  </div>
+</section>
+<section class="band ground" id="mental-health">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow('Mental health support') }}
+      <h2 style="margin-bottom:18px">Healing, connecting, and reclaiming self-worth.</h2>
+      <p>Education is not just about acquiring knowledge; it is about healing, connecting, and reclaiming self-worth and creative expression. Many women and girls in Afghanistan continue to endure extreme isolation, violence, uncertainty, and trauma due to Taliban restrictions and gender apartheid. Our mental health support meets this reality with empathy, purpose, and deep respect for each individual's unique path forward.</p>
+      <p>Professional therapy is complemented by regular one-on-one support sessions for academic, familial, and professional goals.</p>
+    </div>
+    <div class="quote-grid" style="grid-template-columns:1fr">
+      {{ testimonial(data.student_quotes[10], 'sage', compact=true) }}
+      {{ testimonial({'quote': "This course helped me realize my worth and gave me the courage to speak up for myself. I consider it an opportunity for change. I want to keep learning, believing in myself, and inspire other Afghan girls to do the same.", 'name': 'Esma', 'age': 13, 'detail': 'Afghanistan'}, 'ivory', compact=true) }}
+    </div>
+  </div>
+</section>
+<section class="band" id="academic">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow('Academic support') }}
+      <h2 style="margin-bottom:18px">Breaking through barriers to achievement.</h2>
+      <p>We empower students to break through barriers to academic achievement, establish clear objectives, and maintain their drive to succeed. Beyond our courses, we connect students with broader educational pathways and ensure they receive comprehensive support for lasting success, including internet funding so they can reliably join their classes from anywhere.</p>
+      <p>Free test-prep guides, scholarship eligibility guides, an English learning database, and a college-essay program round out the academic resources available to every student.</p>
+    </div>
+    {{ testimonial({'quote': "I live in a remote area of Afghanistan where all educational institutions for girls have been shut down. Despite my deep passion for learning, I've been denied access to even the most basic resources. I'm eager to overcome these barriers and pursue my academic dreams. If given the chance, I will work tirelessly to contribute to my community and beyond.", 'name': 'Mahin', 'age': 23, 'detail': 'Afghanistan'}, 'white', compact=true) }}
+  </div>
+</section>
+<section class="band ground" id="electives">
+  <div class="wrap">
+    {{ eyebrow('Elective courses') }}
+    <h2 style="margin-bottom:14px">Skills, creativity, and opportunity.</h2>
+    <p class="lead measure" style="margin-bottom:32px">In addition to our core empowerment curriculum, Voices Unveiled offers a variety of elective courses taught by dedicated volunteer instructors from around the world, designed to develop skills, inspire creativity, and expand opportunities according to student interest and demand.</p>
+    {% for g in data.electives %}
+    <h3 style="margin:28px 0 14px">{{ g.group }}</h3>
+    <div class="grid3">
+      {% for it in g['items'] %}<div class="card card--ivory" style="padding:20px 22px"><h4 style="margin:0 0 6px">{{ it.name }}</h4><p>{{ it.body }}</p></div>{% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<section class="band">
+  <div class="wrap reveal">{{ testimonial(data.student_quotes[11], 'sage', 'Volunteer a workshop or elective', '/volunteer/') }}</div>
+</section>
+{% endblock %}

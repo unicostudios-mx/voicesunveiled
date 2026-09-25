@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, safety_note %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Community') }}
+    <h1>Join the Voices Unveiled WhatsApp community.</h1>
+    <p class="lead">A private, invitation-only space for a small, trusted circle of supporters. It's where we share early updates, behind-the-scenes insights, and stories from our students, educators, and program team. It's also a space for connection, reflection, and solidarity.</p>
+    <p>Due to safety and privacy concerns for the Afghan women and girls we work with, we ask all prospective members to complete a short registration form before being added. This helps us keep the group secure, intentional, and aligned with our mission. Anyone who breaches the group's values, guidelines, or confidentiality expectations may be removed.</p>
+    <div class="cta-row">{{ btn('Apply to join', site.whatsapp_form_url, 'primary', 'lg', external=true) }}</div>
+    <div style="margin-top:24px">{{ safety_note('Members agree to keep the content of the group private and to respect the confidentiality of student stories and updates.') }}</div>
+  </div>
+</section>
+{% endblock %}

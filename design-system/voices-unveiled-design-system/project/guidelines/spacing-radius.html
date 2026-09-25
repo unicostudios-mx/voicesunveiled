@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Radius & elevation" subtitle="Soft corners + warm-tinted shadows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--ivory); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 26px 28px; display: flex; gap: 26px; align-items: center; }
+  .box { width: 92px; height: 78px; background: var(--white); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-size: 11px; color: var(--text-muted); }
+  .b1 { border-radius: var(--radius-sm); box-shadow: var(--shadow-xs); }
+  .b2 { border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  .b3 { border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .b4 { border-radius: var(--radius-pill); box-shadow: var(--shadow-lg); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="box b1">6px · xs</div>
+    <div class="box b2">12px · sm</div>
+    <div class="box b3">20px · md</div>
+    <div class="box b4">pill · lg</div>
+  </div>
+</body>
+</html>

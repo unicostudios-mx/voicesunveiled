@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, story_card, safety_note %}
+{% block content %}
+<section class="band story-page">
+  <div class="wrap">
+    <div class="measure">
+      {{ eyebrow('Student story') }}
+      <h1>{{ story.name }}, {{ story.age }}</h1>
+      <div class="who"><img src="{{ story.image }}" alt="" width="84" height="84"><div><div class="muted">{{ story.location }}</div><div class="muted small">Story shared with consent. Some names and details may be changed to protect student safety.</div></div></div>
+      <p class="pullquote">&ldquo;{{ story.quote }}&rdquo;</p>
+      <div class="prose">{{ story.html | safe }}</div>
+      <div class="cta-row">{{ btn('Sponsor a student like ' ~ story.name, '/donate/', 'primary', 'lg') }}{{ btn('More stories', '/stories/', 'ghost', 'lg') }}</div>
+    </div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap">
+    {{ eyebrow('More stories') }}
+    <h2 style="margin-bottom:28px">Resilience, in their own words.</h2>
+    <div class="grid3">{% for s in related %}{{ story_card(s) }}{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}

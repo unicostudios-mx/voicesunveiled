@@ -1,0 +1,24 @@
+{% from 'partials/icons.html' import icon %}
+<footer class="site-footer">
+  <div class="fgrid">
+    <div>
+      <div class="ft">Voices Unveiled</div>
+      <p class="fd">Education, connection, and hope for Afghan women and girls. Every story is shared with care and consent.</p>
+      <div class="social">
+        <a href="{{ site.social.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon('instagram') }}</a>
+        <a href="{{ site.social.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{{ icon('facebook') }}</a>
+        <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn">{{ icon('linkedin') }}</a>
+        <a href="{{ site.social.youtube }}" target="_blank" rel="noopener" aria-label="YouTube">{{ icon('youtube') }}</a>
+      </div>
+    </div>
+    <div><div class="fh">Explore</div><ul>{% for l in site.footer.explore %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul></div>
+    <div><div class="fh">Take action</div><ul>{% for l in site.footer.action %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul></div>
+    <div><div class="fh">Connect</div><ul>{% for l in site.footer.connect %}<li><a href="{{ l.url }}"{% if l.external %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a></li>{% endfor %}</ul>
+      <p class="fd" style="margin-top:16px"><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>{{ site.address }}</p>
+    </div>
+  </div>
+  <div class="fbar"><div class="in">
+    <span>&copy; <span data-year>{{ build_year }}</span> {{ site.legal_name }} is a registered 501(c)(3) nonprofit &middot; EIN {{ site.ein }} &middot; Donations are tax-deductible.</span>
+    <span><a href="/privacy/">Privacy &amp; safety</a> &middot; <a href="/safety-guide/">Student safety guide</a></span>
+  </div></div>
+</footer>

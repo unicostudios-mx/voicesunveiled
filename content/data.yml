@@ -1,0 +1,206 @@
+# Datos estructurados del sitio. Los textos provienen del sitio original
+# voicesunveiled.org y del 2024 Annual Impact Report.
+
+impact_2024:
+  - { value: "115", label: "Scholarships raised & awarded" }
+  - { value: "50", label: "Students given internet funding" }
+  - { value: "20", label: "Intern graduates trained" }
+  - { value: "8", label: "Ongoing mentorship programs" }
+
+impact_since_2023:
+  - { value: "250+", label: "Students who have learned, healed, and reimagined their futures" }
+  - { value: "13", label: "Elective courses in tech, science, humanities, and arts" }
+  - { value: "6", label: "Rounds of the Self-Empowerment Program" }
+  - { value: "20+", label: "Families supported with mental health care in exile" }
+
+outcomes_2024:
+  - Two full semesters of the flagship Self-Empowerment Course
+  - Trauma-informed therapy for 5 students
+  - Women's health sessions with doctors from France and the U.S.
+  - 20 volunteers mobilized and 8 active mentorships sustained
+  - Two women's arts programs sustained in Afghanistan
+  - "Life-saving relief for families: food, medicine, and financial support"
+
+programs:
+  - slug: self-empowerment-course
+    tag: Education
+    tone: plum
+    title: Self-Empowerment Course
+    body: A free, three-month intensive course meeting three times a week. Mental health, women's health, leadership, critical thinking, and human rights.
+  - slug: holistic-education
+    tag: Mental health
+    tone: sage
+    title: Holistic & Integrative Education
+    body: Trauma-informed mental health support, academic guidance, and one-on-one sessions for personal, academic, and professional goals.
+  - slug: holistic-education
+    anchor: electives
+    tag: Skills
+    tone: terracotta
+    title: Elective Courses & Mentorship
+    body: English, exam prep, data analytics, computer programming, philosophy of physics, creative writing, and more, taught by volunteer instructors worldwide.
+  - slug: holistic-education
+    anchor: academic
+    tag: Access
+    tone: gold
+    title: Internet Funding
+    body: Internet packages so students can reliably join their classes from anywhere, safely and anonymously.
+  - slug: emergency-assistance
+    tag: Relief
+    tone: terracotta
+    title: Emergency Assistance
+    body: Food, medicine, and essential vitamins for students and their families facing critical hardship.
+  - slug: guest-speakers
+    tag: Community
+    tone: plum
+    title: Distinguished Guest Speakers
+    body: Global leaders, practitioners, activists, and artists who open doors to new ideas in the Empowerment Course.
+
+electives:
+  - group: Functional skills
+    items:
+      - { name: "English Language (Levels 1, 2, and 3)", body: "Structured lessons and test preparation for TOEFL and Duolingo, supporting students to improve their skills and access global education and career opportunities." }
+      - { name: "Data Analytics", body: "An introduction to analyzing and interpreting data using simple tools and real-life examples, preparing students for modern job markets." }
+      - { name: "Computer Programming", body: "Foundational programming skills using beginner-friendly languages, with hands-on practice and mentorship from international tech volunteers." }
+  - group: Humanities
+    items:
+      - { name: "Philosophy and Physics", body: "A unique opportunity to explore deep questions about existence, logic, and the universe, learning scientific theories and sparking curiosity and critical thinking." }
+      - { name: "Creative Writing", body: "Explores self-discovery and expression through journaling, storytelling, and poetry while strengthening creativity, writing skills, and community connection." }
+      - { name: "The Life of Ideas", body: "A journey into how we think, why we believe what we do, and how ideas shape the world and us. Students explore the big patterns of thought that run through philosophy and everyday life." }
+      - { name: "Art-Making: What Lives Within", body: "A journey through the inner world through artistic expression, using drawing and other art forms to transform thoughts and emotions into visual stories that offer a path to healing, self-discovery, and empowerment." }
+  - group: Sciences
+    items:
+      - { name: "Medical Science", body: "Led by a practicing physician, this class explores anatomy, neuroscience, cell biology, infectious disease, and more." }
+      - { name: "To the Stars and Beyond", body: "Explore the wonders of astronomy, from the Big Bang to the galaxies above us. This class celebrates discovery, curiosity, and the contributions of women in science." }
+      - { name: "Bio Science and Sustainability", body: "Explore the exciting world of biology and ecology to better understand the world around us and create a more sustainable future." }
+  - group: Wellness
+    items:
+      - { name: "Meditation", body: "A supportive space for students to build inner peace and resilience through mindfulness, breathing exercises, and reflection, helping them manage stress, calm anxiety, and navigate difficulties with emotional strength." }
+      - { name: "Stress Management", body: "Explores post-traumatic stress, its causes, symptoms, and effects on the brain and emotions, with evidence-based strategies including guided imagery and techniques for creating a personal safe space." }
+
+donation_tiers:
+  - { amount: 25, impact: "Internet access for one student for one semester" }
+  - { amount: 50, impact: "Course materials and internet for one student" }
+  - { amount: 100, impact: "An emergency intervention for a student in crisis" }
+  - { amount: 300, impact: "One trimester of transformation for one student" }
+  - { amount: 600, impact: "One trimester for two students" }
+  - { amount: 1000, impact: "A year of education, coaching, counselling, and support" }
+
+monthly_tiers:
+  - { amount: 25, impact: "Keeps one student connected to class every month" }
+  - { amount: 50, impact: "Course materials and internet, month after month" }
+  - { amount: 100, impact: "Mental health support and emergency aid when it is needed" }
+  - { amount: 300, impact: "Sponsors a student each trimester, or feeds a family for a month" }
+
+sponsorship_levels:
+  - { amount: "$300", label: "Full scholarship for one trimester" }
+  - { amount: "$900", label: "Full scholarship for one year" }
+  - { amount: "$1,500", label: "Full scholarship for one year, plus food and medical funds" }
+
+emergency_levels:
+  - { amount: "$100", label: "Buys a family of six groceries for one month" }
+  - { amount: "$200", label: "Pays for emergency medicine and health needs for one month" }
+  - { amount: "$400", label: "Pays for health, food, and essential vitamin needs for one month" }
+
+monthly_benefits:
+  - Annual impact report showing exactly where your gift goes
+  - A personal letter from a student
+  - Invitations to virtual events with Afghan women in our programs
+  - Confidence that your support continues, no matter what
+
+faq:
+  - q: Is my donation tax-deductible?
+    a: Yes. Voices Unveiled / Cafe de la Culture Inc is a registered 501(c)(3) nonprofit (EIN 99-0810138). Your gift is tax-deductible to the full extent allowed by law.
+  - q: Where does my money go?
+    a: Directly to scholarships, internet access, course materials, mental health support, and emergency assistance for Afghan women and girls. Our annual impact reports show exactly where every gift goes.
+  - q: Can I give monthly?
+    a: Yes. Monthly Lifeline partners give a recurring gift of any amount, providing the steady support our students rely on and letting us act the moment help is needed.
+  - q: Having trouble donating?
+    a: If you experience any issues while submitting your donation, please contact us at hello@voicesunveiled.org. You can also try clearing your browser cache, using a different browser, or an incognito window.
+
+emergency_campaigns:
+  - { title: "Emergency Funds for Ava and Nima", body: "Urgent relief, safety, and essential resources as they face a critical situation.", url: "https://voicesunveiled.org/emergency-funds-for-ava-and-nima/" }
+  - { title: "Emergency Funds for Baiza", body: "Urgent relief and essential resources as she faces a critical situation.", url: "https://voicesunveiled.org/emergency-funds-for-baiza/" }
+  - { title: "Emergency Funds for Nidal", body: "Urgent relief and essential resources as she faces a critical situation.", url: "https://voicesunveiled.org/emergency-funds-for-mahsa-copy/" }
+  - { title: "Emergency Funds for Mira and Cyra", body: "Urgent relief, safety, and essential resources as they face a critical situation.", url: "https://voicesunveiled.org/emergency-funds-for-mira-and-cyra/" }
+  - { title: "Emergency Funds for Rania", body: "Urgent relief, safety, and essential resources as she faces a critical situation.", url: "https://voicesunveiled.org/emergency-funds-for-rania/" }
+  - { title: "Emergency Funds for Roya", body: "Every campaign starts with one donation. Be the one to make it happen.", url: "https://voicesunveiled.org/emergency-funds-for-roya/" }
+
+student_quotes:
+  - { quote: "I was not confident enough to speak. Now I believe I am valuable, precious, and need to be heard.", name: "Ehsaneh", age: 28, detail: "Afghanistan" }
+  - { quote: "I hated being a girl. I thought my life was over. Voices Unveiled helped me love myself again. It gave me hope for my life and future.", name: "Chalipa", age: 14, detail: "Afghanistan" }
+  - { quote: "Before joining Voices Unveiled, I wished I could be someone else. Now I thank God that I am a girl.", name: "Dasa", age: 24, detail: "Refugee in Pakistan" }
+  - { quote: "No one has ever supported me or given me the kind of encouragement and learning opportunities that Voices Unveiled has. This course gives me strength and a reason to keep going.", name: "Zahra", detail: "Afghanistan" }
+  - { quote: "I want to know more about the rights that we girls should have. We do not know our own rights. I want to understand them and experience a new version of myself by knowing such things. I want to pass it on to others.", name: "Ariana", age: 17, detail: "Kabul, Afghanistan" }
+  - { quote: "After taking this course, I know that I am free, I am strong, I am a woman.", name: "B.S.", age: 18, detail: "Afghanistan" }
+  - { quote: "Even though you have not seen our faces, you are working very hard to amplify our voices.", name: "R.A.", age: 22, detail: "Afghanistan" }
+  - { quote: "I was able to ask the questions in my heart for the first time, without any fear. I learned how to speak out against misogyny and to not give up on breaking taboos in my society.", name: "N.H.", age: 19, detail: "Afghanistan" }
+  - { quote: "Most of all, I learned to have self-confidence and defend my rights and those of my peers.", name: "D.Y.", age: 18, detail: "Afghanistan" }
+  - { quote: "When I heard my own words spoken out loud by actors I felt happy, excited and curious. I felt that I was free. This was the most beautiful feeling.", name: "K.N.", age: 20, detail: "Afghanistan" }
+  - { quote: "I felt like I was a lost puzzle piece, and this course helped me find where I belong. It's a place to heal, a safe space where you can share your thoughts, ideas, and experiences without fear of judgment.", name: "Viana", age: 18, detail: "Afghan girl in Pakistan" }
+  - { quote: "I joined the English class to improve my speaking, but then I saw the other courses, like coding and data, and felt even more excited. It made me feel smart in a new way.", name: "Najwa", age: 20, detail: "Afghanistan" }
+  - { quote: "I can't fully explain what I have lost over the last three years. However, being with my Afghan sisters gives me strength, and having a supportive person like you with us is the greatest blessing we could ask for.", name: "R.Q.", age: 20, detail: "Afghanistan" }
+  - { quote: "Freedom feels like an unattainable dream, but I believe in working towards it. I want to acquire all the tools this course offers to empower myself, and I will pass on everything I learn to others.", name: "F.B.", age: 25, detail: "Kabul, Afghanistan" }
+
+supporter_quotes:
+  - { quote: "I am so touched by the work Voices Unveiled does. Everyone should do anything they can to support them.", name: "Zainab Salbi", detail: "Founder, Women for Women International" }
+  - { quote: "Voices Unveiled is a hugely important program. The stories of the women who've attended the Voices classes tell of self-discovery, personal fulfillment, and even individual freedom within the hard frame of Afghanistan today.", name: "John Boylan", detail: "Supporter" }
+  - { quote: "Afghan girls and young women are being heard and seen for who they are, who they dream of becoming. They are finding their voices, empowered to become change agents for the country they love. Our support validates their courage.", name: "Mary Faddick", detail: "Supporter" }
+  - { quote: "Voices Unveiled is doing cutting edge work with Afghan women and girls, walking alongside them towards their educational goals and mental health healing. We are proud supporters and thankful for their work.", name: "Heidi Henkel", detail: "The Broomfield Resettlement Task Force" }
+  - { quote: "This organization does a fantastic job of providing education and hope to Afghan women, who live under a government that provides them with neither. I am proud to be a supporter.", name: "Carol Matlack", detail: "Supporter" }
+  - { quote: "Access to knowledge and education is a fundamental right. My utmost respect to Cara Cruickshank and Voices Unveiled for their incredible work in empowering Afghan girls and women.", name: "Dr. Stavit Sinai", detail: "Lecturer in Philosophy, Researcher, Editor. Berlin, Germany" }
+  - { quote: "Voices Unveiled provides crucial physical, intellectual, and emotional support to women suffering under the worst gender apartheid in history. It is an act of goodness, kindness, and love that is a blessing for everyone involved.", name: "Dr. Paul Kordis", detail: "Supporter" }
+  - { quote: "Hearing first hand experiences from these girls and young women who only want what our daughters take for granted is inspiring. Supporting them makes me feel like I'm making a real difference.", name: "Tania Barricklo", detail: "Supporter" }
+  - { quote: "Voices Unveiled is a good example of an initiative that provides education for women in Afghanistan focused on psychological, socio-political, and gender-related topics. This is our opportunity to work with Afghan women on a massive grassroots level.", name: "Soraya Afzali", detail: "Ph.D. Candidate, Trinity College Dublin" }
+  - { quote: "I firmly believe that any society, traditional or not, is destined to collapse if it silences women's voices. Women are the true custodians of our ethical, cultural and religious values and practices.", name: "Zohirbek Piltaboev", detail: "Educator and research professional, former Academic Director, Aga Khan National Council for Afghanistan" }
+  - { quote: "A vital lifeline in these dark times for Afghan women. Their battle is also ours: women's rights and freedoms should never be taken for granted anywhere in the world.", name: "Helen Levy", detail: "Supporter" }
+  - { quote: "An organization that puts its heart into its goals. I am a witness to the incredible and positive impact it has on the lives of Afghan women.", name: "Coral Altamirano", detail: "Supporter" }
+
+volunteer_roles:
+  - tag: Speak
+    tone: plum
+    title: Guest speaker
+    body: Share your expertise in our Self-Empowerment Course. We welcome inspiring professionals in mental health, women's health, holistic health, women's studies, the arts, entrepreneurship, or any topic that inspires you.
+  - tag: Teach
+    tone: terracotta
+    title: Workshop leader
+    body: Work with a small group of students once a week or twice a month in your area of expertise. We especially need conversational English tutors, English proficiency test instructors, Spanish, German and French tutors, creative writing coaches, and essay mentors.
+  - tag: Counsel
+    tone: sage
+    title: Support services
+    body: Offer trauma counseling, provide personal coaching sessions, or lead a support group for students carrying isolation, uncertainty, and loss.
+  - tag: Build
+    tone: gold
+    title: Specialized teams
+    body: Join our volunteer teams for marketing, fundraising, and administration. Have other skills to lend? We are open to your unique contributions.
+
+volunteer_needs:
+  - Level 2 / B1 English
+  - Entrepreneurship
+  - Politics & International Studies
+  - Learning and Organization Skills
+  - Blog Editor
+
+guest_speakers:
+  - name: Dr. Lyla June Johnson
+    detail: Indigenous musician, scholar, scientist, orator, and community organizer of Diné (Navajo), Tsétsêhéstâhese (Cheyenne) and European lineages.
+  - name: Zainab Salbi
+    detail: Honoree of the Time100 Impact Award, named one of the "25 Women Changing the World" by People Magazine, founder of Women for Women International, humanitarian, co-founder of Daughters for Earth, best-selling author, TV host, and inspirational speaker.
+
+media:
+  - kind: video
+    title: Voices Unveiled on Channel 9 NBC News
+    body: Colorado's 9NEWS features Voices Unveiled founder Cara Cruickshank on our beginnings and why our work is urgently needed.
+    embed: https://www.youtube.com/embed/K-RBtwREAHE?rel=0&modestbranding=1
+  - kind: video
+    title: A Live Broadcast for Change
+    body: Our live fundraiser featuring courageous stories from Afghan women in our program, special guests, readings, and performances.
+    embed: https://www.youtube.com/embed/nhgEcUw1jpg?rel=0&modestbranding=1
+  - kind: audio
+    title: Voices Unveiled on Catskill Radio
+    body: Listen to our latest conversation with Catskill Radio.
+    embed: https://share.transistor.fm/e/b49d5b4b
+  - kind: link
+    title: Featured in ROOM, a sketchbook for analytic action
+    body: International magazine ROOM features how Afghan students in our Self-Empowerment program are reclaiming education and their voice under Taliban rule.
+    url: https://analytic-room.com/community-projects/voices-unveiled/
+    image: /assets/img/room-feature.jpg

@@ -1,14 +1,40 @@
 DirectoryIndex index.html
 Options -Indexes
+ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
-RedirectMatch 301 ^/donate/?$ /donate-now/
-RedirectMatch 301 ^/emergency-fund/?$ /donations/emergency-funds-for-ava-and-nima/
-RedirectMatch 301 ^/time-is-running-out/?$ /donations/time-is-running-out/
-RedirectMatch 301 ^/reclamation/?$ /reclamation/
+RedirectMatch 301 ^/about-new/?$ /about/
+RedirectMatch 301 ^/team/?$ /about/#founder
+RedirectMatch 301 ^/services/?$ /programs/self-empowerment-course/
+RedirectMatch 301 ^/empowerment-course/?$ /programs/self-empowerment-course/
+RedirectMatch 301 ^/holistic-and-integrative-education/?$ /programs/holistic-education/
+RedirectMatch 301 ^/emergency-assistance/?$ /programs/emergency-assistance/
+RedirectMatch 301 ^/distinguished-guest-speakers/?$ /programs/guest-speakers/
+RedirectMatch 301 ^/student-stories/?$ /stories/
+RedirectMatch 301 ^/student-reviews/?$ /impact/testimonials/#students
+RedirectMatch 301 ^/supporter-testimonials/?$ /impact/testimonials/#supporters
+RedirectMatch 301 ^/donate-now/?$ /donate/
+RedirectMatch 301 ^/donate/?$ /donate/
+RedirectMatch 301 ^/become-a-monthly-donor/?$ /donate/monthly/
+RedirectMatch 301 ^/donations/.*/?$ /donate/emergency-funds/
+RedirectMatch 301 ^/emergency-funds-for-.*/?$ /donate/emergency-funds/
+RedirectMatch 301 ^/emergency-fund/?$ /donate/emergency-funds/
+RedirectMatch 301 ^/time-is-running-out/?$ /donate/
+RedirectMatch 301 ^/work-with-us/?$ /volunteer/#work-with-us
+RedirectMatch 301 ^/get-involved/?$ /volunteer/
+RedirectMatch 301 ^/privacy-policy/?$ /privacy/
+RedirectMatch 301 ^/guide/?$ /safety-guide/
+RedirectMatch 301 ^/resources/?$ /impact/
+RedirectMatch 301 ^/podcast/?$ /about/#media
+RedirectMatch 301 ^/blogroll/?$ /blog/
+RedirectMatch 301 ^/category/.*/?$ /blog/
+RedirectMatch 301 ^/z-live-broadcast-for-change/?$ /about/#media
+RedirectMatch 301 ^/hello-world/?$ /blog/
+RedirectMatch 301 ^/new-blog-post/?$ /blog/
+RedirectMatch 301 ^/student-application/?$ https://voicesunveiled.org/student-application/
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpeg "access plus 30 days"
@@ -17,4 +43,8 @@ RedirectMatch 301 ^/reclamation/?$ /reclamation/
   ExpiresByType image/svg+xml "access plus 30 days"
   ExpiresByType text/css "access plus 7 days"
   ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType application/pdf "access plus 30 days"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
 </IfModule>

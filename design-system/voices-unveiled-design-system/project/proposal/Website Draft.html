@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Voices Unveiled — Website Draft</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: #E9E2D7; font-family: var(--font-sans); color: var(--text-body); -webkit-font-smoothing: antialiased; padding: 28px; }
+
+  /* Browser frame */
+  .browser { max-width: 1240px; margin: 0 auto; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 70px rgba(31,42,68,0.22); background: var(--ivory); }
+  .chrome { background: #ECE4D8; border-bottom: 1px solid var(--border-default); display: flex; align-items: center; gap: 14px; padding: 12px 16px; }
+  .dots { display: flex; gap: 7px; }
+  .dots span { width: 12px; height: 12px; border-radius: 999px; }
+  .urlbar { flex: 1; background: var(--white); border: 1px solid var(--border-default); border-radius: 999px; padding: 7px 16px; font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .urlbar svg { width: 13px; height: 13px; }
+
+  .site { height: 760px; overflow-y: auto; scroll-behavior: smooth; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* Header */
+  header.nav { position: sticky; top: 0; z-index: 20; background: rgba(250,246,239,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-subtle); }
+  .nav .row { max-width: 1120px; margin: 0 auto; padding: 0 40px; height: 74px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 11px; cursor: pointer; }
+  .brand img { height: 44px; }
+  .brand b { font-family: var(--font-serif); font-weight: 700; font-size: 18px; color: var(--plum); }
+  nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; align-items: center; }
+  nav a { font-size: 15px; font-weight: 500; color: var(--text-body); text-decoration: none; cursor: pointer; border-bottom: 2px solid transparent; padding-bottom: 3px; }
+  nav a:hover { color: var(--plum); }
+  nav a.active { color: var(--plum); border-bottom-color: var(--terracotta); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; font-family: var(--font-sans); font-weight: 600; border-radius: 999px; text-decoration: none; }
+  .btn-primary { background: var(--plum); color: var(--ivory); }
+  .btn-primary:hover { background: var(--plum-700); }
+  .btn-secondary { background: transparent; color: var(--plum); border: 1.5px solid var(--plum); }
+  .btn-soft { background: var(--terracotta-100); color: var(--plum); }
+  .btn-sm { padding: 9px 18px; font-size: 14px; }
+  .btn-md { padding: 12px 24px; font-size: 15px; }
+  .btn-lg { padding: 15px 30px; font-size: 16px; }
+
+  section.band { padding: 72px 0; }
+  .eyebrow { text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; font-weight: 700; color: var(--terracotta); margin: 0 0 14px; }
+  h1 { font-family: var(--font-serif); font-weight: 700; font-size: 52px; line-height: 1.08; letter-spacing: -0.02em; color: var(--plum); margin: 0 0 18px; }
+  h2 { font-family: var(--font-serif); font-weight: 700; font-size: 38px; line-height: 1.15; letter-spacing: -0.01em; color: var(--text-strong); margin: 0; }
+  .lead { font-size: 20px; line-height: 1.6; color: var(--text-body); }
+  .muted { color: var(--text-muted); }
+  .measure { max-width: 720px; }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 52px; align-items: center; }
+  .heroart { height: 430px; border-radius: var(--radius-xl); overflow: hidden; position: relative; background: linear-gradient(150deg, #5A2A4F 0%, #4B2142 45%, #1F2A44 100%); }
+  .heroart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+
+  /* mission */
+  .ground { background: var(--white); }
+  .mission p { font-family: var(--font-serif); font-size: 30px; line-height: 1.45; color: var(--text-strong); max-width: 760px; margin: 0 auto; text-align: center; }
+  .mission em { color: var(--terracotta); font-style: italic; }
+
+  /* impact cards */
+  .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .icard { background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px 24px; box-shadow: var(--shadow-sm); }
+  .icard .n { font-family: var(--font-serif); font-weight: 700; font-size: 46px; line-height: 1; color: var(--plum); }
+  .icard .r { width: 32px; height: 3px; background: var(--gold); border-radius: 2px; margin: 9px 0; }
+  .icard .l { font-size: 15px; color: var(--text-muted); line-height: 1.45; }
+
+  .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+
+  /* stories */
+  .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+  .story { background: var(--ivory); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; display: flex; flex-direction: column; }
+  .story .ph { height: 150px; background: var(--ivory-200); border-bottom: 1px solid var(--border-subtle); display: grid; place-items: center; color: var(--text-muted); font-size: 12px; }
+  .story.onwhite { background: var(--white); }
+  .story .body { padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .story .nm { font-weight: 600; font-size: 16px; color: var(--text-strong); }
+  .story .co { font-size: 13px; color: var(--text-muted); }
+  .story blockquote { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 18px; line-height: 1.5; color: var(--plum); flex: 1; }
+
+  /* programs */
+  .prog { background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 26px; box-shadow: var(--shadow-sm); }
+  .prog.onivory { background: var(--ivory); }
+  .tag { display: inline-block; font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 999px; }
+  .tag.plum { background: rgba(75,33,66,0.08); color: var(--plum); }
+  .tag.sage { background: var(--sage-100); color: #4A5C46; }
+  .tag.terra { background: var(--terracotta-100); color: var(--terracotta-700); }
+  .tag.gold { background: var(--gold-100); color: #8A6A14; }
+  .prog h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--text-strong); margin: 16px 0 8px; }
+  .prog p { font-size: 15px; line-height: 1.6; color: var(--text-muted); margin: 0; }
+
+  /* testimonial */
+  .testi { border-radius: var(--radius-xl); padding: 46px 52px; max-width: 860px; margin: 0 auto; }
+  .testi.ivory { background: var(--ivory); }
+  .testi.sage { background: var(--sage-100); }
+  .testi .mark { font-family: var(--font-serif); font-size: 72px; line-height: 0.6; color: var(--terracotta); }
+  .testi blockquote { margin: 8px 0 0; font-family: var(--font-serif); font-size: 27px; line-height: 1.45; color: var(--plum); }
+  .testi .who { margin-top: 20px; }
+  .testi .who b { font-size: 16px; color: var(--text-strong); }
+  .testi .who span { display: block; font-size: 14px; color: var(--text-muted); }
+
+  /* donate */
+  .donate { background: var(--midnight); color: var(--ivory); border-radius: var(--radius-xl); padding: 48px 52px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  .donate h2 { color: var(--ivory); }
+  .amts { display: flex; gap: 10px; flex-wrap: wrap; }
+  .amt { background: rgba(250,246,239,0.1); border: 1.5px solid rgba(250,246,239,0.25); color: var(--ivory); border-radius: var(--radius-md); padding: 10px 16px; font-family: var(--font-serif); font-weight: 700; font-size: 18px; }
+  .amt.on { background: var(--gold); color: var(--midnight); border-color: var(--gold); }
+  .impact { font-size: 14.5px; color: rgba(250,246,239,0.85); display: flex; gap: 8px; }
+
+  /* donation selector card (light, donate page) */
+  .dcard { background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); padding: 28px; }
+  .toggle { display: inline-flex; background: var(--ivory-200); border-radius: 999px; padding: 4px; margin-bottom: 20px; }
+  .toggle span { padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--text-muted); }
+  .toggle span.on { background: var(--plum); color: var(--ivory); }
+  .agrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+  .achip { text-align: center; padding: 14px 0; border-radius: var(--radius-md); font-family: var(--font-serif); font-weight: 700; font-size: 20px; background: var(--ivory); color: var(--plum); border: 1.5px solid var(--border-default); }
+  .achip.on { background: var(--plum); color: var(--ivory); border-color: var(--plum); }
+  .iline { display: flex; gap: 10px; align-items: flex-start; background: var(--sage-100); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 20px; font-size: 14.5px; color: #3F4D3C; line-height: 1.4; }
+
+  /* campaign banner */
+  .campaign { background: var(--midnight); color: var(--ivory); border-radius: var(--radius-lg); padding: 28px 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
+  .campaign h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 700; margin: 6px 0; }
+  .bar { height: 8px; border-radius: 999px; background: rgba(250,246,239,0.18); overflow: hidden; max-width: 440px; }
+  .bar > div { height: 100%; background: var(--gold); border-radius: 999px; }
+
+  /* faq */
+  .faq { max-width: 720px; }
+  .faq details { border-bottom: 1px solid var(--border-subtle); padding: 18px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; color: var(--text-strong); list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq p { font-size: 15.5px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 0; }
+
+  /* outcomes / about */
+  .checks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; }
+  .checks .ck { color: var(--terracotta); font-weight: 700; flex: none; margin-top: 1px; }
+  .photoslot { border-radius: var(--radius-lg); display: grid; place-items: center; color: var(--text-muted); font-size: 13px; border: 1px dashed var(--border-default); }
+
+  .reportband { background: var(--midnight); color: var(--ivory); border-radius: var(--radius-xl); padding: 44px 52px; display: flex; gap: 32px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .reportband .rt { font-family: var(--font-serif); font-size: 28px; font-weight: 700; margin: 0 0 8px; }
+
+  /* volunteer */
+  .vol { background: var(--terracotta-100); border-radius: var(--radius-xl); padding: 46px 52px; display: flex; gap: 32px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .vol .t { max-width: 560px; }
+  .vol h2 { margin-bottom: 8px; }
+  .vol p { font-size: 17px; line-height: 1.6; margin: 0; }
+
+  /* footer */
+  footer { background: var(--midnight); color: var(--ivory); }
+  .fgrid { max-width: 1120px; margin: 0 auto; padding: 56px 40px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; }
+  footer .ft { font-family: var(--font-serif); font-weight: 700; font-size: 19px; margin-bottom: 10px; }
+  footer .fd { font-size: 14px; line-height: 1.6; color: rgba(250,246,239,0.72); max-width: 260px; margin: 0; }
+  footer .fh { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 12px; }
+  footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  footer ul a { color: rgba(250,246,239,0.85); text-decoration: none; font-size: 14px; cursor: pointer; }
+  .fbar { border-top: 1px solid rgba(250,246,239,0.14); }
+  .fbar .in { max-width: 1120px; margin: 0 auto; padding: 18px 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 12.5px; color: rgba(250,246,239,0.6); }
+
+  .note { display: flex; gap: 9px; align-items: flex-start; background: var(--sage-100); border: 1px solid rgba(105,124,99,0.25); border-radius: var(--radius-md); padding: 12px 16px; font-size: 13.5px; color: #3F4D3C; line-height: 1.5; max-width: 720px; }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <div style="width:100%;height:100%;background:linear-gradient(150deg,#5A2A4F 0%,#4B2142 48%,#1F2A44 100%);display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 100 100" width="40%" height="40%" fill="none" stroke="#FAF6EF" stroke-width="3" stroke-linecap="round">
+        <path d="M50 14 L50 56" stroke="#E5B84B"/>
+        <path d="M30 56 Q50 86 70 56" stroke="#C46A4A"/>
+        <path d="M24 40 Q30 30 36 40" stroke="#A9B8A4"/>
+        <path d="M64 40 Q70 30 76 40" stroke="#A9B8A4"/>
+        <circle cx="50" cy="62" r="4" fill="#E5B84B" stroke="none"/>
+      </svg>
+    </div>
+  </template>
+  <div class="browser">
+    <div class="chrome">
+      <div class="dots"><span style="background:#E06A5B"></span><span style="background:#E5B84B"></span><span style="background:#7FB069"></span></div>
+      <div class="urlbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#6F6663" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span id="url">voicesunveiled.org</span>
+      </div>
+    </div>
+
+    <div class="site" id="site">
+      <!-- HEADER -->
+      <header class="nav">
+        <div class="row">
+          <div class="brand" onclick="go('home')"><img src="../assets/logo-full.png" alt="Voices Unveiled"/><b>Voices Unveiled</b></div>
+          <nav>
+            <ul>
+              <li><a data-nav="about" onclick="go('about')">About</a></li>
+              <li><a data-nav="programs" onclick="go('programs')">Programs</a></li>
+              <li><a data-nav="impact" onclick="go('impact')">Impact</a></li>
+              <li><a data-nav="stories" onclick="go('stories')">Stories</a></li>
+              <li><a data-nav="volunteer" onclick="go('volunteer')">Volunteer</a></li>
+              <li><a class="btn btn-primary btn-sm" onclick="go('donate')">Donate</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- ============ HOME ============ -->
+      <div class="page active" data-page="home">
+        <section class="band">
+          <div class="wrap hero">
+            <div>
+              <p class="eyebrow">Voices emerging from silence</p>
+              <h1>Keep her learning, healing, and reclaiming her voice.</h1>
+              <p class="lead" style="max-width:500px">Voices Unveiled provides free online education, mental health support, and leadership development for Afghan women and girls.</p>
+              <div class="cta-row">
+                <a class="btn btn-primary btn-lg" onclick="go('donate')">Sponsor a Student</a>
+                <a class="btn btn-secondary btn-lg" onclick="go('impact')">See Our Impact</a>
+              </div>
+            </div>
+            <div class="heroart">
+              <svg viewBox="0 0 400 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <g fill="none" stroke-linecap="round">
+                  <path d="M90 -40 C200 90 120 240 250 480" stroke="#C46A4A" stroke-width="62" opacity="0.22"/>
+                  <path d="M150 -40 C260 90 180 240 310 480" stroke="#E5B84B" stroke-width="44" opacity="0.18"/>
+                  <path d="M40 -40 C150 90 70 240 200 480" stroke="#A9B8A4" stroke-width="32" opacity="0.16"/>
+                </g>
+                <g stroke="#FAF6EF" stroke-width="1.5" opacity="0.5" fill="none">
+                  <path d="M30 340 Q60 310 90 340 T150 340 T210 340 T270 340"/>
+                  <path d="M30 362 Q60 332 90 362 T150 362 T210 362 T270 362" opacity="0.6"/>
+                </g>
+                <circle cx="320" cy="80" r="4" fill="#E5B84B" opacity="0.7"/>
+                <circle cx="345" cy="120" r="3" fill="#C46A4A" opacity="0.7"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="band ground mission">
+          <div class="wrap"><p>We believe education is a lifeline. When the world closed its doors to Afghan women, we built a new one — <em>online, free, and safe.</em></p></div>
+        </section>
+
+        <section class="band">
+          <div class="wrap">
+            <p class="eyebrow">Our impact in 2024</p>
+            <h2 style="margin-bottom:30px">The difference your support made.</h2>
+            <div class="grid4">
+              <div class="icard"><div class="n">115</div><div class="r"></div><div class="l">Scholarships raised &amp; awarded</div></div>
+              <div class="icard"><div class="n">50</div><div class="r"></div><div class="l">Students given internet funding</div></div>
+              <div class="icard"><div class="n">20</div><div class="r"></div><div class="l">Intern graduates trained</div></div>
+              <div class="icard"><div class="n">8</div><div class="r"></div><div class="l">Ongoing mentorship programs</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="band ground">
+          <div class="wrap">
+            <div class="sec-head">
+              <div><p class="eyebrow">Student stories</p><h2>Resilience, in their own words.</h2></div>
+              <a class="btn btn-soft btn-md" onclick="go('stories')">Explore all stories →</a>
+            </div>
+            <div class="grid3">
+              <div class="story"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Arezou, 27</div><div class="co">Afghanistan</div></div><blockquote>"The course gave me hope and strength to keep learning."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('stories')">Read Her Story</a></div></div>
+              <div class="story"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Marwa, 22</div><div class="co">Afghanistan</div></div><blockquote>"I found a community that believes in my future."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('stories')">Read Her Story</a></div></div>
+              <div class="story"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Sahar, 30</div><div class="co">Afghanistan</div></div><blockquote>"For the first time, I am leading — not waiting."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('stories')">Read Her Story</a></div></div>
+            </div>
+            <div class="note" style="margin-top:24px"><span aria-hidden="true">🛡</span> Some names, images, or identifying details may be changed to protect student safety.</div>
+          </div>
+        </section>
+
+        <section class="band">
+          <div class="wrap">
+            <p class="eyebrow">Programs</p>
+            <h2 style="margin-bottom:30px">How we support our students.</h2>
+            <div class="grid3">
+              <div class="prog"><span class="tag plum">Education</span><h3>Self-Empowerment Course</h3><p>Two full semesters covering mental health, women's health, leadership, and critical thinking.</p></div>
+              <div class="prog"><span class="tag sage">Mental health</span><h3>Trauma-Informed Care</h3><p>Professional therapy and regular one-on-one support sessions for students.</p></div>
+              <div class="prog"><span class="tag terra">Leadership</span><h3>Mentorship Programs</h3><p>English, exam prep, data analytics, and computer programming with expert mentors.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="band ground">
+          <div class="wrap">
+            <div class="testi ivory">
+              <div class="mark">&ldquo;</div>
+              <blockquote>I was not confident enough to speak. Now I believe I am valuable, precious, and need to be heard.</blockquote>
+              <div class="who"><b>Ehsaneh, 28</b><span>Afghanistan</span></div>
+              <a class="btn btn-primary btn-md" style="margin-top:22px" onclick="go('donate')">Support more students like Ehsaneh</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="band">
+          <div class="wrap">
+            <div class="vol">
+              <div class="t"><h2>Share your skills. Help create a safe learning space.</h2><p>Teachers, counselors, mentors, and organizers — there's a place for you.</p></div>
+              <a class="btn btn-primary btn-lg" onclick="go('volunteer')">Become a Volunteer</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ ABOUT ============ -->
+      <div class="page" data-page="about">
+        <section class="band">
+          <div class="wrap measure">
+            <p class="eyebrow">About us</p>
+            <h1>A grassroots lifeline for Afghan women and girls.</h1>
+            <p class="lead">Voices Unveiled is a donor-powered nonprofit opening pathways to education, healing, and leadership — even where the world's doors have closed.</p>
+          </div>
+        </section>
+        <section class="band ground">
+          <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+            <div class="photoslot" style="height:340px;background:var(--ivory-200)">Photograph — students learning</div>
+            <div>
+              <p class="eyebrow">From our Executive Director</p>
+              <h2 style="margin-bottom:18px">"You are empowering a new generation."</h2>
+              <p style="font-size:17px;line-height:1.7;color:var(--text-body)">With the withdrawal of U.S. AID, economic and educational opportunities in Afghanistan have diminished further — making Voices Unveiled one of the few remaining pathways to education and empowerment for Afghan women.</p>
+              <p style="font-size:17px;line-height:1.7;color:var(--text-body);margin-top:14px">Together, we can ensure Afghan women and girls have access to education, opportunity, and hope.</p>
+              <p style="font-family:var(--font-serif);font-weight:700;color:var(--plum);margin-top:18px">Cara Cruickshank<br/><span style="font-family:var(--font-sans);font-weight:400;font-size:14px;color:var(--text-muted)">Executive Director</span></p>
+            </div>
+          </div>
+        </section>
+        <section class="band">
+          <div class="wrap">
+            <p class="eyebrow">What guides us</p>
+            <h2 style="margin-bottom:30px">Our values.</h2>
+            <div class="grid3">
+              <div class="prog onivory"><span class="tag plum">Dignity</span><h3>Agency, not pity</h3><p>We center resilience and voice — never trauma as spectacle.</p></div>
+              <div class="prog onivory"><span class="tag sage">Care</span><h3>Safety first</h3><p>Every story is shared with care and consent; student safety guides every choice.</p></div>
+              <div class="prog onivory"><span class="tag gold">Trust</span><h3>Transparency</h3><p>Clear impact, open reporting, and responsible stewardship of every gift.</p></div>
+            </div>
+          </div>
+        </section>
+        <section class="band ground"><div class="wrap"><div class="vol"><div class="t"><h2>Join us in empowering women &amp; girls in Afghanistan.</h2><p>Your support keeps education, connection, and hope alive.</p></div><a class="btn btn-primary btn-lg" onclick="go('donate')">Donate Now</a></div></div></section>
+      </div>
+
+      <!-- ============ PROGRAMS ============ -->
+      <div class="page" data-page="programs">
+        <section class="band">
+          <div class="wrap measure">
+            <p class="eyebrow">Programs</p>
+            <h1>Education, healing, and leadership.</h1>
+            <p class="lead">Free, online, and built around the whole person — from the classroom to mental health to career.</p>
+          </div>
+        </section>
+        <section class="band ground">
+          <div class="wrap">
+            <div class="grid3">
+              <div class="prog"><span class="tag plum">Education</span><h3>Self-Empowerment Course</h3><p>Two full semesters: mental health and self-care, women's health, leadership, critical thinking, and human rights.</p></div>
+              <div class="prog"><span class="tag sage">Mental health</span><h3>Trauma-Informed Care</h3><p>Professional therapy for students plus regular one-on-one support for academic, familial, and professional goals.</p></div>
+              <div class="prog"><span class="tag terra">Leadership</span><h3>Mentorship</h3><p>English language and proficiency exam prep, data analytics, computer programming, and philosophy of physics.</p></div>
+              <div class="prog"><span class="tag gold">Access</span><h3>Internet Funding</h3><p>Internet packages so students can reliably join their classes from anywhere.</p></div>
+              <div class="prog"><span class="tag plum">Resources</span><h3>Academic Resources</h3><p>Free test-prep guides, scholarship eligibility guides, an English learning database, and a college-essay program.</p></div>
+              <div class="prog"><span class="tag terra">Community</span><h3>Guest Speakers &amp; Arts</h3><p>Renowned speakers and sustained women's arts programs that build confidence and connection.</p></div>
+            </div>
+          </div>
+        </section>
+        <section class="band"><div class="wrap"><div class="testi sage"><div class="mark">&ldquo;</div><blockquote>The mentorship changed how I see myself. I am no longer waiting for permission to learn.</blockquote><div class="who"><b>Marwa, 22</b><span>Afghanistan</span></div></div></div></section>
+      </div>
+
+      <!-- ============ IMPACT ============ -->
+      <div class="page" data-page="impact">
+        <section class="band">
+          <div class="wrap measure">
+            <p class="eyebrow">Our impact</p>
+            <h1>2024 marked a transformative year.</h1>
+            <p class="lead">Thanks to your generosity, we created lasting change in the lives of Afghan women and girls.</p>
+          </div>
+        </section>
+        <section class="band">
+          <div class="wrap">
+            <div class="grid4">
+              <div class="icard"><div class="n">115</div><div class="r"></div><div class="l">Scholarships raised &amp; awarded</div></div>
+              <div class="icard"><div class="n">50</div><div class="r"></div><div class="l">Students given internet funding</div></div>
+              <div class="icard"><div class="n">20</div><div class="r"></div><div class="l">Intern graduates trained</div></div>
+              <div class="icard"><div class="n">8</div><div class="r"></div><div class="l">Active volunteers on the team</div></div>
+            </div>
+          </div>
+        </section>
+        <section class="band ground">
+          <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+            <div>
+              <p class="eyebrow">Program outcomes</p>
+              <h2 style="margin-bottom:20px">Shaping futures, responding to needs.</h2>
+              <ul class="checks">
+                <li><span class="ck">✓</span>Two full semesters of the flagship self-empowerment course</li>
+                <li><span class="ck">✓</span>Trauma-informed therapy for 5 students</li>
+                <li><span class="ck">✓</span>Women's health sessions with doctors from France and the U.S.</li>
+                <li><span class="ck">✓</span>Sustained 2 women's arts programs in Afghanistan</li>
+              </ul>
+            </div>
+            <div class="photoslot" style="height:320px;background:var(--sage-100)">Photograph — students learning online</div>
+          </div>
+        </section>
+        <section class="band">
+          <div class="wrap">
+            <div class="reportband">
+              <div><p class="rt">Read the full 2024 Annual Impact Report.</p><p style="font-size:16px;color:rgba(250,246,239,0.8);margin:0">Financial transparency and program detail, start to finish.</p></div>
+              <a class="btn btn-soft btn-lg">Download report (PDF)</a>
+            </div>
+          </div>
+        </section>
+        <section class="band ground"><div class="wrap"><div class="testi ivory"><div class="mark">&ldquo;</div><blockquote>I am so touched by the work Voices Unveiled does. Everyone should do anything they can to support them.</blockquote><div class="who"><b>Zainab Salbi</b><span>Founder, Women for Women International</span></div><a class="btn btn-primary btn-md" style="margin-top:22px" onclick="go('donate')">Donate Now</a></div></div></section>
+      </div>
+
+      <!-- ============ STORIES ============ -->
+      <div class="page" data-page="stories">
+        <section class="band">
+          <div class="wrap">
+            <div class="measure" style="margin-bottom:26px">
+              <p class="eyebrow">Student stories</p>
+              <h1>Every story is shared with care and consent.</h1>
+              <p class="lead" style="margin-bottom:20px">These are journeys of agency, resilience, and transformation.</p>
+              <div class="note"><span aria-hidden="true">🛡</span> Some names, images, or identifying details may be changed to protect student safety.</div>
+            </div>
+            <div class="grid3">
+              <div class="story onwhite"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Arezou, 27</div><div class="co">Afghanistan</div></div><blockquote>"The course gave me hope and strength to keep learning."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('donate')">Sponsor a student like her</a></div></div>
+              <div class="story onwhite"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Marwa, 22</div><div class="co">Afghanistan</div></div><blockquote>"I found a community that believes in my future."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('donate')">Sponsor a student like her</a></div></div>
+              <div class="story onwhite"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Sahar, 30</div><div class="co">Afghanistan</div></div><blockquote>"For the first time, I am leading — not waiting."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('donate')">Sponsor a student like her</a></div></div>
+              <div class="story onwhite"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Nadia, 24</div><div class="co">Afghanistan</div></div><blockquote>"I learned that my voice has value, and people will listen."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('donate')">Sponsor a student like her</a></div></div>
+              <div class="story onwhite"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Freshta, 19</div><div class="co">Afghanistan</div></div><blockquote>"Studying again gave my days purpose and direction."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('donate')">Sponsor a student like her</a></div></div>
+              <div class="story onwhite"><div class="ph">Consented photograph</div><div class="body"><div><div class="nm">Roya, 26</div><div class="co">Afghanistan</div></div><blockquote>"The counseling helped me carry what felt unbearable."</blockquote><a class="btn btn-secondary btn-sm" style="align-self:flex-start" onclick="go('donate')">Sponsor a student like her</a></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="band ground"><div class="wrap"><div class="testi ivory"><div class="mark">&ldquo;</div><blockquote>I was not confident enough to speak. Now I believe I am valuable, precious, and need to be heard.</blockquote><div class="who"><b>Ehsaneh, 28</b><span>Afghanistan</span></div><a class="btn btn-primary btn-md" style="margin-top:22px" onclick="go('donate')">Support more students like Ehsaneh</a></div></div></section>
+      </div>
+
+      <!-- ============ VOLUNTEER ============ -->
+      <div class="page" data-page="volunteer">
+        <section class="band">
+          <div class="wrap measure">
+            <p class="eyebrow">Volunteer</p>
+            <h1>Share your skills. Help create a safe learning space.</h1>
+            <p class="lead">Teachers, counselors, mentors, and organizers — there's a meaningful place for you on our team.</p>
+          </div>
+        </section>
+        <section class="band ground">
+          <div class="wrap">
+            <div class="grid3">
+              <div class="prog"><span class="tag plum">Teach</span><h3>Lead a class</h3><p>Teach English, exam prep, or a specialized subject to motivated students.</p></div>
+              <div class="prog"><span class="tag sage">Counsel</span><h3>Offer support</h3><p>Provide mentorship or counseling for students' academic and personal goals.</p></div>
+              <div class="prog"><span class="tag terra">Build</span><h3>Grow the mission</h3><p>Help with outreach, marketing, program development, and student support.</p></div>
+            </div>
+            <div style="text-align:center;margin-top:36px"><a class="btn btn-primary btn-lg" onclick="go('donate')">Get involved</a></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ DONATE ============ -->
+      <div class="page" data-page="donate">
+        <section class="band" style="padding-bottom:0">
+          <div class="wrap">
+            <div class="campaign">
+              <div style="flex:1 1 360px">
+                <span style="text-transform:uppercase;letter-spacing:0.14em;font-size:11px;font-weight:700;color:var(--gold)">Urgent</span>
+                <h3>Help keep Voices Unveiled open.</h3>
+                <p style="font-size:15px;color:rgba(250,246,239,0.82);margin:0 0 14px;line-height:1.5">We must raise $50,000 to continue education and mental health support for Afghan women and girls.</p>
+                <div class="bar"><div style="width:65%"></div></div>
+                <div style="display:flex;justify-content:space-between;max-width:440px;font-size:13px;color:rgba(250,246,239,0.82);margin-top:7px"><span>$32,500 raised</span><span>Goal $50,000</span></div>
+              </div>
+              <a class="btn btn-soft btn-lg">Donate Now</a>
+            </div>
+          </div>
+        </section>
+        <section class="band">
+          <div class="wrap" style="display:grid;grid-template-columns:1fr 0.9fr;gap:52px;align-items:start">
+            <div>
+              <p class="eyebrow">Make a gift</p>
+              <h2 style="margin-bottom:16px">Your gift keeps education, connection, and hope alive.</h2>
+              <p style="font-size:17px;line-height:1.65;color:var(--text-body);margin-bottom:26px">Every dollar you invest directly impacts the lives of Afghan women and girls. Choose an amount to see what it makes possible.</p>
+              <div class="testi sage" style="padding:32px 36px;max-width:none"><div class="mark">&ldquo;</div><blockquote style="font-size:22px">The mentorship changed how I see myself. I am no longer waiting for permission to learn.</blockquote><div class="who"><b>Marwa, 22</b><span>Afghanistan</span></div></div>
+            </div>
+            <div class="dcard">
+              <div class="toggle"><span class="on">One-time</span><span>Monthly</span></div>
+              <div class="agrid">
+                <div class="achip">$25</div>
+                <div class="achip">$50</div>
+                <div class="achip">$100</div>
+                <div class="achip on">$300</div>
+                <div class="achip">$500</div>
+                <div class="achip">$1,000</div>
+              </div>
+              <div class="iline"><span style="color:var(--terracotta);font-weight:700">→</span> One trimester of education for one student.</div>
+              <a class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Donate Now — $300</a>
+              <p style="font-size:12.5px;color:var(--text-muted);text-align:center;margin:12px 0 0;line-height:1.5">Voices Unveiled is a 501(c)(3). Your gift is tax-deductible.</p>
+            </div>
+          </div>
+        </section>
+        <section class="band ground">
+          <div class="wrap">
+            <p class="eyebrow">Questions</p>
+            <h2 style="margin-bottom:28px">Giving with confidence.</h2>
+            <div class="faq">
+              <details open><summary>Is my donation tax-deductible?</summary><p>Yes. Voices Unveiled is a registered 501(c)(3) nonprofit; your gift is tax-deductible to the full extent allowed by law.</p></details>
+              <details><summary>Where does my money go?</summary><p>Directly to scholarships, internet access, course materials, mental health support, and emergency assistance for Afghan women and girls.</p></details>
+              <details><summary>Can I give monthly?</summary><p>Yes — our Monthly Donors Circle accepts a recurring gift of any amount, providing the steady support our students rely on.</p></details>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="fgrid">
+          <div>
+            <div class="ft">Voices Unveiled</div>
+            <p class="fd">Education, connection, and hope for Afghan women and girls. Every story is shared with care and consent.</p>
+          </div>
+          <div><div class="fh">Explore</div><ul><li><a onclick="go('about')">About</a></li><li><a onclick="go('programs')">Programs</a></li><li><a onclick="go('impact')">Impact</a></li><li><a onclick="go('stories')">Stories</a></li></ul></div>
+          <div><div class="fh">Take action</div><ul><li><a onclick="go('donate')">Donate</a></li><li><a onclick="go('donate')">Sponsor a Student</a></li><li><a onclick="go('volunteer')">Volunteer</a></li><li><a onclick="go('donate')">Monthly Giving</a></li></ul></div>
+          <div><div class="fh">Connect</div><ul><li><a>Newsletter</a></li><li><a>Contact</a></li><li><a>Instagram</a></li><li><a>LinkedIn</a></li></ul></div>
+        </div>
+        <div class="fbar"><div class="in"><span>Voices Unveiled is a registered 501(c)(3) nonprofit · EIN 00-0000000</span><span>Privacy &amp; Safety · voicesunveiled.org</span></div></div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const paths = { home: "voicesunveiled.org", about: "voicesunveiled.org/about", programs: "voicesunveiled.org/programs", impact: "voicesunveiled.org/impact", stories: "voicesunveiled.org/stories", volunteer: "voicesunveiled.org/volunteer", donate: "voicesunveiled.org/donate" };
+    function go(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.dataset.page === page));
+      document.querySelectorAll('nav a[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === page));
+      document.getElementById('url').textContent = paths[page] || paths.home;
+      document.getElementById('site').scrollTo({ top: 0, behavior: 'auto' });
+    }
+  </script>
+</body>
+</html>

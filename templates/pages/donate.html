@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial, campaign_banner, donation_selector, checks, safety_note %}
+{% block content %}
+<section class="band" style="padding-bottom:0">
+  <div class="wrap">
+    {{ campaign_banner('This is our moment to choose hope.', 'We must raise $50,000 to keep our programs alive. Without your help, Voices Unveiled will be forced to close, leaving Afghan women and girls without the education and community they depend on.', 'Donate Now', site.donate_url) }}
+  </div>
+</section>
+<section class="band">
+  <div class="wrap split split--wide split--start">
+    <div>
+      {{ eyebrow('Make a gift') }}
+      <h2 style="margin-bottom:16px">Your gift keeps education, connection, and hope alive.</h2>
+      <p style="margin-bottom:26px">Every dollar you invest directly impacts the lives of Afghan women and girls. Choose an amount to see what it makes possible. Your donation today protects their dignity, their education, and their dreams.</p>
+      {{ testimonial(data.student_quotes[3], 'sage', compact=true) }}
+    </div>
+    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 300, 'once', sticky=true) }}
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow('Your support ensures') }}
+      <h2 style="margin-bottom:18px">Afghan women and girls can:</h2>
+      {{ checks(["Access free online education, systematically denied to them under Taliban restrictions.", "Receive mental health support and community connection, helping them cope with isolation, trauma, and fear.", "Receive urgent, life-saving aid, including food, medicine, and financial assistance in emergencies.", "Reclaim their voices through courses in self-empowerment, English, data analytics, philosophy, meditation, and more."]) }}
+    </div>
+    <div>
+      {{ eyebrow('What we\'ve built together') }}
+      <h2 style="margin-bottom:18px">For almost three years, with you.</h2>
+      {{ checks(["Free online classes for students banned from school by the Taliban", "Mental health support during exile, isolation, and trauma to 20+ families", "13 elective courses in tech, science, humanities, and arts", "6 rounds of our Self-Empowerment Program", "Life-saving relief: food, medicine, financial support", "250+ students have learned, healed, and reimagined their futures"]) }}
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    {{ eyebrow('Their voices') }}
+    <h2 style="margin-bottom:14px">These are the lives your donation supports.</h2>
+    <div style="margin-bottom:28px">{{ safety_note() }}</div>
+    <div class="grid3 reveal">
+      {{ testimonial(data.student_quotes[1], 'ivory', compact=true) }}
+      {{ testimonial(data.student_quotes[2], 'sage', compact=true) }}
+      {{ testimonial(data.student_quotes[0], 'ivory', compact=true) }}
+    </div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap">
+    {{ eyebrow('Questions') }}
+    <h2 style="margin-bottom:28px">Giving with confidence.</h2>
+    <div class="faq">
+      {% for f in data.faq %}<details{% if loop.first %} open{% endif %}><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>{% endfor %}
+    </div>
+    <p class="muted" style="margin-top:28px; max-width:720px">Thank you for your generous donation. Your support not only empowers the women of Afghanistan but also contributes to a global movement towards equality, education, and change. Every donation brings us closer to a world where every voice is heard and valued.</p>
+  </div>
+</section>
+{% endblock %}

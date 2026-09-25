@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Programs · Relief') }}
+    <h1>Emergency assistance.</h1>
+    <p class="lead">True self-empowerment encompasses self-care, proper nutrition, and health. We raise funds to meet the critical food and medical needs of our students and their families.</p>
+    <div class="cta-row">{{ btn('Give emergency aid', '/donate/emergency-funds/', 'primary', 'lg') }}</div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap split split--start">
+    <div>
+      <h2 style="margin-bottom:18px">Surviving, and thriving, despite hardship.</h2>
+      <p>Amid the ongoing crisis, many families are unable to provide adequate nourishment, leading to preventable health issues among our young women, including scurvy, rickets, and anemia. These conditions cause severe symptoms such as bleeding gums, bone and joint pain, chronic headaches, dizziness, fatigue, and profound depression.</p>
+      <p>Such health challenges make it incredibly difficult for students to focus on their education and achieve their goals. At Voices Unveiled, we take a holistic approach to support our students' success on every level. By contributing, you help ensure that our Afghan students not only survive but also thrive.</p>
+    </div>
+    <div>
+      <ul class="levels">
+        {% for l in data.emergency_levels %}<li><b>{{ l.amount }}</b><span>{{ l.label }}</span></li>{% endfor %}
+      </ul>
+      <p class="muted small" style="margin-top:12px">No contribution is too big or small.</p>
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap reveal">{{ testimonial(data.student_quotes[12], 'ivory', 'Give emergency aid', '/donate/emergency-funds/') }}</div>
+</section>
+<section class="band ground">
+  <div class="wrap split">
+    <div>
+      {{ eyebrow('Health specialists') }}
+      <h2 style="margin-bottom:16px">Are you a health practitioner? Volunteer remotely with us.</h2>
+      <p>We invite health specialists and practitioners to share their knowledge and skills remotely with the women who need it most. Whether you're experienced in mental health, nutrition, general healthcare, or another field related to wellness, your expertise can help us provide essential health support, education, and resources.</p>
+      <div class="cta-row">{{ btn('Contact us', '/contact/', 'primary') }}{{ btn('Ways to volunteer', '/volunteer/', 'ghost') }}</div>
+    </div>
+    <div class="photo photo--4x3"><img src="/assets/img/story-4.jpg" alt="A young woman in a headscarf smiling outdoors" loading="lazy"></div>
+  </div>
+</section>
+{% endblock %}

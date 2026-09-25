@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, tag, testimonial, checks %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Programs · Education') }}
+    <h1>The Self-Empowerment Course.</h1>
+    <p class="lead">Sponsor a student in Afghanistan for a full three-month intensive self-empowerment course. Help us build brighter futures &mdash; women are the key to making peace that lasts.</p>
+    <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}</div>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap split split--start">
+    <div>
+      <h2 style="margin-bottom:18px">A lifeline where education is banned.</h2>
+      <p>In a country where education is banned, self-expression is forbidden, self-empowerment is discouraged, and feminism is illegal, our course offers a lifeline. Students risk their lives to attend our underground online sessions, which meet three times a week. They seek to learn about their rights, to express themselves freely, and to have their existence acknowledged.</p>
+      <p>Our course provides a comprehensive exploration of mental health practices, aiming to build self-compassion, self-esteem, self-awareness, and self-care. Each trimester features a diverse range of holistic topics, including creative writing, discourse, guest speakers, health and nutrition, mindfulness, and women's studies.</p>
+      <p>The course extends across Afghanistan, reaching students aged 15 to 40 and offering them a vital connection to their own sense of humanity and relevance. Many have expressed that, since the U.S. withdrawal and the Taliban's rise to power, this program has been a crucial lifeline, making them feel truly seen and heard for the first time in years.</p>
+    </div>
+    <div>
+      {{ testimonial(data.student_quotes[13], 'ivory', compact=true) }}
+      <div style="margin-top:18px">{{ testimonial({'quote': "This self-empowerment journey has been nothing short of transformative. Before this class, I was engulfed with self-doubt and unease. Through meditation and soothing guidance, I've found a profound inner peace. Now, I stand with confidence, deeply appreciative of the person I've become.", 'name': 'S.H.', 'age': 40, 'detail': 'Afghanistan'}, 'sage', compact=true) }}</div>
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap split split--start">
+    <div>
+      {{ eyebrow('Sponsor a student') }}
+      <h2 style="margin-bottom:16px">Sponsor a student with a tax-deductible donation.</h2>
+      <p>By backing these intelligent and ambitious young women, you help them pursue their dreams and secure their basic rights under Taliban rule. Your support strengthens their commitment, validates their optimism, and enhances their survival and potential. No donation is too small.</p>
+      <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}{{ btn('Give monthly', '/donate/monthly/', 'secondary', 'lg') }}</div>
+    </div>
+    <ul class="levels">
+      {% for l in data.sponsorship_levels %}<li><b>{{ l.amount }}</b><span>{{ l.label }}</span></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap">
+    <div class="callout callout--terra">
+      <div class="t"><h2>Looking for other ways to help?</h2><p>We are always looking for volunteers to facilitate workshops or lectures with the students.</p></div>
+      {{ btn('Become a Volunteer', '/volunteer/', 'primary', 'lg') }}
+    </div>
+  </div>
+</section>
+{% endblock %}

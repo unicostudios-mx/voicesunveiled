@@ -1,0 +1,35 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Tints & feedback" subtitle="Soft washes for sections + semantic feedback colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--ivory); font-family: var(--font-sans); color: var(--text-body); }
+  .wrap { padding: 22px; }
+  .grp { font-size: 11px; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-muted); margin: 0 0 10px; }
+  .row { display: flex; gap: 12px; margin-bottom: 16px; }
+  .sw { flex: 1; }
+  .chip { height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); }
+  .name { font-size: 12px; margin-top: 7px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="grp">Soft tints</p>
+    <div class="row">
+      <div class="sw"><div class="chip" style="background:var(--terracotta-100)"></div><div class="name">Terracotta 100</div></div>
+      <div class="sw"><div class="chip" style="background:var(--gold-100)"></div><div class="name">Gold 100</div></div>
+      <div class="sw"><div class="chip" style="background:var(--sage-100)"></div><div class="name">Sage 100</div></div>
+      <div class="sw"><div class="chip" style="background:var(--warm-gray-100)"></div><div class="name">Warm Gray 100</div></div>
+    </div>
+    <p class="grp">Feedback</p>
+    <div class="row">
+      <div class="sw"><div class="chip" style="background:var(--success)"></div><div class="name">Success</div></div>
+      <div class="sw"><div class="chip" style="background:var(--warning)"></div><div class="name">Warning</div></div>
+      <div class="sw"><div class="chip" style="background:var(--danger)"></div><div class="name">Danger</div></div>
+      <div class="sw"><div class="chip" style="background:var(--info)"></div><div class="name">Info</div></div>
+    </div>
+  </div>
+</body>
+</html>

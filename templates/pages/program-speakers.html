@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Programs · Community') }}
+    <h1>Distinguished guest speakers.</h1>
+    <p class="lead">Our guest speakers bring stories, wisdom, and inspiration that leave a lasting impact on our students. From global leaders to entrepreneurs, practitioners, activists, and artists, each opens doors to new ideas and sparks critical thinking.</p>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap split split--start">
+    <div>
+      <h2 style="margin-bottom:18px">Moved, challenged, and inspired to dream bigger.</h2>
+      <p>Through these interactive sessions, students don't just listen. They are moved, challenged, and inspired to dream bigger, act boldly, and see themselves as part of a larger story of hope and change. Here are just some of the remarkable guests who have shared their insights with students in our Empowerment Course.</p>
+      <div class="grid2" style="margin-top:22px; grid-template-columns:1fr; gap:14px">
+        {% for g in data.guest_speakers %}<div class="card card--ivory" style="padding:20px 22px"><h4 style="margin:0 0 6px">{{ g.name }}</h4><p>{{ g.detail }}</p></div>{% endfor %}
+      </div>
+    </div>
+    {{ testimonial(data.supporter_quotes[0], 'ivory') }}
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    <div class="callout callout--terra reveal">
+      <div class="t"><h2>Share an hour of your time.</h2><p>We are always seeking passionate speakers ready to ignite curiosity and share their experiences. Whether you are an innovator, advocate, or storyteller, your voice can inspire the next generation of leaders.</p></div>
+      {{ btn('Get in touch', 'mailto:' ~ site.email, 'primary', 'lg') }}
+    </div>
+  </div>
+</section>
+{% endblock %}

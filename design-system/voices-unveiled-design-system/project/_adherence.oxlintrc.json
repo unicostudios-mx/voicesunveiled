@@ -1,0 +1,370 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/cards/**",
+              "components/core/**",
+              "components/donation/**",
+              "components/forms/**",
+              "ui_kits/website/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Libre Baskerville|Inter|Noto Naskh Arabic))/i]",
+        "message": "Font not provided by the design system. Available: Libre Baskerville, Inter, Noto Naskh Arabic."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|style|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:plum|gold|terracotta|success|danger)$/]",
+        "message": "<Badge> tone must be one of 'plum' | 'gold' | 'terracotta' | 'success' | 'danger'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|fullWidth|disabled|iconLeft|iconRight|onClick|type|style|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, fullWidth, disabled, iconLeft, iconRight, onClick, type, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|soft|ghost|donate)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'soft' | 'ghost' | 'donate'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CampaignBanner'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|title|body|raised|goal|ctaLabel|onCta|style|key|ref|className|style|children)$/]",
+        "message": "<CampaignBanner> doesn't accept that prop. Declared props: eyebrow, title, body, raised, goal, ctaLabel, onCta, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DonationTier'] > JSXAttribute > JSXIdentifier[name!=/^(?:amount|impact|key|ref|className|style|children)$/]",
+        "message": "<DonationTier> doesn't accept that prop. Declared props: amount, impact."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Field'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|hint|error|required|children|style|key|ref|className|style|children)$/]",
+        "message": "<Field> doesn't accept that prop. Declared props: label, hint, error, required, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ImpactCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|icon|style|key|ref|className|style|children)$/]",
+        "message": "<ImpactCard> doesn't accept that prop. Declared props: value, label, icon, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:as|invalid|style|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: as, invalid, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute[name.name='as'] > Literal[value!=/^(?:input|textarea)$/]",
+        "message": "<Input> as must be one of 'input' | 'textarea'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SafetyNote'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|style|key|ref|className|style|children)$/]",
+        "message": "<SafetyNote> doesn't accept that prop. Declared props: children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StoryCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|age|country|quote|image|ctaLabel|onCta|style|key|ref|className|style|children)$/]",
+        "message": "<StoryCard> doesn't accept that prop. Declared props: name, age, country, quote, image, ctaLabel, onCta, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|style|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:plum|terracotta|gold|sage|midnight|neutral)$/]",
+        "message": "<Tag> tone must be one of 'plum' | 'terracotta' | 'gold' | 'sage' | 'midnight' | 'neutral'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Testimonial'] > JSXAttribute > JSXIdentifier[name!=/^(?:quote|name|detail|cta|tone|style|key|ref|className|style|children)$/]",
+        "message": "<Testimonial> doesn't accept that prop. Declared props: quote, name, detail, cta, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Testimonial'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:ivory|sage|dark)$/]",
+        "message": "<Testimonial> tone must be one of 'ivory' | 'sage' | 'dark'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "CampaignBanner": {
+        "replaces": []
+      },
+      "DonationTier": {
+        "replaces": []
+      },
+      "Field": {
+        "replaces": []
+      },
+      "ImpactCard": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "SafetyNote": {
+        "replaces": []
+      },
+      "StoryCard": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      },
+      "Testimonial": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--border-card",
+      "--border-default",
+      "--border-hair",
+      "--border-strong",
+      "--border-subtle",
+      "--border-width",
+      "--charcoal",
+      "--color-accent",
+      "--color-care",
+      "--color-primary",
+      "--color-primary-hover",
+      "--color-secondary",
+      "--container-max",
+      "--danger",
+      "--dur",
+      "--dur-fast",
+      "--dur-slow",
+      "--ease-in-out",
+      "--ease-out",
+      "--focus-ring",
+      "--font-arabic",
+      "--font-body",
+      "--font-display",
+      "--font-sans",
+      "--font-serif",
+      "--gold",
+      "--gold-100",
+      "--info",
+      "--ivory",
+      "--ivory-200",
+      "--leading-normal",
+      "--leading-relaxed",
+      "--leading-snug",
+      "--leading-tight",
+      "--measure",
+      "--midnight",
+      "--midnight-700",
+      "--plum",
+      "--plum-300",
+      "--plum-700",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--radius-xl",
+      "--sage",
+      "--sage-100",
+      "--section-gap",
+      "--shadow-focus",
+      "--shadow-lg",
+      "--shadow-md",
+      "--shadow-sm",
+      "--shadow-xs",
+      "--space-1",
+      "--space-10",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--success",
+      "--surface-card",
+      "--surface-dark",
+      "--surface-page",
+      "--surface-soft",
+      "--surface-sunken",
+      "--terracotta",
+      "--terracotta-100",
+      "--terracotta-700",
+      "--text-base",
+      "--text-body",
+      "--text-caption",
+      "--text-h1",
+      "--text-h2",
+      "--text-h3",
+      "--text-h4",
+      "--text-lead",
+      "--text-muted",
+      "--text-on-dark",
+      "--text-on-primary",
+      "--text-sm",
+      "--text-strong",
+      "--tracking-normal",
+      "--tracking-tight",
+      "--tracking-wide",
+      "--tracking-wider",
+      "--warm-gray",
+      "--warm-gray-100",
+      "--warm-gray-300",
+      "--warning",
+      "--weight-bold",
+      "--weight-medium",
+      "--weight-regular",
+      "--weight-semibold",
+      "--white"
+    ],
+    "tokenKinds": {
+      "--plum": "color",
+      "--plum-700": "color",
+      "--plum-300": "color",
+      "--terracotta": "color",
+      "--terracotta-700": "color",
+      "--terracotta-100": "color",
+      "--gold": "color",
+      "--gold-100": "color",
+      "--sage": "color",
+      "--sage-100": "color",
+      "--midnight": "color",
+      "--midnight-700": "color",
+      "--ivory": "color",
+      "--ivory-200": "color",
+      "--white": "color",
+      "--charcoal": "color",
+      "--warm-gray": "color",
+      "--warm-gray-300": "color",
+      "--warm-gray-100": "color",
+      "--color-primary": "color",
+      "--color-primary-hover": "color",
+      "--color-secondary": "color",
+      "--color-accent": "color",
+      "--color-care": "color",
+      "--surface-page": "color",
+      "--surface-card": "color",
+      "--surface-sunken": "color",
+      "--surface-dark": "color",
+      "--surface-soft": "color",
+      "--text-strong": "font",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--text-on-dark": "font",
+      "--text-on-primary": "font",
+      "--border-subtle": "color",
+      "--border-default": "color",
+      "--border-strong": "color",
+      "--focus-ring": "color",
+      "--success": "color",
+      "--warning": "color",
+      "--danger": "color",
+      "--info": "color",
+      "--font-serif": "font",
+      "--font-sans": "font",
+      "--font-arabic": "font",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--weight-regular": "font",
+      "--weight-medium": "font",
+      "--weight-semibold": "font",
+      "--weight-bold": "font",
+      "--text-h1": "font",
+      "--text-h2": "font",
+      "--text-h3": "font",
+      "--text-h4": "font",
+      "--text-lead": "font",
+      "--text-base": "font",
+      "--text-sm": "font",
+      "--text-caption": "font",
+      "--leading-tight": "font",
+      "--leading-snug": "font",
+      "--leading-normal": "font",
+      "--leading-relaxed": "font",
+      "--tracking-tight": "font",
+      "--tracking-normal": "font",
+      "--tracking-wide": "font",
+      "--tracking-wider": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--container-max": "spacing",
+      "--measure": "spacing",
+      "--section-gap": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-xl": "radius",
+      "--radius-pill": "radius",
+      "--shadow-xs": "shadow",
+      "--shadow-sm": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-lg": "shadow",
+      "--shadow-focus": "shadow",
+      "--border-width": "spacing",
+      "--border-hair": "color",
+      "--border-card": "color",
+      "--ease-out": "other",
+      "--ease-in-out": "other",
+      "--dur-fast": "other",
+      "--dur": "other",
+      "--dur-slow": "other"
+    },
+    "fontFamilies": [
+      "Inter",
+      "Libre Baskerville",
+      "Noto Naskh Arabic"
+    ]
+  }
+}

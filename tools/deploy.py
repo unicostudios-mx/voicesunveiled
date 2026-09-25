@@ -28,6 +28,8 @@ REMOTE = os.environ.get("HOSTGATOR_REMOTE_DIR") or "voicesunveiled.unicopartners
 DRY = "--dry-run" in sys.argv
 LIST = "--list" in sys.argv  # solo muestra el directorio inicial y su contenido (diagnóstico)
 FULL = "--full" in sys.argv
+PRUNE = "--prune" in sys.argv  # borra en el servidor lo que ya no existe en site/
+KEEP = (".well-known", "cgi-bin", ".htpasswd")
 
 
 def local_files():
@@ -73,6 +75,27 @@ class Sftp:
 
     def put(self, local, remote):
         self.c.put(local, remote)
+
+    def walk(self, base):
+        import stat
+        out = []
+        for e in self.c.listdir_attr(base):
+            p = posixpath.join(base, e.filename)
+            if stat.S_ISDIR(e.st_mode):
+                out += self.walk(p)
+            else:
+                out.append(p)
+        return out
+
+    def remove(self, path):
+        self.c.remove(path)
+
+    def rmdir_if_empty(self, path):
+        try:
+            if not self.c.listdir(path):
+                self.c.rmdir(path)
+        except IOError:
+            pass
 
 
 class Ftp:
@@ -126,6 +149,31 @@ class Ftp:
         with open(local, "rb") as f:
             self.c.storbinary("STOR " + remote, f)
 
+    def walk(self, base):
+        out = []
+        try:
+            entries = list(self.c.mlsd(base))
+        except Exception:
+            return out
+        for name, facts in entries:
+            if name in (".", ".."):
+                continue
+            p = posixpath.join(base, name)
+            if facts.get("type") == "dir":
+                out += self.walk(p)
+            elif facts.get("type") == "file":
+                out.append(p)
+        return out
+
+    def remove(self, path):
+        self.c.delete(path)
+
+    def rmdir_if_empty(self, path):
+        try:
+            self.c.rmd(path)
+        except Exception:
+            pass
+
 
 def main():
     if not (HOST and USER and PASS):
@@ -155,6 +203,16 @@ def main():
         if uploaded % 50 == 0:
             print(f"  {uploaded} subidos…")
     print(f"Listo: {uploaded} subidos, {skipped} sin cambios")
+    if PRUNE:
+        base = REMOTE if REMOTE not in (".", "") else "."
+        local_set = {posixpath.join(base, rel) if base != "." else rel for rel, _p, _s in files}
+        removed = 0
+        for rp in client.walk(base):
+            if rp in local_set or any(k in rp.split("/") for k in KEEP):
+                continue
+            client.remove(rp)
+            removed += 1
+        print(f"Limpieza: {removed} archivos remotos eliminados")
 
 
 if __name__ == "__main__":

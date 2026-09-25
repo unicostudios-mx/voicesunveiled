@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, safety_note, impact_card, program_card, story_card, testimonial, veil_art, campaign_banner, newsletter %}
+{% block content %}
+<section class="band">
+  <div class="wrap hero">
+    <div>
+      {{ eyebrow('Voices emerging from silence') }}
+      <h1>Keep her learning, healing, and reclaiming her voice.</h1>
+      <p class="lead">Voices Unveiled provides free online education, mental health support, and leadership development for Afghan women and girls.</p>
+      <div class="cta-row">
+        {{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}
+        {{ btn('See Our Impact', '/impact/', 'secondary', 'lg') }}
+      </div>
+    </div>
+    {{ veil_art() }}
+  </div>
+</section>
+
+<section class="band ground mission">
+  <div class="wrap"><p class="reveal">We believe education is a lifeline. When the world closed its doors to Afghan women, we built a new one &mdash; <em>online, free, and safe.</em></p></div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    {{ eyebrow('Our impact in 2024') }}
+    <h2 style="margin-bottom:30px">The difference your support made.</h2>
+    <div class="grid4 reveal">
+      {% for i in data.impact_2024 %}{{ impact_card(i.value, i.label) }}{% endfor %}
+    </div>
+    <p class="muted small" style="margin-top:16px">Figures from our <a href="/assets/docs/voices-unveiled-2024-annual-report.pdf">2024 Annual Impact Report</a>. Since 2023, more than 250 students have learned, healed, and reimagined their futures with us.</p>
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>{{ eyebrow('Student stories') }}<h2>Resilience, in their own words.</h2></div>
+      {{ btn('Explore all stories', '/stories/', 'soft') }}
+    </div>
+    <div class="grid3 reveal">
+      {% for s in stories[:3] %}{{ story_card(s) }}{% endfor %}
+    </div>
+    <div style="margin-top:24px">{{ safety_note() }}</div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    {{ eyebrow('Programs') }}
+    <h2 style="margin-bottom:30px">How we support our students.</h2>
+    <div class="grid3 reveal">
+      {% for p in data.programs[:3] %}{{ program_card(p) }}{% endfor %}
+    </div>
+    <div style="margin-top:28px">{{ btn('All programs', '/programs/', 'ghost') }}</div>
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap reveal">
+    {{ testimonial(data.student_quotes[0], 'ivory', 'Support more students like Ehsaneh', '/donate/') }}
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    {{ campaign_banner('The Reclamation: a 12-week global immersion for women.', 'Born from our work with Afghan women and now open to women everywhere: a live workshop to reclaim your voice, your boundaries, and your wholeness. Saturdays, live and online.', 'Explore The Reclamation', site.reclamation_url, kicker='Now offering') }}
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap">
+    <div class="split split--start">
+      <div>
+        {{ eyebrow('Why now') }}
+        <h2 style="margin-bottom:18px">Since 2021, Afghan women have faced gender apartheid.</h2>
+        <p>Women in Afghanistan are banned from school, work, and most of public life. Discussions about emotions, health, and rights are forbidden, and mental health support is inaccessible. Many are grappling with poverty and isolation.</p>
+        <p>Voices Unveiled is here to provide online education, empowerment, and mental health support to women in Afghanistan and neighboring countries. With the withdrawal of U.S. aid, we are one of the few remaining pathways to education for them.</p>
+        <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary') }}{{ btn('Read our story', '/about/', 'ghost') }}</div>
+      </div>
+      <div class="grid2" style="gap:18px">
+        {% for m in data.media[:2] %}
+        <div class="media-card">
+          <div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+          <h3>{{ m.title }}</h3>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="callout callout--terra reveal">
+      <div class="t"><h2>Share your skills. Help create a safe learning space.</h2><p>Teachers, counselors, mentors, and organizers &mdash; there's a place for you.</p></div>
+      {{ btn('Become a Volunteer', '/volunteer/', 'primary', 'lg') }}
+    </div>
+  </div>
+</section>
+
+<section class="band band--flush-top">
+  <div class="wrap">{{ newsletter(site) }}</div>
+</section>
+{% endblock %}

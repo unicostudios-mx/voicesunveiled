@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Voices Unveiled — New Website Proposal</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--ivory);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .doc { max-width: 920px; margin: 0 auto; padding: 0 32px; }
+  .serif { font-family: var(--font-serif); }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px;
+    font-weight: 700; color: var(--terracotta); margin: 0 0 16px;
+  }
+  h1.title {
+    font-family: var(--font-serif); font-weight: 700; font-size: 58px;
+    line-height: 1.06; letter-spacing: -0.02em; color: var(--plum); margin: 0 0 22px;
+  }
+  h2 {
+    font-family: var(--font-serif); font-weight: 700; font-size: 36px;
+    line-height: 1.15; letter-spacing: -0.01em; color: var(--text-strong); margin: 0 0 18px;
+  }
+  h3 {
+    font-family: var(--font-serif); font-weight: 700; font-size: 22px;
+    color: var(--text-strong); margin: 0 0 8px;
+  }
+  p { margin: 0 0 18px; }
+  .lead { font-size: 21px; line-height: 1.6; color: var(--text-strong); }
+  .muted { color: var(--text-muted); }
+  section.band { padding: 80px 0; }
+  .rule { width: 48px; height: 4px; border-radius: 2px; background: var(--gold); margin: 0 0 28px; }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(150deg, #5A2A4F 0%, #4B2142 48%, #1F2A44 100%);
+    color: var(--ivory); position: relative; overflow: hidden;
+    padding: 96px 0 88px;
+  }
+  .cover .doc { position: relative; z-index: 2; }
+  .cover h1.title { color: var(--ivory); }
+  .cover .eyebrow { color: var(--gold); }
+  .cover svg.veil { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.9; }
+  .cover .logo { height: 92px; display: block; margin-bottom: 36px; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.25)); }
+  .meta { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 44px; border-top: 1px solid rgba(250,246,239,0.22); padding-top: 24px; }
+  .meta .k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin: 0 0 4px; }
+  .meta .v { font-size: 16px; color: var(--ivory); }
+
+  /* Cards / grids */
+  .card {
+    background: var(--white); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm);
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+  .goal { display: flex; gap: 16px; align-items: flex-start; }
+  .goal .num {
+    flex: none; width: 38px; height: 38px; border-radius: 999px;
+    background: var(--terracotta-100); color: var(--plum);
+    font-family: var(--font-serif); font-weight: 700; font-size: 18px;
+    display: grid; place-items: center;
+  }
+
+  .stat { font-family: var(--font-serif); font-weight: 700; font-size: 44px; color: var(--plum); line-height: 1; }
+  .stat-rule { width: 32px; height: 3px; background: var(--gold); border-radius: 2px; margin: 8px 0; }
+
+  /* Sitemap */
+  .map { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .map .home {
+    background: var(--plum); color: var(--ivory); border-radius: var(--radius-pill);
+    padding: 12px 28px; font-weight: 600; font-size: 16px;
+  }
+  .map .stem { width: 2px; height: 28px; background: var(--border-default); }
+  .map .nodes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; }
+  .node {
+    background: var(--white); border: 1px solid var(--border-default);
+    border-radius: var(--radius-md); padding: 16px 18px;
+  }
+  .node.donate { background: var(--plum); color: var(--ivory); border-color: var(--plum); }
+  .node .nt { font-weight: 600; font-size: 16px; margin: 0 0 4px; }
+  .node .nd { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.45; }
+  .node.donate .nd { color: rgba(250,246,239,0.8); }
+
+  /* Page pattern list */
+  .pattern { border-left: 3px solid var(--terracotta); padding: 4px 0 4px 20px; margin-bottom: 24px; }
+  .pattern.sage { border-left-color: var(--sage); }
+  .pattern.gold { border-left-color: var(--gold); }
+  .steps { margin: 10px 0 0; padding-left: 18px; }
+  .steps li { margin-bottom: 5px; font-size: 15.5px; }
+
+  /* Swatches */
+  .swatches { display: flex; gap: 12px; }
+  .sw { flex: 1; }
+  .chip { height: 64px; border-radius: var(--radius-md); box-shadow: var(--shadow-xs); }
+  .sw .nm { font-size: 12.5px; font-weight: 600; margin-top: 8px; }
+  .sw .hx { font-size: 11.5px; color: var(--text-muted); }
+
+  /* Timeline */
+  .phase { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--border-subtle); }
+  .phase:last-child { border-bottom: none; }
+  .phase .when { font-family: var(--font-serif); font-weight: 700; font-size: 18px; color: var(--terracotta); }
+  .phase .what h3 { margin-bottom: 6px; font-size: 19px; }
+  .phase .what p { margin: 0; font-size: 15.5px; color: var(--text-muted); }
+
+  .callout {
+    background: var(--midnight); color: var(--ivory); border-radius: var(--radius-xl);
+    padding: 52px 56px; text-align: center;
+  }
+  .callout h2 { color: var(--ivory); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px; background: var(--terracotta-100);
+    color: var(--plum); font-weight: 600; font-size: 16px; padding: 14px 28px;
+    border-radius: var(--radius-pill); text-decoration: none; margin-top: 8px;
+  }
+
+  .note {
+    display: flex; gap: 10px; align-items: flex-start; background: var(--sage-100);
+    border: 1px solid rgba(105,124,99,0.25); border-radius: var(--radius-md);
+    padding: 14px 18px; font-size: 14.5px; color: #3F4D3C; line-height: 1.5;
+  }
+  .tag {
+    display: inline-block; background: rgba(75,33,66,0.08); color: var(--plum);
+    font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .draft-flag {
+    background: var(--gold-100); color: #7A5B12; font-size: 13.5px; border-radius: var(--radius-md);
+    padding: 12px 18px; margin-top: 16px; line-height: 1.5;
+  }
+  @media (max-width: 760px) {
+    .grid-2, .grid-3, .grid-4, .map .nodes { grid-template-columns: 1fr; }
+    h1.title { font-size: 40px; }
+    h2 { font-size: 28px; }
+    .phase { grid-template-columns: 1fr; gap: 6px; }
+  }
+  @media print {
+    body { background: #fff; }
+    section.band { padding: 48px 0; break-inside: avoid; }
+    .cover { padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <header class="cover">
+    <svg class="veil" viewBox="0 0 920 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke-linecap="round">
+        <path d="M120 -60 C420 140 240 360 640 640" stroke="#C46A4A" stroke-width="90" opacity="0.16" />
+        <path d="M260 -60 C560 140 380 360 780 640" stroke="#E5B84B" stroke-width="60" opacity="0.13" />
+        <path d="M0 -60 C300 140 120 360 520 640" stroke="#A9B8A4" stroke-width="44" opacity="0.10" />
+      </g>
+      <g stroke="#FAF6EF" stroke-width="1.5" opacity="0.32" fill="none">
+        <path d="M560 400 Q600 360 640 400 T720 400 T800 400 T880 400" />
+        <path d="M560 424 Q600 386 640 424 T720 424 T800 424 T880 424" opacity="0.6" />
+      </g>
+    </svg>
+    <div class="doc">
+      <img class="logo" src="../assets/logo-full.png" alt="Voices Unveiled" />
+      <p class="eyebrow">Website Redesign Proposal · Draft</p>
+      <h1 class="title">A new home for<br />Voices Unveiled.</h1>
+      <p class="lead" style="max-width:620px;color:rgba(250,246,239,0.9)">
+        A warm, dignified, and action-focused website that helps donors, volunteers,
+        and students understand the mission, trust the organization, and take meaningful action.
+      </p>
+      <div class="meta">
+        <div><p class="k">Prepared for</p><p class="v">Cara Cruickshank, Executive Director</p></div>
+        <div><p class="k">Scope</p><p class="v">Full marketing site redesign</p></div>
+        <div><p class="k">Status</p><p class="v">Draft for review</p></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE OPPORTUNITY -->
+  <section class="band">
+    <div class="doc">
+      <p class="eyebrow">The opportunity</p>
+      <div class="rule"></div>
+      <p class="lead">
+        In 2024 you provided 115 scholarships, funded internet for 50 students, and trained
+        20 interns — even as the withdrawal of U.S. AID narrowed the paths to education for
+        Afghan women and girls.
+      </p>
+      <p>
+        Voices Unveiled is now one of the few remaining grassroots lifelines. The website should
+        carry that weight with clarity and calm. Today's visitors meet powerful stories but a
+        crowded path to action; we propose a site organized around a single promise —
+        <strong>keep her learning</strong> — where every page makes the next step obvious.
+      </p>
+      <p class="muted" style="margin-bottom:0">
+        This proposal builds directly on the Voice &amp; Dignity design system already established
+        for the brand: its colors, typography, components, and voice.
+      </p>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section class="band" style="background:var(--white)">
+    <div class="doc">
+      <p class="eyebrow">What the redesign should achieve</p>
+      <h2>Five goals.</h2>
+      <div class="rule"></div>
+      <div class="grid-2" style="gap:28px 40px;margin-top:8px">
+        <div class="goal"><div class="num">1</div><div><h3>Make giving effortless</h3><p class="muted" style="margin:0">A clear, always-visible Donate path and an impact-based donation selector that shows exactly what each gift makes possible.</p></div></div>
+        <div class="goal"><div class="num">2</div><div><h3>Lead with dignity</h3><p class="muted" style="margin:0">Center student agency and resilience — never trauma as spectacle — with consent-first storytelling.</p></div></div>
+        <div class="goal"><div class="num">3</div><div><h3>Build trust</h3><p class="muted" style="margin:0">Surface real impact numbers, the annual report, partners, and 501(c)(3) transparency close to every ask.</p></div></div>
+        <div class="goal"><div class="num">4</div><div><h3>Feel calm, not crowded</h3><p class="muted" style="margin:0">Generous space, warm color, and a focused structure that works on any device and connection speed.</p></div></div>
+        <div class="goal"><div class="num">5</div><div><h3>Be safe &amp; accessible</h3><p class="muted" style="margin:0">WCAG AA contrast, keyboard focus, descriptive alt text, and student-safety practices built in.</p></div></div>
+        <div class="goal"><div class="num">6</div><div><h3>Grow with you</h3><p class="muted" style="margin:0">A reusable component library so new pages and campaigns stay on-brand without redesign.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITEMAP -->
+  <section class="band">
+    <div class="doc">
+      <p class="eyebrow">Proposed structure</p>
+      <h2>A simpler path to action.</h2>
+      <div class="rule"></div>
+      <p style="margin-bottom:36px">Six clear destinations, with Donate visually distinct and always within reach.</p>
+      <div class="map">
+        <div class="home">Homepage</div>
+        <div class="stem"></div>
+        <div class="nodes">
+          <div class="node"><p class="nt">About</p><p class="nd">Mission, team, and the why behind the work.</p></div>
+          <div class="node"><p class="nt">Programs</p><p class="nd">Education, mental health, leadership, mentorship.</p></div>
+          <div class="node"><p class="nt">Impact</p><p class="nd">Numbers, outcomes, annual report, transparency.</p></div>
+          <div class="node"><p class="nt">Stories</p><p class="nd">Consent-first student stories of resilience.</p></div>
+          <div class="node"><p class="nt">Volunteer</p><p class="nd">Share skills; help create a safe learning space.</p></div>
+          <div class="node donate"><p class="nt">Donate</p><p class="nd">Impact selector, monthly giving, trust signals.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE PATTERNS -->
+  <section class="band" style="background:var(--white)">
+    <div class="doc">
+      <p class="eyebrow">How the key pages work</p>
+      <h2>Page by page.</h2>
+      <div class="rule"></div>
+      <div class="grid-2" style="gap:36px 48px;margin-top:8px">
+        <div class="pattern">
+          <h3>Homepage</h3>
+          <p class="muted" style="margin:0 0 4px">One promise, one clear next step.</p>
+          <ol class="steps muted">
+            <li>Hero: "Keep her learning" + Sponsor a Student</li>
+            <li>Short mission statement</li>
+            <li>2024 impact numbers</li>
+            <li>Student story preview</li>
+            <li>Programs overview &amp; testimonial</li>
+            <li>Donation block + Volunteer CTA</li>
+          </ol>
+        </div>
+        <div class="pattern gold">
+          <h3>Donation</h3>
+          <p class="muted" style="margin:0 0 4px">The clearest, most reassuring ask.</p>
+          <ol class="steps muted">
+            <li>Campaign message (urgent or evergreen)</li>
+            <li>Impact-by-amount selector + monthly toggle</li>
+            <li>"Where your money goes"</li>
+            <li>Trust + 501(c)(3) tax info</li>
+            <li>Short student testimonial</li>
+            <li>FAQ</li>
+          </ol>
+        </div>
+        <div class="pattern sage">
+          <h3>Story</h3>
+          <p class="muted" style="margin:0 0 4px">Agency first, always with consent.</p>
+          <ol class="steps muted">
+            <li>Story introduction</li>
+            <li>Safety note</li>
+            <li>Student quote &amp; journey</li>
+            <li>Program impact</li>
+            <li>CTA: Sponsor a student like her</li>
+          </ol>
+        </div>
+        <div class="pattern">
+          <h3>Impact</h3>
+          <p class="muted" style="margin:0 0 4px">Proof, plainly told.</p>
+          <ol class="steps muted">
+            <li>Impact headline + key numbers</li>
+            <li>Program outcomes</li>
+            <li>Student testimonials</li>
+            <li>Downloadable annual report</li>
+            <li>Financial transparency</li>
+            <li>CTA to donate or sponsor</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN DIRECTION -->
+  <section class="band">
+    <div class="doc">
+      <p class="eyebrow">Design direction</p>
+      <h2>Warm, protective, hopeful.</h2>
+      <div class="rule"></div>
+      <p style="margin-bottom:32px">
+        Soft ivory ground, deep plum anchor, terracotta warmth, and hope gold used sparingly for
+        light. Editorial serif headlines carry emotion; a clean sans keeps actions effortless.
+      </p>
+      <div class="card" style="margin-bottom:22px">
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:var(--plum)"></div><p class="nm">Deep Plum</p><p class="hx">#4B2142</p></div>
+          <div class="sw"><div class="chip" style="background:var(--terracotta)"></div><p class="nm">Terracotta</p><p class="hx">#C46A4A</p></div>
+          <div class="sw"><div class="chip" style="background:var(--gold)"></div><p class="nm">Hope Gold</p><p class="hx">#E5B84B</p></div>
+          <div class="sw"><div class="chip" style="background:var(--sage)"></div><p class="nm">Soft Sage</p><p class="hx">#A9B8A4</p></div>
+          <div class="sw"><div class="chip" style="background:var(--midnight)"></div><p class="nm">Midnight</p><p class="hx">#1F2A44</p></div>
+          <div class="sw"><div class="chip" style="background:var(--ivory);border:1px solid var(--border-subtle)"></div><p class="nm">Soft Ivory</p><p class="hx">#FAF6EF</p></div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <p class="serif" style="font-size:32px;font-weight:700;color:var(--plum);margin:0 0 6px">Keep her learning.</p>
+          <p class="muted" style="margin:0">Libre Baskerville — headlines, quotes, emotional statements.</p>
+        </div>
+        <div class="card">
+          <p style="font-size:18px;margin:0 0 6px;color:var(--text-strong)">Your gift keeps education, connection, and hope alive.</p>
+          <p class="muted" style="margin:0">Inter — navigation, forms, buttons, program copy.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">
+        <span aria-hidden="true">♥</span>
+        Imagery centers learning, community, and natural light. Where consented photography
+        isn't available, abstract brand art stands in — never voyeuristic or trauma-focused images.
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE COMPONENTS -->
+  <section class="band" style="background:var(--white)">
+    <div class="doc">
+      <p class="eyebrow">Signature components</p>
+      <h2>Built from your system.</h2>
+      <div class="rule"></div>
+      <p style="margin-bottom:32px">Every screen assembles from the reusable library — consistent, accessible, fast to ship.</p>
+      <div class="grid-4" style="margin-bottom:22px">
+        <div class="card"><div class="stat">115</div><div class="stat-rule"></div><p class="muted" style="margin:0;font-size:14.5px">Impact cards turn data into clear, scannable proof.</p></div>
+        <div class="card"><div class="stat">$50</div><div class="stat-rule"></div><p class="muted" style="margin:0;font-size:14.5px">Donation selector ties each amount to a tangible outcome.</p></div>
+        <div class="card"><span class="tag">Story</span><p class="serif" style="font-style:italic;color:var(--plum);margin:0 0 6px;font-size:16px">"It gave me hope and strength."</p><p class="muted" style="margin:0;font-size:13.5px">Story cards focus on resilience.</p></div>
+        <div class="card"><div class="note" style="padding:10px 12px;font-size:12.5px">Some details may be changed to protect student safety.</div><p class="muted" style="margin:10px 0 0;font-size:13.5px">Safety note, everywhere stories appear.</p></div>
+      </div>
+      <div class="card" style="background:var(--midnight);color:var(--ivory);border:none">
+        <p class="eyebrow" style="color:var(--gold)">Campaign banner</p>
+        <p class="serif" style="font-size:22px;font-weight:700;margin:0 0 12px">Help keep Voices Unveiled open.</p>
+        <div style="height:8px;border-radius:999px;background:rgba(250,246,239,0.18);overflow:hidden;max-width:440px"><div style="width:65%;height:100%;background:var(--gold);border-radius:999px"></div></div>
+        <p style="font-size:13.5px;color:rgba(250,246,239,0.8);margin:8px 0 0">$32,500 raised · Goal $50,000 — warm, urgent, never alarmist.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="band">
+    <div class="doc">
+      <p class="eyebrow">A phased plan</p>
+      <h2>From draft to launch.</h2>
+      <div class="rule"></div>
+      <div class="card">
+        <div class="phase"><div class="when">Phase 1</div><div class="what"><h3>Discovery &amp; content</h3><p>Align on goals, gather consented stories and photography, finalize sitemap and copy.</p></div></div>
+        <div class="phase"><div class="when">Phase 2</div><div class="what"><h3>Design</h3><p>High-fidelity designs for the homepage, donation, story, and impact pages using the design system.</p></div></div>
+        <div class="phase"><div class="when">Phase 3</div><div class="what"><h3>Build</h3><p>Responsive, accessible front-end with the donation flow, CMS for stories and campaigns, and analytics.</p></div></div>
+        <div class="phase"><div class="when">Phase 4</div><div class="what"><h3>Launch &amp; care</h3><p>QA across devices and connection speeds, accessibility audit, soft launch, and a campaign-ready handoff.</p></div></div>
+      </div>
+      <div class="draft-flag">
+        <strong>Draft note:</strong> timeline phases, scope, and any budget are placeholders for
+        discussion. Tell me your target launch date and must-have features and I'll firm these up.
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="band" style="background:var(--white)">
+    <div class="doc">
+      <div class="callout">
+        <p class="eyebrow" style="color:var(--gold)">Next step</p>
+        <h2 style="max-width:640px;margin:0 auto 14px">Let's build a home worthy of these voices.</h2>
+        <p style="max-width:560px;margin:0 auto;color:rgba(250,246,239,0.85)">
+          Review this draft, mark it up, and let's shape the final scope together.
+        </p>
+        <a class="btn" href="#">Share feedback on this draft</a>
+      </div>
+      <p class="muted" style="text-align:center;font-size:13px;margin:28px 0 0">
+        Voices Unveiled is a registered 501(c)(3) nonprofit · voicesunveiled.org · Prepared with the Voice &amp; Dignity design system
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
