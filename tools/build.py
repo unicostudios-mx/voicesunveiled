@@ -206,6 +206,10 @@ def main():
         f.write(
             "DirectoryIndex index.html\n"
             "Options -Indexes\n"
+            "<IfModule mod_rewrite.c>\n  RewriteEngine On\n"
+            "  RewriteCond %{HTTPS} !=on\n"
+            "  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]\n"
+            "</IfModule>\n"
             + "".join(f"RedirectMatch 301 ^{BASE_PATH}/{a}/?$ {BASE_PATH}/{b}\n" for a, b in REDIRECTS)
             +
             "<IfModule mod_expires.c>\n  ExpiresActive On\n"

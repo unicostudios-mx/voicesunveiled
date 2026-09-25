@@ -1,5 +1,10 @@
 DirectoryIndex index.html
 Options -Indexes
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
 RedirectMatch 301 ^/donate/?$ /donate-now/
 RedirectMatch 301 ^/emergency-fund/?$ /donations/emergency-funds-for-ava-and-nima/
 RedirectMatch 301 ^/time-is-running-out/?$ /donations/time-is-running-out/
