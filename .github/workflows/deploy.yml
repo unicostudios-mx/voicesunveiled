@@ -28,7 +28,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install paramiko
+      - name: Diagnóstico del directorio remoto
+        env:
+          HOSTGATOR_FTP_HOST: ${{ secrets.HOSTGATOR_FTP_HOST }}
+          HOSTGATOR_FTP_USER: ${{ secrets.HOSTGATOR_FTP_USER }}
+          HOSTGATOR_FTP_PASS: ${{ secrets.HOSTGATOR_FTP_PASS }}
+          HOSTGATOR_FTP_PORT: ${{ secrets.HOSTGATOR_FTP_PORT }}
+        run: python tools/deploy.py --list
       - name: Publicar site/ en voicesunveiled.unicopartners.com.mx
+        if: ${{ !inputs.list }}
         env:
           HOSTGATOR_FTP_HOST: ${{ secrets.HOSTGATOR_FTP_HOST }}
           HOSTGATOR_FTP_USER: ${{ secrets.HOSTGATOR_FTP_USER }}
