@@ -18,7 +18,8 @@
 </div>
 
 <section class="band">
-  <div class="wrap hero">
+  <div class="wrap"><div class="photo photo--banner hero-banner"><img src="/assets/img/official/home-banner.jpg" alt="Voices Unveiled: holistic education and empowerment for Afghan women. Online courses, arts, creative writing, health, mental health, community building." fetchpriority="high"></div></div>
+  <div class="wrap hero hero--text">
     <div>
       {{ eyebrow('Voices Unveiled') }}
       <h1>Educating and Empowering Women in Afghanistan</h1>
@@ -28,7 +29,6 @@
         {{ btn('Our programs', '/programs/', 'secondary', 'lg') }}
       </div>
     </div>
-    {{ veil_art() }}
   </div>
 </section>
 
@@ -64,7 +64,7 @@
       <div class="media-card">
         <span class="tag tag--terracotta" style="align-self:flex-start">{{ m.tag }}</span>
         {% if m.kind == 'video' %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-        {% else %}<a class="photo photo--3x2" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy" style="object-position:center 20%"></a>{% endif %}
+        {% else %}<a class="photo photo--natural" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy"></a>{% endif %}
         <h3>{{ m.title }}</h3>
         <p>{{ m.body }}</p>
         {% if m.url %}<div>{{ btn('Read the feature', m.url, 'ghost', 'sm', external=true) }}</div>{% endif %}
@@ -83,7 +83,7 @@
       <p><strong>Voices Unveiled is here to provide online education, empowerment and mental health support to women in Afghanistan and neighboring countries.</strong></p>
       <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}</div>
     </div>
-    <div class="photo photo--4x5" style="max-width:460px; justify-self:center"><img src="/assets/img/official/home-afghan-women.jpg" alt="Afghan women in headscarves" loading="lazy"></div>
+    <div class="photo photo--natural" style="max-width:460px; justify-self:center"><img src="/assets/img/official/home-afghan-women.jpg" alt="Afghan women in headscarves" loading="lazy"></div>
   </div>
 </section>
 

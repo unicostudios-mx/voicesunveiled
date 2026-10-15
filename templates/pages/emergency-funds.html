@@ -14,7 +14,7 @@
       <p class="muted small">No contribution is too big or small.</p>
       <div class="cta-row">{{ btn('Donate', site.emergency_fund_url, 'primary', 'lg', external=true) }}{{ btn('About Emergency Assistance', '/programs/emergency-assistance/', 'ghost', 'lg') }}</div>
     </div>
-    <div class="photo photo--portrait" style="justify-self:center"><img src="/assets/img/official/emergency-fund.jpg" alt="" loading="lazy"></div>
+    <div class="photo photo--natural" style="max-width:360px; justify-self:center"><img src="/assets/img/official/emergency-fund.jpg" alt="" loading="lazy"></div>
   </div>
 </section>
 <section class="band ground">
@@ -22,7 +22,7 @@
     <h2 style="margin-bottom:28px">Emergency Funds</h2>
     <div class="grid3 reveal">
       {% for c in data.emergency_campaigns %}
-      <div class="story story--white">
+      <div class="story story--white story--natural">
         <div class="ph"><img src="{{ c.image }}" alt="" loading="lazy"></div>
         <div class="body"><div class="nm">{{ c.title }}</div><p>{{ c.body }}</p><a class="btn btn--secondary btn--sm" href="{{ c.url }}" target="_blank" rel="noopener">Donate {{ icon('external') }}</a></div>
       </div>
