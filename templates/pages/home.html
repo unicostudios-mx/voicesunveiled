@@ -1,22 +1,6 @@
 {% extends 'base.html' %}
 {% from 'partials/macros.html' import btn, eyebrow, newsletter, veil_art %}
-{% from 'partials/icons.html' import icon %}
 {% block content %}
-<div class="modal" id="rec-modal" hidden role="dialog" aria-modal="true" aria-labelledby="rec-title">
-  <div class="modal__scrim" data-modal-close></div>
-  <div class="modal__box">
-    <button class="modal__close" type="button" data-modal-close aria-label="Close">{{ icon('x') }}</button>
-    <div class="modal__media"><img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" loading="lazy"><span class="modal__cap">Come home to yourself.</span></div>
-    <div class="modal__body">
-      <p class="eyebrow">New &middot; Now enrolling</p>
-      <h2 id="rec-title">The Reclamation</h2>
-      <p>A 12-week global immersion for women leaders, creatives, and changemakers &mdash; born from our work with Afghan women, now open to women everywhere.</p>
-      <ul class="pills"><li class="tag tag--plum">Aug 22 &ndash; Nov 7</li><li class="tag tag--plum">Live &middot; Saturdays</li><li class="tag tag--plum">12 seats only</li></ul>
-      <div class="modal__actions">{{ btn('Explore The Reclamation', site.reclamation_url, 'primary', 'lg') }}<button class="btn btn--ghost" type="button" data-modal-close>Maybe later</button></div>
-    </div>
-  </div>
-</div>
-
 <section class="band">
   <div class="wrap"><div class="photo photo--banner hero-banner"><img src="/assets/img/official/home-banner.jpg" alt="Voices Unveiled: holistic education and empowerment for Afghan women. Online courses, arts, creative writing, health, mental health, community building." fetchpriority="high"></div></div>
   <div class="wrap hero hero--text">
@@ -40,10 +24,9 @@
       <article class="feature-card">
         <a class="feature-card__media" href="{{ site.reclamation_url }}"><img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" loading="lazy"></a>
         <div class="feature-card__body">
-          <span class="tag tag--gold">Now enrolling &middot; Live &amp; online</span>
+          <span class="tag tag--gold">Live &amp; online</span>
           <h3>Introducing The Reclamation &mdash; a 12-week global immersion for women</h3>
           <p>Born from our work with Afghan women and now open to women everywhere: a live workshop to reclaim your voice, your boundaries, and your wholeness. Read the latest program update, then explore the full experience.</p>
-          <ul class="pills"><li class="tag tag--plum">Aug 22 &ndash; Nov 7</li><li class="tag tag--plum">Saturdays &middot; Live</li><li class="tag tag--plum">12 seats only</li></ul>
           <div class="cta-row" style="margin-top:18px">{{ btn('Explore The Reclamation →', site.reclamation_url, 'primary') }}{{ btn('Read the July 2026 update →', site.reclamation_update_url, 'ghost', external=true) }}</div>
         </div>
       </article>
