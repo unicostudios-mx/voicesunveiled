@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, safety_note, impact_card, program_card, story_card, testimonial, veil_art, campaign_banner, newsletter %}
+{% from 'partials/macros.html' import btn, eyebrow, newsletter, veil_art %}
 {% from 'partials/icons.html' import icon %}
 {% block content %}
 <div class="modal" id="rec-modal" hidden role="dialog" aria-modal="true" aria-labelledby="rec-title">
   <div class="modal__scrim" data-modal-close></div>
   <div class="modal__box">
     <button class="modal__close" type="button" data-modal-close aria-label="Close">{{ icon('x') }}</button>
-    <div class="modal__media"><img src="/assets/img/reclamation/hero.jpg" alt="" loading="lazy"><span class="modal__cap">Come home to yourself.</span></div>
+    <div class="modal__media"><img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" loading="lazy"><span class="modal__cap">Come home to yourself.</span></div>
     <div class="modal__body">
       <p class="eyebrow">New &middot; Now enrolling</p>
       <h2 id="rec-title">The Reclamation</h2>
@@ -16,15 +16,16 @@
     </div>
   </div>
 </div>
+
 <section class="band">
   <div class="wrap hero">
     <div>
-      {{ eyebrow('Voices emerging from silence') }}
-      <h1>Keep her learning, healing, and reclaiming her voice.</h1>
-      <p class="lead">Voices Unveiled provides free online education, mental health support, and leadership development for Afghan women and girls.</p>
+      {{ eyebrow('Voices Unveiled') }}
+      <h1>Educating and Empowering Women in Afghanistan</h1>
+      <p class="lead">Voices Unveiled empowers Afghan women with free online education, mental health support, leadership development and community building. Together, we shape brighter futures.</p>
       <div class="cta-row">
         {{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}
-        {{ btn('See Our Impact', '/impact/', 'secondary', 'lg') }}
+        {{ btn('Our programs', '/programs/', 'secondary', 'lg') }}
       </div>
     </div>
     {{ veil_art() }}
@@ -33,17 +34,17 @@
 
 <section class="band ground" id="featured">
   <div class="wrap">
-    {{ eyebrow('Featured · What\'s new') }}
-    <h2 style="margin-bottom:28px">Now enrolling, and on air.</h2>
+    {{ eyebrow('Featured') }}
+    <h2 style="margin-bottom:28px">July 2026 Update</h2>
     <div class="featured reveal">
       <article class="feature-card">
         <a class="feature-card__media" href="{{ site.reclamation_url }}"><img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" loading="lazy"></a>
         <div class="feature-card__body">
-          <span class="tag tag--gold">July 2026 update · Now enrolling</span>
-          <h3>Introducing The Reclamation: a 12-week global immersion for women</h3>
+          <span class="tag tag--gold">Now enrolling &middot; Live &amp; online</span>
+          <h3>Introducing The Reclamation &mdash; a 12-week global immersion for women</h3>
           <p>Born from our work with Afghan women and now open to women everywhere: a live workshop to reclaim your voice, your boundaries, and your wholeness. Read the latest program update, then explore the full experience.</p>
           <ul class="pills"><li class="tag tag--plum">Aug 22 &ndash; Nov 7</li><li class="tag tag--plum">Saturdays &middot; Live</li><li class="tag tag--plum">12 seats only</li></ul>
-          <div class="cta-row" style="margin-top:18px">{{ btn('Explore The Reclamation', site.reclamation_url, 'primary') }}{{ btn('Read the July 2026 update', 'https://analytic-room.com/community-projects/voices-unveiled/#update_july2026', 'ghost', external=true) }}</div>
+          <div class="cta-row" style="margin-top:18px">{{ btn('Explore The Reclamation →', site.reclamation_url, 'primary') }}{{ btn('Read the July 2026 update →', site.reclamation_update_url, 'ghost', external=true) }}</div>
         </div>
       </article>
       <div class="feature-side">
@@ -58,88 +59,49 @@
         {% endfor %}
       </div>
     </div>
-  </div>
-</section>
-
-<section class="band mission">
-  <div class="wrap"><p class="reveal">We believe education is a lifeline. When the world closed its doors to Afghan women, we built a new one &mdash; <em>online, free, and safe.</em></p></div>
-</section>
-
-<section class="band ground">
-  <div class="wrap">
-    {{ eyebrow('Our impact in 2024') }}
-    <h2 style="margin-bottom:30px">The difference your support made.</h2>
-    <div class="grid4 reveal">
-      {% for i in data.impact_2024 %}{{ impact_card(i.value, i.label) }}{% endfor %}
-    </div>
-    <p class="muted small" style="margin-top:16px">Figures from our <a href="/assets/docs/voices-unveiled-2024-annual-report.pdf">2024 Annual Impact Report</a>. Since 2023, more than 250 students have learned, healed, and reimagined their futures with us.</p>
-  </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>{{ eyebrow('Student stories') }}<h2>Resilience, in their own words.</h2></div>
-      {{ btn('Explore all stories', '/stories/', 'soft') }}
-    </div>
-    <div class="grid3 reveal">
-      {% for s in stories[:3] %}{{ story_card(s) }}{% endfor %}
-    </div>
-    <div style="margin-top:24px">{{ safety_note() }}</div>
-  </div>
-</section>
-
-<section class="band ground">
-  <div class="wrap">
-    {{ eyebrow('Programs') }}
-    <h2 style="margin-bottom:30px">How we support our students.</h2>
-    <div class="grid3 reveal">
-      {% for p in data.programs[:3] %}{{ program_card(p) }}{% endfor %}
-    </div>
-    <div style="margin-top:28px">{{ btn('All programs', '/programs/', 'ghost') }}</div>
-  </div>
-</section>
-
-<section class="band">
-  <div class="wrap reveal">
-    {{ testimonial(data.student_quotes[3], 'ivory', 'Support more students like Ehsaneh', '/donate/') }}
-  </div>
-</section>
-
-<section class="band ground">
-  <div class="wrap reveal">{{ testimonial(data.supporter_quotes[1], 'white', 'Give to Voices Unveiled', '/donate/') }}</div>
-</section>
-
-
-<section class="band">
-  <div class="wrap">
-    <div class="split split--start">
-      <div>
-        {{ eyebrow('Why now') }}
-        <h2 style="margin-bottom:18px">Since 2021, Afghan women have faced gender apartheid.</h2>
-        <p>Women in Afghanistan are banned from school, work, and most of public life. Discussions about emotions, health, and rights are forbidden, and mental health support is inaccessible. Many are grappling with poverty and isolation.</p>
-        <p>Voices Unveiled is here to provide online education, empowerment, and mental health support to women in Afghanistan and neighboring countries. With the withdrawal of U.S. aid, we are one of the few remaining pathways to education for them.</p>
-        <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary') }}{{ btn('Read our story', '/about/', 'ghost') }}</div>
+    <div class="grid2 reveal" style="margin-top:22px">
+      {% for m in data.media[2:4] %}
+      <div class="media-card">
+        <span class="tag tag--terracotta" style="align-self:flex-start">{{ m.tag }}</span>
+        {% if m.kind == 'video' %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        {% else %}<a class="photo photo--3x2" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy" style="object-position:center 20%"></a>{% endif %}
+        <h3>{{ m.title }}</h3>
+        <p>{{ m.body }}</p>
+        {% if m.url %}<div>{{ btn('Read the feature', m.url, 'ghost', 'sm', external=true) }}</div>{% endif %}
       </div>
-      <div class="grid2" style="gap:18px">
-        {% for m in data.media[2:4] %}
-        <div class="media-card">
-          {% if m.kind == 'video' %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-          {% else %}<a class="photo photo--3x2" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy" style="object-position:center 20%"></a>{% endif %}
-          <h3>{{ m.title }}</h3>
-          {% if m.url %}<div>{{ btn('Read the feature', m.url, 'ghost', 'sm', external=true) }}</div>{% endif %}
-        </div>
-        {% endfor %}
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <section class="band">
+  <div class="wrap split split--start">
+    <div>
+      <p>Since the Taliban took control in 2021, women in Afghanistan have faced gender apartheid. They are prisoners of war in their own homes, banned from school, work and all social life. Female artistic expression has been outlawed. Educated women are now confined to only domestic duties, forced marriages, and child-bearing.</p>
+      <p>Women must wear a full burka and be accompanied by a male guardian to leave their homes. Discussions about emotions, health, and sexuality are forbidden, and mental health support is inaccessible.</p>
+      <p>Many women are grappling with poverty and experiencing suicidal thoughts.</p>
+      <p><strong>Voices Unveiled is here to provide online education, empowerment and mental health support to women in Afghanistan and neighboring countries.</strong></p>
+      <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}</div>
+    </div>
+    <div class="photo photo--4x5" style="max-width:460px; justify-self:center"><img src="/assets/img/official/home-afghan-women.jpg" alt="Afghan women in headscarves" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="band ground">
   <div class="wrap">
-    <div class="callout callout--terra reveal">
-      <div class="t"><h2>Share your skills. Help create a safe learning space.</h2><p>Teachers, counselors, mentors, and organizers &mdash; there's a place for you.</p></div>
-      {{ btn('Become a Volunteer', '/volunteer/', 'primary', 'lg') }}
+    <a class="photo photo--banner reveal" href="/impact/" aria-label="Voices Unveiled Impact Report"><img src="/assets/img/official/home-impact-banner.jpg" alt="Voices Unveiled Impact Report" loading="lazy"></a>
+    <div style="margin-top:20px">{{ btn('Read Now', '/impact/', 'primary', 'lg') }}</div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 style="margin-bottom:8px">Support Afghan Women and Girls</h2>
+    <p class="lead" style="margin-bottom:30px">Learn more about our programs and how you can support our work.</p>
+    <div class="grid3 reveal">
+      <a class="post-card" href="/programs/self-empowerment-course/"><div class="ph"><img src="/assets/img/official/home-programs.jpg" alt="" loading="lazy"></div><div class="body"><h3>Our programs</h3></div></a>
+      <a class="post-card" href="/donate/"><div class="ph"><img src="/assets/img/official/home-sponsor.jpg" alt="" loading="lazy"></div><div class="body"><h3>Sponsor a student</h3></div></a>
+      <a class="post-card" href="/impact/testimonials/#students"><div class="ph"><img src="/assets/img/official/home-students.jpg" alt="" loading="lazy"></div><div class="body"><h3>Hear from our students</h3></div></a>
     </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 ---
 title: "Poetry from Afghanistan: On Patria"
-date: 2025-10-10
+date: 2025-10-08
 image: /assets/img/blog/on-patria.png
 excerpt: "I am a land full of sorrow, yet patient — weary, yet still hopeful."
 ---

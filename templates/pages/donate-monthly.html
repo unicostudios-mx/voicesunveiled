@@ -2,35 +2,54 @@
 {% from 'partials/macros.html' import btn, eyebrow, testimonial, donation_selector, checks %}
 {% block content %}
 <section class="band">
-  <div class="wrap split split--wide split--start">
+  <div class="wrap"><div class="photo photo--banner"><img src="/assets/img/official/monthly-hero.jpg" alt="" loading="lazy"></div></div>
+  <div class="wrap split split--wide split--start" style="margin-top:36px">
     <div>
-      {{ eyebrow('Monthly giving') }}
-      <h1>Become a Monthly Lifeline.</h1>
-      <p class="lead" style="margin-bottom:18px">Thank you for showing up. By becoming a monthly donor, you give Afghan women and girls reliable access to education, safety, and opportunity &mdash; month after month.</p>
-      <p>Join the global community that has supported 250 students and their families since 2023. Your monthly gift keeps our Self-Empowerment and Feminism course and over 13 electives running. Reliable giving means we can plan ahead and act the moment help is needed.</p>
-      <p>A very generous gift of $300 a month sponsors a student for one trimester, covering learning materials, mentorship, and support, or provides food for a family for one month. Or choose your own monthly amount.</p>
+      {{ eyebrow('Get Involved') }}
+      <h1>Become a Monthly Lifeline</h1>
+      <h2 style="margin:18px 0 6px">EMPOWER MORE WOMEN WITH US</h2>
+      <h3 style="margin-bottom:16px">Join the global community that has supported 250 students and their families since 2023</h3>
+      <p>Thank you for being here. Your ongoing support fuels education, safety, and opportunity for Afghan women and girls&mdash;month after month. Reliable giving means we can act the moment help is needed.</p>
+      <h2 style="margin:28px 0 12px">Your Monthly Support Ensures Afghan Women and Girls Can:</h2>
+      {{ checks(data.monthly_support_ensures) }}
     </div>
-    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 25, 'monthly', sticky=true) }}
+    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 50, 'monthly', sticky=true) }}
   </div>
 </section>
+
 <section class="band ground">
   <div class="wrap split split--start">
     <div>
-      {{ eyebrow('Why monthly giving matters') }}
-      <h2 style="margin-bottom:18px">Crisis doesn't wait for a fundraiser.</h2>
-      {{ checks(["Fund more scholarships for women and girls ready to learn", "Provide emergency aid the moment it's needed", "Expand programs so no one is turned away"]) }}
+      <h2 style="margin-bottom:12px">Why Monthly Giving Matters</h2>
+      <p>Crisis doesn&rsquo;t wait for a fundraiser. Monthly partners ensure we can:</p>
+      {{ checks(data.why_monthly) }}
+    </div>
+    {{ testimonial(data.quotes.zahra, 'ivory') }}
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split split--start">
+    <div>
+      <h2 style="margin-bottom:16px">Choose Your Impact</h2>
+      <div class="photo photo--3x2"><img src="/assets/img/official/monthly-impact.jpg" alt="$20 Hope Sustainer: supports internet access and core materials. $50 Freedom Builder: powers consistent education. $100 Life Changer: funds education and major emergency interventions. $200 Mission Champion: fuels expansion and innovation across programs. Join the movement - give monthly." loading="lazy"></div>
     </div>
     <div>
-      {{ eyebrow('What you\'ll receive') }}
-      <h2 style="margin-bottom:18px">Close to the work, all year.</h2>
-      {{ checks(data.monthly_benefits) }}
+      <h3 style="margin-bottom:14px">Or, a very generous gift of $300 sponsors a student for one trimester - covering learning materials, mentorship and support - or provides food for a family for one month.</h3>
+      <p class="muted">(Or choose your own monthly amount.)</p>
+      <div class="cta-row">{{ btn('Give monthly', site.monthly_url, 'primary', 'lg') }}</div>
     </div>
   </div>
 </section>
-<section class="band">
-  <div class="wrap reveal">{{ testimonial(data.student_quotes[6], 'ivory', 'Give monthly', site.monthly_url) }}</div>
-</section>
+
 <section class="band ground">
-  <div class="wrap"><div class="callout callout--terra"><div class="t"><h2>Prefer a donor-advised fund or IRA gift?</h2><p>Direct your gift to Café de la Culture, EIN {{ site.ein }}.</p></div>{{ btn('More ways to give', '/donate/#more-ways', 'primary', 'lg') }}</div></div>
+  <div class="wrap">
+    <div class="measure">
+      <h2 style="margin-bottom:12px">What You&rsquo;ll Receive</h2>
+      {{ checks(data.monthly_benefits) }}
+      <p style="margin-top:22px">Your donation to Voices Unveiled is not only a powerful gesture of support for and solidarity with Afghan women; it's also tax-deductible. As a registered nonprofit, every contribution you make helps further our cause while offering you benefits at tax time.</p>
+      <p class="muted">Thank you for your generous donation to Voices Unveiled. Your support not only empowers the women of Afghanistan but also contributes to a global movement towards equality, education, and change. Thank you for making a difference &ndash; every donation brings us closer to a world where every voice is heard and valued.</p>
+    </div>
+  </div>
 </section>
 {% endblock %}

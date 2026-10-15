@@ -40,7 +40,7 @@ REDIRECTS = [
     ("donate-now", "/donate/"), ("become-a-monthly-donor", "/donate/monthly/"),
     ("donations/.*", "/donate/emergency-funds/"), ("emergency-funds-for-.*", "/donate/emergency-funds/"),
     ("emergency-fund", "/donate/emergency-funds/"), ("time-is-running-out", "/donate/"),
-    ("work-with-us", "/volunteer/#work-with-us"), ("get-involved", "/volunteer/"),
+    ("get-involved", "/donate/"),
     ("privacy-policy", "/privacy/"), ("guide", "/safety-guide/"), ("resources", "/impact/"),
     ("podcast", "/about/#media"), ("blogroll", "/blog/"), ("category/.*", "/blog/"),
     ("z-live-broadcast-for-change", "/about/#media"), ("hello-world", "/blog/"), ("new-blog-post", "/blog/"),
@@ -107,31 +107,32 @@ def main():
         pages.append((url, template, dict(url=url, title=title, description=description, section=section, image=image), extra))
 
     add("/", "pages/home.html", None, site["description"], section=None)
-    add("/about/", "pages/about.html", "About us", "Voices Unveiled is a donor-powered nonprofit opening pathways to education, healing, and leadership for Afghan women and girls.", "About")
-    add("/programs/", "pages/programs.html", "Programs", "Free online education, mental health support, mentorship, internet funding, emergency assistance, and guest speakers for Afghan women and girls.", "Programs")
-    add("/programs/self-empowerment-course/", "pages/program-course.html", "The Self-Empowerment Course", "A free three-month intensive course in self-empowerment for Afghan women and girls, meeting three times a week.", "Programs")
-    add("/programs/holistic-education/", "pages/program-holistic.html", "Holistic and integrative education", "Trauma-informed mental health support, academic guidance, and elective courses for Afghan women and girls.", "Programs")
-    add("/programs/emergency-assistance/", "pages/program-emergency.html", "Emergency assistance", "Food, medicine, and essential resources for students and their families facing critical hardship.", "Programs")
-    add("/programs/guest-speakers/", "pages/program-speakers.html", "Distinguished guest speakers", "Global leaders, practitioners, activists, and artists who inspire students in the Empowerment Course.", "Programs")
-    add("/impact/", "pages/impact.html", "Our impact", "115 scholarships, 50 students funded with internet, 20 intern graduates: read our annual impact reports.", "Impact")
-    add("/impact/testimonials/", "pages/testimonials.html", "Testimonials", "What students say about the course, and why supporters around the world stand with Afghan women.", "Impact")
-    add("/stories/", "pages/stories.html", "Student stories", "Journeys of agency, resilience, and transformation, written by our students and shared with consent.", "Stories")
+    add("/about/", "pages/about.html", "About", "Voices Unveiled empowers Afghan women with free online education, mental health support, leadership development and community building. Together, we shape brighter futures.", "About Us")
+    add("/programs/", "pages/programs.html", "Programs", "Offered free of charge through Cafe de la Culture, our programs produce tangible improvements in knowledge of women's studies, self-expression, self-compassion, confidence, and optimism.", "Programs")
+    add("/programs/self-empowerment-course/", "pages/program-course.html", "Empowerment Course", "Sponsor a student in Afghanistan, for a full 3 month intensive self-empowerment course. Help us build brighter futures - women are the key to making peace that lasts.", "Programs")
+    add("/programs/holistic-education/", "pages/program-holistic.html", "Holistic and Integrative Education", "Every woman and girl in Afghanistan deserves not just education, but the emotional strength, healing, and community support to truly thrive.", "Programs")
+    add("/programs/emergency-assistance/", "pages/program-emergency.html", "Emergency Assistance", "We are committed to raising funds to meet the critical food and medical needs of our students.", "Programs")
+    add("/programs/guest-speakers/", "pages/program-speakers.html", "Distinguished Guest Speakers", "Our guest speakers bring stories, wisdom, and inspiration that leave a lasting impact on our students.", "Programs")
+    add("/impact/", "pages/impact.html", "Impact", "Read our 2025 and 2024 Annual Impact Reports.", "Impact")
+    add("/impact/testimonials/", "pages/testimonials.html", "Testimonials", "Student and supporter testimonials.", "Impact")
+    add("/stories/", "pages/stories.html", "Student Stories", "Student stories from Voices Unveiled.", "Impact")
     for i, s in enumerate(stories):
         related = [x for x in stories if x["slug"] != s["slug"]][i % 7:i % 7 + 3] or stories[:3]
-        add(f"/stories/{s['slug']}/", "pages/story.html", f"{s['name']}, {s['age']}: a student story", s["quote"], "Stories", s["image"], story=s, related=related)
-    add("/blog/", "pages/blog.html", "Blog", "Essays, poetry, and reporting by our students and team.", "Stories")
+        add(f"/stories/{s['slug']}/", "pages/story.html", f"{s['name']}, Age {s['age']}, {s['location']}", s["quote"], "Impact", s["image"], story=s, related=related)
+    add("/blog/", "pages/blog.html", "Blog", "Blog - Voices Unveiled.", "Blog")
     for i, p in enumerate(posts):
         related = [x for x in posts if x["slug"] != p["slug"]][:3]
-        add(f"/blog/{p['slug']}/", "pages/post.html", p["title"], p.get("excerpt"), "Stories", p.get("image"), post=p, related=related)
-    add("/volunteer/", "pages/volunteer.html", "Volunteer", "Share your skills as a guest speaker, workshop leader, counselor, or team volunteer.", "Volunteer")
-    add("/donate/", "pages/donate.html", "Donate", "Your gift keeps education, connection, and hope alive for Afghan women and girls. Tax-deductible.", None)
-    add("/donate/now/", "pages/donate-now.html", "Donate now", "Complete your gift to Voices Unveiled: choose an amount, one-time or monthly.", None)
-    add("/donate/monthly/", "pages/donate-monthly.html", "Become a Monthly Lifeline", "Monthly giving provides the steady support our students rely on.", None)
-    add("/donate/emergency-funds/", "pages/emergency-funds.html", "Emergency funds", "Urgent relief campaigns for students and families in crisis.", None)
-    add("/contact/", "pages/contact.html", "Contact", "Get in touch with Voices Unveiled.", "Volunteer")
-    add("/whatsapp-community/", "pages/whatsapp.html", "WhatsApp community", "A private, invitation-only space for a trusted circle of supporters.", None)
-    add("/privacy/", "pages/privacy.html", "Privacy & safety", "How we handle your information and protect the students we serve.", None)
-    add("/safety-guide/", "pages/safety-guide.html", "Online safety guide for students", "How to participate safely and anonymously in online classes.", None)
+        add(f"/blog/{p['slug']}/", "pages/post.html", p["title"], p.get("excerpt"), "Blog", p.get("image"), post=p, related=related)
+    add("/volunteer/", "pages/volunteer.html", "Volunteer", "We are a grassroots organization built on volunteer work and heart. Here are several ways you can contribute.", "Get Involved")
+    add("/work-with-us/", "pages/work-with-us.html", "Work With Us", "If you're passionate about gender equality, digital safety and education, and you want your skills to directly support women in crisis, we'd love to hear from you.", "Get Involved")
+    add("/donate/", "pages/donate.html", "Donate Now", "This is our moment to choose hope. Every dollar keeps hope alive.", "Get Involved")
+    add("/donate/now/", "pages/donate-now.html", "Donate now", "Complete your gift to Voices Unveiled: choose an amount, one-time or monthly.", "Get Involved")
+    add("/donate/monthly/", "pages/donate-monthly.html", "Become a Monthly Lifeline", "Your ongoing support fuels education, safety, and opportunity for Afghan women and girls, month after month.", "Get Involved")
+    add("/donate/emergency-funds/", "pages/emergency-funds.html", "Support Emergency Medical and Relief Aid", "Emergency funds for students and families in crisis.", "Get Involved")
+    add("/contact/", "pages/contact.html", "Contact", "Get in touch with Voices Unveiled.", "Get Involved")
+    add("/whatsapp-community/", "pages/whatsapp.html", "Whatsapp Community", "Join the Voices Unveiled WhatsApp Community.", "Get Involved")
+    add("/privacy/", "pages/privacy.html", "Privacy Policy", "Privacy Policy - Voices Unveiled.", None)
+    add("/safety-guide/", "pages/safety-guide.html", "Guide", "Online safety guide for students.", None)
     add("/reclamation/", "pages/reclamation.html", "The Reclamation: a 12-week global immersion", "A live, intimate workshop for women leaders, creatives, and changemakers ready to come home to themselves.", None, "/assets/img/reclamation/hero.jpg")
     add("/404/", "pages/404.html", "Page not found", None, None)
 

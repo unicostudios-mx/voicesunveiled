@@ -15,12 +15,12 @@
         <li class="{% if page.section == item.label %}is-active{% endif %}">
           <a href="{{ item.url }}">{{ item.label }}</a>
           {% if item.children %}
-          <ul class="sub">{% for c in item.children %}<li><a href="{{ c.url }}">{{ c.label }}</a></li>{% endfor %}</ul>
+          <ul class="sub">{% for c in item.children %}<li><a href="{{ c.url }}"{% if c.external %} target="_blank" rel="noopener"{% endif %}>{{ c.label }}</a></li>{% endfor %}</ul>
           {% endif %}
         </li>
         {% endfor %}
       </ul>
-      <a class="btn btn--primary btn--sm" href="/donate/">Donate</a>
+      <a class="btn btn--primary btn--sm" href="/donate/">Donate now</a>
     </nav>
   </div>
 </header>

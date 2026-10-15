@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, story_card, testimonial, safety_note %}
+{% from 'partials/macros.html' import btn, eyebrow, story_card %}
 {% block content %}
 <section class="band">
   <div class="wrap">
-    <div class="measure" style="margin-bottom:28px">
-      {{ eyebrow('Student stories') }}
-      <h1>Every story is shared with care and consent.</h1>
-      <p class="lead" style="margin-bottom:20px">These are journeys of agency, resilience, and transformation, written by our students.</p>
-      {{ safety_note() }}
+    <div class="page-hero" style="margin-bottom:32px">
+      {{ eyebrow('Impact') }}
+      <h1>Student Stories</h1>
     </div>
     <div class="grid3 reveal">
       {% for s in stories %}{{ story_card(s, white=true) }}{% endfor %}
@@ -15,6 +13,6 @@
   </div>
 </section>
 <section class="band ground">
-  <div class="wrap reveal">{{ testimonial(data.student_quotes[3], 'ivory', 'Support more students like Ehsaneh', '/donate/') }}</div>
+  <div class="wrap"><div class="callout callout--terra"><div class="t"><h2>Sponsor a Student</h2><p>Every action matters. Every dollar keeps hope alive.</p></div>{{ btn('Donate Now', '/donate/', 'primary', 'lg') }}</div></div>
 </section>
 {% endblock %}

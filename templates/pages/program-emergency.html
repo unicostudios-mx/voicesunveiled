@@ -3,39 +3,47 @@
 {% block content %}
 <section class="band">
   <div class="wrap page-hero">
-    {{ eyebrow('Programs · Relief') }}
-    <h1>Emergency assistance.</h1>
-    <p class="lead">True self-empowerment encompasses self-care, proper nutrition, and health. We raise funds to meet the critical food and medical needs of our students and their families.</p>
-    <div class="cta-row">{{ btn('Give emergency aid', '/donate/emergency-funds/', 'primary', 'lg') }}</div>
+    {{ eyebrow('Programs · Emergency Assistance') }}
+    <h1>Emergency Assistance</h1>
+    <p class="lead">We are committed to raising funds to meet the critical food and medical needs of our students. True self-empowerment encompasses self-care, proper nutrition, and health. Amid the ongoing crisis, many families are unable to provide adequate nourishment, leading to preventable health issues among our young women, including scurvy, rickets, and anemia. These conditions cause severe symptoms such as bleeding gums, bone and joint pain, chronic headaches, dizziness, fatigue, and profound depression.</p>
   </div>
 </section>
+
 <section class="band ground">
   <div class="wrap split split--start">
     <div>
-      <h2 style="margin-bottom:18px">Surviving, and thriving, despite hardship.</h2>
-      <p>Amid the ongoing crisis, many families are unable to provide adequate nourishment, leading to preventable health issues among our young women, including scurvy, rickets, and anemia. These conditions cause severe symptoms such as bleeding gums, bone and joint pain, chronic headaches, dizziness, fatigue, and profound depression.</p>
-      <p>Such health challenges make it incredibly difficult for students to focus on their education and achieve their goals. At Voices Unveiled, we take a holistic approach to support our students' success on every level. By contributing, you help ensure that our Afghan students not only survive but also thrive.</p>
-    </div>
-    <div>
-      <ul class="levels">
+      <p>Such health challenges make it incredibly difficult for students to focus on their education and achieve their goals. At Voices Unveiled, we take a holistic approach to support our students' success on every level. By contributing, you can help ensure that our Afghan students not only survive but also thrive despite these hardships. Join us in making a meaningful difference.</p>
+      <ul class="levels" style="margin-top:20px">
         {% for l in data.emergency_levels %}<li><b>{{ l.amount }}</b><span>{{ l.label }}</span></li>{% endfor %}
       </ul>
       <p class="muted small" style="margin-top:12px">No contribution is too big or small.</p>
+      <div class="cta-row">{{ btn('Donate', '/donate/', 'primary', 'lg') }}</div>
+    </div>
+    <div>
+      <div class="photo photo--4x3"><img src="/assets/img/official/emergency.jpg" alt="" loading="lazy"></div>
+      <div style="margin-top:18px">{{ testimonial(data.quotes.rq, 'ivory', compact=true) }}</div>
     </div>
   </div>
 </section>
+
 <section class="band">
-  <div class="wrap reveal">{{ testimonial(data.student_quotes[15], 'ivory', 'Give emergency aid', '/donate/emergency-funds/') }}</div>
-</section>
-<section class="band ground">
-  <div class="wrap split">
-    <div>
-      {{ eyebrow('Health specialists') }}
-      <h2 style="margin-bottom:16px">Are you a health practitioner? Volunteer remotely with us.</h2>
-      <p>We invite health specialists and practitioners to share their knowledge and skills remotely with the women who need it most. Whether you're experienced in mental health, nutrition, general healthcare, or another field related to wellness, your expertise can help us provide essential health support, education, and resources.</p>
-      <div class="cta-row">{{ btn('Contact us', '/contact/', 'primary') }}{{ btn('Ways to volunteer', '/volunteer/', 'ghost') }}</div>
+  <div class="wrap">
+    <div class="callout callout--dark reveal">
+      <div class="t"><h2>Want to learn more?</h2><p>What is the Status of Women in Afghanistan?<br><a href="https://eca.unwomen.org/en/stories/explainer/2024/08/faqs-afghan-women-three-years-after-the-taliban-takeover-0" target="_blank" rel="noopener">FAQs: Afghan women three years after the Taliban takeover →</a></p></div>
+      {{ btn('Learn More', 'https://eca.unwomen.org/en/stories/explainer/2024/08/faqs-afghan-women-three-years-after-the-taliban-takeover-0', 'soft', 'lg', external=true) }}
     </div>
-    <div class="photo photo--4x3"><img src="/assets/img/story-4.jpg" alt="A young woman in a headscarf smiling outdoors" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="band ground">
+  <div class="wrap">
+    <div class="measure">
+      <h2 style="margin-bottom:16px">Are you a health specialist or practitioner? Volunteer remotely with us!</h2>
+      <p>We invite health specialists and practitioners to join our mission and make a profound impact. By volunteering with us, you&rsquo;ll have the opportunity to share your invaluable knowledge and skills remotely with individuals who need it most. Your expertise can help us provide essential health support, education, and resources to those facing critical challenges.</p>
+      <p>Whether you're experienced in mental health, nutrition, general healthcare, or any other field related to wellness, your contribution will be instrumental in enhancing the well-being of women in Afghanistan. Together, we can create a healthier future and empower individuals to have access to good information, overcome obstacles and lead fulfilling lives.</p>
+      <p>Join us and be a part of something transformative. Your involvement can make a significant difference in the lives of many. Reach out today and discover how you can help shape a better tomorrow.</p>
+      <div class="cta-row">{{ btn('Contact Us', '/contact/', 'primary', 'lg') }}</div>
+    </div>
   </div>
 </section>
 {% endblock %}

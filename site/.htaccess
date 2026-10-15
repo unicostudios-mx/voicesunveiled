@@ -22,8 +22,7 @@ RedirectMatch 301 ^/donations/.*/?$ /donate/emergency-funds/
 RedirectMatch 301 ^/emergency-funds-for-.*/?$ /donate/emergency-funds/
 RedirectMatch 301 ^/emergency-fund/?$ /donate/emergency-funds/
 RedirectMatch 301 ^/time-is-running-out/?$ /donate/
-RedirectMatch 301 ^/work-with-us/?$ /volunteer/#work-with-us
-RedirectMatch 301 ^/get-involved/?$ /volunteer/
+RedirectMatch 301 ^/get-involved/?$ /donate/
 RedirectMatch 301 ^/privacy-policy/?$ /privacy/
 RedirectMatch 301 ^/guide/?$ /safety-guide/
 RedirectMatch 301 ^/resources/?$ /impact/

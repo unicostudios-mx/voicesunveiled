@@ -1,6 +1,6 @@
 ---
 title: "The Class That Helped Me Find My Voice"
-date: 2025-08-28
+date: 2025-08-27
 image: /assets/img/blog/find-my-voice.png
 excerpt: "Growing up as a teenager under Taliban restrictions, I learned to be silent long before I learned to speak up for myself.Silence wasn’t just expected of me, it became my way of surviving. As an…"
 ---

@@ -2,29 +2,39 @@
 {% from 'partials/macros.html' import btn, eyebrow, testimonial %}
 {% block content %}
 <section class="band">
-  <div class="wrap page-hero">
-    {{ eyebrow('Programs · Community') }}
-    <h1>Distinguished guest speakers.</h1>
-    <p class="lead">Our guest speakers bring stories, wisdom, and inspiration that leave a lasting impact on our students. From global leaders to entrepreneurs, practitioners, activists, and artists, each opens doors to new ideas and sparks critical thinking.</p>
+  <div class="wrap"><div class="photo photo--banner"><img src="/assets/img/official/speakers-banner.jpg" alt="Distinguished Guest Speakers" loading="lazy"></div></div>
+  <div class="wrap page-hero" style="margin-top:36px">
+    {{ eyebrow('Programs · Guest Speakers') }}
+    <h1>Distinguished Guest Speakers</h1>
+    <p class="lead">At Voices Unveiled, our guest speakers bring stories, wisdom, and inspiration that leave a lasting impact on our students. From global leaders to entrepreneurs, practitioners, activists and artists, each opens doors to new ideas, sparks critical thinking, and helps cultivate a dynamic, energizing space for shared discovery and creativity.</p>
+    <p>Through these interactive sessions, students don&rsquo;t just listen&mdash;they are moved, challenged, and inspired to dream bigger, act boldly, and see themselves as part of a larger story of hope and change.</p>
   </div>
 </section>
+
 <section class="band ground">
-  <div class="wrap split split--start">
-    <div>
-      <h2 style="margin-bottom:18px">Moved, challenged, and inspired to dream bigger.</h2>
-      <p>Through these interactive sessions, students don't just listen. They are moved, challenged, and inspired to dream bigger, act boldly, and see themselves as part of a larger story of hope and change. Here are just some of the remarkable guests who have shared their insights with students in our Empowerment Course.</p>
-      <div class="grid2" style="margin-top:22px; grid-template-columns:1fr; gap:14px">
-        {% for g in data.guest_speakers %}<div class="card card--ivory" style="padding:20px 22px"><h4 style="margin:0 0 6px">{{ g.name }}</h4><p>{{ g.detail }}</p></div>{% endfor %}
+  <div class="wrap">
+    <h2 style="margin-bottom:28px">Here are just some of the remarkable guests who have shared their insights with students in our Empowerment Course:</h2>
+    <div class="grid2 reveal">
+      {% for g in data.guest_speakers %}
+      <div class="card card--ivory" style="display:grid; grid-template-columns:140px 1fr; gap:20px; align-items:start">
+        <div class="photo photo--portrait" style="max-width:140px"><img src="{{ g.image }}" alt="{{ g.name }}" loading="lazy"></div>
+        <div>
+          <h3 style="margin:0 0 8px">{{ g.name }}</h3>
+          <p>{{ g.detail }}</p>
+          {% if g.quote %}<blockquote class="pullquote" style="margin:14px 0 0">&ldquo; {{ g.quote }} &rdquo;</blockquote>{% endif %}
+        </div>
       </div>
+      {% endfor %}
     </div>
-    {{ testimonial(data.supporter_quotes[2], 'ivory') }}
   </div>
 </section>
+
 <section class="band">
   <div class="wrap">
-    <div class="callout callout--terra reveal">
-      <div class="t"><h2>Share an hour of your time.</h2><p>We are always seeking passionate speakers ready to ignite curiosity and share their experiences. Whether you are an innovator, advocate, or storyteller, your voice can inspire the next generation of leaders.</p></div>
-      {{ btn('Get in touch', 'mailto:' ~ site.email, 'primary', 'lg') }}
+    <div class="measure">
+      <p>We are always seeking passionate speakers who are ready to ignite curiosity, broaden perspectives, and share their experiences. Whether you are an innovator, advocate, or storyteller, your voice has the power to inspire the next generation of leaders.</p>
+      <p>If you would like to volunteer an hour of your time, we would love to hear from you. Please get in touch at <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}</div>
     </div>
   </div>
 </section>

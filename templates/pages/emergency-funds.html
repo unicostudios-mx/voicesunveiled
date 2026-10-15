@@ -1,34 +1,36 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, testimonial, safety_note %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial %}
 {% from 'partials/icons.html' import icon %}
 {% block content %}
 <section class="band">
-  <div class="wrap page-hero">
-    {{ eyebrow('Emergency funds') }}
-    <h1>Urgent relief for students in crisis.</h1>
-    <p class="lead">When a student or her family faces a critical situation, we open an emergency campaign. Your gift provides safety, food, medicine, and essential resources within days.</p>
-    <div style="margin-top:20px">{{ safety_note('Names and identifying details are changed to protect the safety of the students and families supported by these campaigns.') }}</div>
+  <div class="wrap split split--start">
+    <div class="page-hero" style="margin:0">
+      {{ eyebrow('Get Involved · Emergency Funds') }}
+      <h1>Support Emergency Medical and Relief Aid</h1>
+      <p class="lead">We are committed to raising funds to meet the critical food and medical needs of our students. True self-empowerment encompasses self-care, proper nutrition, and health.</p>
+      <ul class="levels" style="margin:20px 0">
+        {% for l in data.emergency_levels %}<li><b>{{ l.amount }}</b><span>{{ l.label }}</span></li>{% endfor %}
+      </ul>
+      <p class="muted small">No contribution is too big or small.</p>
+      <div class="cta-row">{{ btn('Donate', site.emergency_fund_url, 'primary', 'lg', external=true) }}{{ btn('About Emergency Assistance', '/programs/emergency-assistance/', 'ghost', 'lg') }}</div>
+    </div>
+    <div class="photo photo--portrait" style="justify-self:center"><img src="/assets/img/official/emergency-fund.jpg" alt="" loading="lazy"></div>
   </div>
 </section>
 <section class="band ground">
   <div class="wrap">
+    <h2 style="margin-bottom:28px">Emergency Funds</h2>
     <div class="grid3 reveal">
       {% for c in data.emergency_campaigns %}
-      <div class="card"><h3 style="margin-top:0">{{ c.title }}</h3><p style="margin-bottom:18px">{{ c.body }}</p><a class="btn btn--secondary btn--sm" href="{{ c.url }}" target="_blank" rel="noopener">Give to this campaign {{ icon('external') }}</a></div>
+      <div class="story story--white">
+        <div class="ph"><img src="{{ c.image }}" alt="" loading="lazy"></div>
+        <div class="body"><div class="nm">{{ c.title }}</div><p>{{ c.body }}</p><a class="btn btn--secondary btn--sm" href="{{ c.url }}" target="_blank" rel="noopener">Donate {{ icon('external') }}</a></div>
+      </div>
       {% endfor %}
     </div>
-    <p class="muted small" style="margin-top:20px">Campaign gifts are completed on our secure donation pages.</p>
   </div>
 </section>
 <section class="band">
-  <div class="wrap split">
-    <div>
-      {{ eyebrow('General emergency fund') }}
-      <h2 style="margin-bottom:16px">Support emergency medical and relief aid.</h2>
-      <p>Prefer to give where it is needed most? Our general emergency fund covers food, medicine, and health needs across all of our students' families.</p>
-      <div class="cta-row">{{ btn('Give emergency aid', 'https://voicesunveiled.org/donations/support-emergency-medical-and-relief-aid/', 'primary', 'lg', external=true) }}{{ btn('Learn about emergency assistance', '/programs/emergency-assistance/', 'ghost', 'lg') }}</div>
-    </div>
-    {{ testimonial(data.student_quotes[15], 'sage', compact=true) }}
-  </div>
+  <div class="wrap reveal">{{ testimonial(data.quotes.rq, 'sage', 'Donate', site.emergency_fund_url) }}</div>
 </section>
 {% endblock %}

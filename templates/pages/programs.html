@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, program_card, testimonial %}
+{% from 'partials/macros.html' import btn, eyebrow, program_card %}
 {% block content %}
 <section class="band">
   <div class="wrap page-hero">
     {{ eyebrow('Programs') }}
-    <h1>Education, healing, and leadership.</h1>
-    <p class="lead">Free, online, and built around the whole person &mdash; from the classroom to mental health to career. Offered free of charge through Cafe de la Culture, our programs produce tangible improvements in self-expression, self-compassion, confidence, and optimism.</p>
+    <h1>Programs</h1>
+    <p class="lead">Offered free of charge through Cafe de la Culture, our programs produce tangible improvements in knowledge of women&rsquo;s studies, self-expression, self-compassion, confidence, and optimism.</p>
   </div>
 </section>
 <section class="band ground">
   <div class="wrap">
-    <div class="grid3 reveal">
+    <div class="grid2 reveal">
       {% for p in data.programs %}{{ program_card(p) }}{% endfor %}
     </div>
+    <div class="cta-row" style="margin-top:28px">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}{{ btn('Become a Volunteer', '/volunteer/', 'secondary', 'lg') }}</div>
   </div>
-</section>
-<section class="band">
-  <div class="wrap reveal">{{ testimonial(data.student_quotes[6], 'sage', 'Sponsor a student', '/donate/') }}</div>
 </section>
 {% endblock %}

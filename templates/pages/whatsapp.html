@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, safety_note %}
+{% from 'partials/macros.html' import btn, eyebrow %}
 {% block content %}
 <section class="band">
   <div class="wrap page-hero">
     {{ eyebrow('Community') }}
-    <h1>Join the Voices Unveiled WhatsApp community.</h1>
-    <p class="lead">A private, invitation-only space for a small, trusted circle of supporters. It's where we share early updates, behind-the-scenes insights, and stories from our students, educators, and program team. It's also a space for connection, reflection, and solidarity.</p>
-    <p>Due to safety and privacy concerns for the Afghan women and girls we work with, we ask all prospective members to complete a short registration form before being added. This helps us keep the group secure, intentional, and aligned with our mission. Anyone who breaches the group's values, guidelines, or confidentiality expectations may be removed.</p>
-    <div class="cta-row">{{ btn('Apply to join', site.whatsapp_form_url, 'primary', 'lg', external=true) }}</div>
-    <div style="margin-top:24px">{{ safety_note('Members agree to keep the content of the group private and to respect the confidentiality of student stories and updates.') }}</div>
+    <h1>Join the Voices Unveiled WhatsApp Community</h1>
+    <p class="lead">Voices Unveiled provides free, trauma-informed, online education to Afghan women and girls&mdash;both in Afghanistan and in neighboring countries&mdash;who have been denied access to formal education due to Taliban restrictions.</p>
+    <p>Our WhatsApp group is a private, invitation-only space for a small, trusted circle of supporters.</p>
+    <p>It&rsquo;s where we share early updates, behind-the-scenes insights, and stories from our students, educators, and program team. It&rsquo;s also a space for connection, reflection, and solidarity.</p>
+    <p>Due to safety and privacy concerns for the Afghan women and girls we work with, we ask all prospective members to complete a short registration form before being added. This helps us keep the group secure, intentional, and aligned with our mission.</p>
+    <p>To protect the safety and integrity of our community, anyone who breaches the group&rsquo;s values, guidelines, or confidentiality expectations may be removed.</p>
+    <p>If you share our vision and want to be part of this inner circle, please fill out the form below. We&rsquo;ll be in touch shortly.</p>
+    <h2 style="margin-top:28px">Apply to Join the Voices Unveiled Whatsapp Community</h2>
+    <div class="cta-row">{{ btn('Open the registration form', site.whatsapp_form_url, 'primary', 'lg', external=true) }}</div>
   </div>
 </section>
 {% endblock %}

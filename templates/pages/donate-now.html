@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, testimonial, safety_note, checks %}
+{% from 'partials/macros.html' import btn, eyebrow, checks %}
 {% from 'partials/icons.html' import icon %}
 {% block content %}
 <section class="band" style="padding-bottom:0">
@@ -8,11 +8,11 @@
 <section class="band">
   <div class="wrap split split--wide split--start">
     <div>
-      {{ eyebrow('Urgent') }}
-      <h1>This is our moment to choose hope.</h1>
+      {{ eyebrow('Donate Now') }}
+      <h1>THIS IS OUR MOMENT TO CHOOSE HOPE</h1>
       <p class="lead">We must raise $50,000 to keep our programs alive. Without your help, Voices Unveiled will be forced to close, leaving Afghan women and girls without the education and community they depend on.</p>
       <p>Your donation today protects their dignity, their education, and their dreams.</p>
-      <div class="photo photo--3x2" style="margin:24px 0"><img src="/assets/img/donate-hero.jpg" alt="Students of Voices Unveiled" loading="lazy"></div>
+      <div class="photo photo--3x2" style="margin:24px 0"><img src="/assets/img/official/donate-hero.jpg" alt="" loading="lazy"></div>
       <p class="small muted" style="display:flex; gap:8px; align-items:center">{{ icon('check') }} 100% secure &middot; Tax-deductible &middot; Lives changed immediately</p>
     </div>
 
@@ -24,10 +24,10 @@
       </ol>
 
       <fieldset class="step is-on" data-step="1">
-        <legend><h3>How much would you like to donate today?</h3><p class="muted small">Every dollar keeps hope alive. Choose an amount to see what it makes possible.</p></legend>
+        <legend><h3>Choose Your Impact</h3><p class="muted small">Every action matters. Every dollar keeps hope alive.</p></legend>
         <div class="toggle" role="group" aria-label="Gift frequency">
-          <button type="button" data-mode="once">One-time</button>
-          <button type="button" data-mode="monthly" class="is-on">Monthly</button>
+          <button type="button" data-mode="once" class="is-on">One-time</button>
+          <button type="button" data-mode="monthly">Monthly</button>
         </div>
         <div class="agrid" aria-label="Choose an amount"></div>
         <div class="field custom-amount" hidden>
@@ -70,14 +70,14 @@
           <p class="small muted">Card fields are disabled in this preview. In the live version they are provided by the payment platform's secure form.</p>
         </div>
         <div class="grid2" style="gap:12px"><button class="btn btn--secondary btn--lg" type="button" data-prev>Back</button><button class="btn btn--primary btn--lg" type="submit" data-submit>Donate now</button></div>
-        <p class="fine">Voices Unveiled is a program of Café de la Culture, a 501(c)(3) tax-exempt organization. EIN {{ site.ein }}. Your gift is tax-deductible.</p>
+        <p class="fine">100% secure &bull; Tax-deductible &bull; Lives changed immediately</p>
       </fieldset>
 
       <div class="step done" data-step="4" hidden>
         <div class="center">
           <span class="done-icon">{{ icon('heart') }}</span>
           <h3>Thank you, <span data-done-name>friend</span>.</h3>
-          <p class="lead">Your <span data-done-amount></span> gift keeps education, connection, and hope alive for Afghan women and girls.</p>
+          <p class="lead">Your <span data-done-amount></span> gift protects their dignity, their education, and their dreams.</p>
           <p class="muted small">This is a preview: no payment was processed. In the live version you would receive a receipt at <span data-done-email></span>.</p>
           <div class="cta-row" style="justify-content:center">{{ btn('Read student stories', '/stories/', 'primary') }}{{ btn('Back to Donate', '/donate/', 'ghost') }}</div>
         </div>
@@ -89,31 +89,34 @@
 <section class="band ground">
   <div class="wrap split split--start">
     <div>
-      {{ eyebrow("What we've built together") }}
-      <h2 style="margin-bottom:18px">For almost three years, Voices Unveiled has empowered Afghan girls and women with:</h2>
-      {{ checks(["Free online classes for students banned from school by the Taliban", "Mental health support during exile, isolation, and trauma to 20+ families", "13 elective courses in tech, science, humanities, and arts", "6 rounds of our Self-Empowerment Program that helped them rebuild their confidence", "Life-saving relief: food, medicine, financial support", "250+ students have learned, healed, and reimagined their futures. 100% report that their lives have been transformed."]) }}
-      <p style="margin-top:18px"><strong>But without your urgent support, it could all disappear.</strong></p>
+      <h2 style="margin-bottom:12px">What We&rsquo;ve Built Together</h2>
+      <p>For almost three years, Voices Unveiled has empowered Afghan girls and women with:</p>
+      {{ checks(data.built_together) }}
+      <p style="margin-top:18px"><strong>250+ students have learned, healed, and reimagined their futures. 100% report that their lives have been transformed.</strong></p>
+      <p>But without your urgent support, it could all disappear.</p>
     </div>
     <div>
-      {{ eyebrow('Your support ensures Afghan women and girls can') }}
-      <h2 style="margin-bottom:18px">Learn, heal, and reclaim their voices.</h2>
-      {{ checks(["Access free online education, systematically denied to them under Taliban restrictions.", "Receive mental health support and community connection, helping them cope with isolation, trauma, and fear.", "Receive urgent, life-saving aid, including food, medicine, and financial assistance in emergencies.", "Reclaim their voices through courses in self-empowerment, English, data analytics, philosophy, meditation, and more."]) }}
+      <h2 style="margin-bottom:12px">Your Support Ensures Afghan Women and Girls Can:</h2>
+      {{ checks(data.support_ensures) }}
+      <p style="margin-top:18px">Every dollar keeps hope alive. Your generosity today protects their education, their dignity, and their dreams.</p>
     </div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    {{ eyebrow('Their voices') }}
-    <h2 style="margin-bottom:12px">These are the lives your donation supports.</h2>
-    <p class="measure" style="margin-bottom:16px">A safe online space and a community where many can freely learn and express themselves, along with the emergency aid that keeps their families afloat through hunger, illness, and crisis. We need your help to make sure their story doesn't end here.</p>
-    <div style="margin-bottom:28px">{{ safety_note() }}</div>
+    <h2 style="margin-bottom:12px">Their Voices</h2>
+    <p class="measure">These are lives your donation supports in creating a safe online space and a community where many can freely learn and express themselves &mdash; along with the emergency aid that keeps their families afloat through hunger, illness, and crisis.</p>
+    <p class="measure" style="margin-bottom:28px">We need your help to make sure their story doesn&rsquo;t end here.</p>
     <div class="grid3 reveal">
-      {{ testimonial(data.student_quotes[4], 'ivory', compact=true) }}
-      {{ testimonial(data.student_quotes[5], 'sage', compact=true) }}
-      {{ testimonial(data.student_quotes[3], 'ivory', compact=true) }}
+      {% for k in ['chalipa', 'dasa', 'ehsaneh'] %}{% set q = data.quotes[k] %}
+      <div class="story story--white">
+        <div class="ph"><img src="{{ q.image }}" alt="" loading="lazy"></div>
+        <div class="body"><blockquote>&ldquo;{{ q.quote }}&rdquo;</blockquote><div><div class="nm">{{ q.name }}</div><div class="co">{{ q.detail }}</div></div></div>
+      </div>
+      {% endfor %}
     </div>
-    <p class="muted" style="margin-top:28px; max-width:720px">Having trouble donating? Contact us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+    <p class="muted" style="margin-top:28px; max-width:760px">Having trouble donating? If you experience any issues while submitting your donation, please contact us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>. You can also try clearing your browser cache, try using a different browser, or try using an incognito/private window.</p>
   </div>
 </section>
 {% endblock %}

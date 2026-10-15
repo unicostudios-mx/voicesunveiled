@@ -82,7 +82,7 @@
   <div class="iline">{{ icon('arrow-right') }}<span></span></div>
   <a class="btn btn--primary btn--lg btn--block btn--cta" href="{{ once_url }}">Give now</a>
   <p class="fine"><a href="#" data-switch-once>{% if mode == 'monthly' %}Prefer to give once? Switch to a one-time gift.{% else %}Make it monthly instead.{% endif %}</a></p>
-  <p class="fine">Voices Unveiled is a program of Café de la Culture, a 501(c)(3). Your gift is tax-deductible.</p>
+  <p class="fine">100% secure &bull; Tax-deductible &bull; Lives changed immediately</p>
 </div>
 {%- endmacro %}
 
@@ -105,14 +105,14 @@
 <div class="newsletter" id="newsletter">
   <div>
     <p class="eyebrow">Newsletter</p>
-    <h2 style="margin-bottom:10px">Stay close to the work.</h2>
-    <p style="margin:0">Receive updates on student stories, program impact, and ways to help.</p>
+    <h2 style="margin-bottom:10px">Stay updated with our newsletter</h2>
+    <p style="margin:0">Subscribe here.</p>
   </div>
   <form action="{{ site.mailchimp_action }}" method="post" target="_blank" novalidate>
     <label class="sr-only" for="mce-EMAIL">Email address</label>
     <input class="input" type="email" name="EMAIL" id="mce-EMAIL" placeholder="Your email" required>
     <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="{{ site.mailchimp_honeypot }}" tabindex="-1" value=""></div>
-    <button class="btn btn--primary" type="submit">Join our newsletter</button>
+    <button class="btn btn--primary" type="submit">Subscribe Here</button>
   </form>
 </div>
 {%- endmacro %}

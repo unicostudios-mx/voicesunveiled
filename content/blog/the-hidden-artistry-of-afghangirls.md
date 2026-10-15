@@ -1,6 +1,6 @@
 ---
 title: "The Hidden Artistry of Afghan Girls"
-date: 2025-12-04
+date: 2025-12-03
 image: /assets/img/blog/hidden-artistry.jpg
 excerpt: "Artwork by Boubak"
 ---

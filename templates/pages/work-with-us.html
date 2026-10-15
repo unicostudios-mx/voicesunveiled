@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% from 'partials/macros.html' import btn, eyebrow, tag, checks %}
+{% block content %}
+<section class="band">
+  <div class="wrap page-hero">
+    {{ eyebrow('Get Involved') }}
+    <h1>Work With Us</h1>
+    <p class="lead">If you&rsquo;re passionate about gender equality, digital safety and education, and you want your skills to directly support women in crisis, we&rsquo;d love to hear from you.</p>
+  </div>
+</section>
+<section class="band ground">
+  <div class="wrap">
+    <h2 style="margin-bottom:24px">Current Opportunities</h2>
+    <div class="card measure">
+      {{ tag('Part-time', 'gold') }}
+      <h3>We&rsquo;re looking for a Marketing Director (Part-time)</h3>
+      <p>We&rsquo;re looking for an experienced, creative and highly self-directed Marketing Director to lead Voices Unveiled&rsquo;s communications and brand strategy. This role will oversee our social media, digital campaigns, content creation, and visual identity &mdash; ensuring our message is clear, compelling, and grounded in the lived realities of Afghan women and girls.</p>
+      <p>You&rsquo;ll be responsible for developing and executing marketing strategies that grow our reach, strengthen supporter engagement, and elevate the stories of our students and programs with integrity and care. The ideal candidate can work independently, manage multiple deadlines, and bring strong skills across social media management, copywriting, design, website management and campaign planning.</p>
+      <p><strong>We&rsquo;re ideally looking for someone with:</strong></p>
+      {{ checks(data.job_requirements) }}
+      <p style="margin-top:18px"><strong>How to apply:</strong> If you&rsquo;d like to apply, please email your CV, a cover letter, and your portfolio or examples of your recent work (social media, design, campaigns or writing samples) to <a href="mailto:{{ site.email }}?subject=Marketing%20Director%20Application">{{ site.email }}</a> with the subject line &ldquo;Marketing Director Application&rdquo;.</p>
+      <div class="cta-row">{{ btn('Apply Now', 'mailto:' ~ site.email ~ '?subject=Marketing%20Director%20Application', 'primary', 'lg') }}</div>
+    </div>
+  </div>
+</section>
+{% endblock %}

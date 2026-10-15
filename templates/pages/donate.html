@@ -1,78 +1,66 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, testimonial, campaign_banner, donation_selector, checks, safety_note %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial, donation_selector, checks %}
 {% block content %}
-<section class="band" style="padding-bottom:0">
-  <div class="wrap">
-    {{ campaign_banner('This is our moment to choose hope.', 'We must raise $50,000 to keep our programs alive. Without your help, Voices Unveiled will be forced to close, leaving Afghan women and girls without the education and community they depend on.', 'Donate Now', site.donate_url) }}
+<section class="band">
+  <div class="wrap split split--start">
+    <div class="photo photo--3x2"><img src="/assets/img/official/donate-hero.jpg" alt="" loading="lazy"></div>
+    <div class="page-hero" style="margin:0">
+      {{ eyebrow('Donate Now') }}
+      <h1>THIS IS OUR MOMENT TO CHOOSE HOPE</h1>
+      <p class="lead">We must raise $50,000 to keep our programs alive. Without your help, Voices Unveiled will be forced to close, leaving Afghan women and girls without the education and community they depend on.</p>
+      <p>Your donation today protects their dignity, their education, and their dreams.</p>
+      <div class="cta-row">{{ btn('Donate Now', '#choose', 'primary', 'lg') }}</div>
+    </div>
   </div>
 </section>
-<section class="band">
+
+<section class="band ground" id="choose">
   <div class="wrap split split--wide split--start">
     <div>
-      {{ eyebrow('Make a gift') }}
-      <h2 style="margin-bottom:16px">Support Afghan women's education &mdash; every month.</h2>
-      <p>Your monthly gift keeps our Self-Empowerment and Feminism course and over 13 electives running and reaches Afghan women who have been shut out of school. Sustaining gifts are what let us plan ahead and keep showing up for our students.</p>
-      <p style="margin-bottom:26px">Every dollar you invest directly impacts the lives of Afghan women and girls. Choose an amount to see what it makes possible.</p>
-      {{ testimonial(data.student_quotes[6], 'sage', compact=true) }}
+      <h2 style="margin-bottom:8px">Choose Your Impact</h2>
+      <p class="lead">Every action matters. Every dollar keeps hope alive.</p>
+      <ul class="levels" style="margin-top:20px">
+        {% for t in data.donation_tiers if t.amount %}<li><b>${{ '{:,}'.format(t.amount) }}</b><span>{{ t.impact }}</span></li>{% endfor %}
+      </ul>
+      <p class="muted small" style="margin-top:14px">100% secure &bull; Tax-deductible &bull; Lives changed immediately</p>
+      <p class="muted small">Having trouble donating? If you experience any issues while submitting your donation, please contact us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>. You can also try clearing your browser cache, try using a different browser, or try using an incognito/private window.</p>
     </div>
-    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 25, 'monthly', sticky=true) }}
+    {{ donation_selector(data.donation_tiers, data.monthly_tiers, site.donate_url, site.monthly_url, 300, 'once', sticky=true) }}
   </div>
 </section>
-<section class="band ground" id="more-ways">
-  <div class="wrap">
-    {{ eyebrow('More ways to give') }}
-    <h2 style="margin-bottom:28px">Tax-smart giving through your DAF or IRA.</h2>
-    <div class="grid2 reveal">
-      <div class="card card--ivory">
-        <h3 style="margin-top:0">Give through your donor-advised fund (DAF)</h3>
-        <p style="margin-bottom:14px">If you have a donor-advised fund, you can recommend a grant to us in minutes. Please direct your gift to our legal entity:</p>
-        <ul class="levels" style="margin-bottom:14px"><li style="display:block; line-height:1.6"><strong>Café de la Culture</strong><br>Voices Unveiled is a program of Café de la Culture<br>501(c)(3) tax-exempt organization &middot; EIN {{ site.ein }}</li></ul>
-        <p>Search for &ldquo;Café de la Culture&rdquo; in your DAF portal; grants are routed by legal name and EIN, not by our program name.</p>
-      </div>
-      <div class="card card--ivory">
-        <h3 style="margin-top:0">Give from your IRA (Qualified Charitable Distribution)</h3>
-        <p style="margin-bottom:14px">If you are 70&frac12; or older, you can give directly from your IRA to Café de la Culture. A qualified charitable distribution counts toward your required minimum distribution and is generally excluded from your taxable income &mdash; a tax-smart way to make a bigger impact. Ask your IRA custodian to send your gift directly to:</p>
-        <ul class="levels" style="margin-bottom:14px"><li style="display:block; line-height:1.6"><strong>Café de la Culture</strong><br>{{ site.address }}<br>EIN {{ site.ein }}</li></ul>
-        <p>To count for this tax year, your gift must be completed by December 31. We're happy to help: <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
-      </div>
-    </div>
-    <p class="muted small" style="margin-top:16px">This is general information, not tax advice; please check with your financial or tax advisor.</p>
-  </div>
-</section>
+
 <section class="band">
   <div class="wrap split split--start">
     <div>
-      {{ eyebrow('Your support ensures') }}
-      <h2 style="margin-bottom:18px">Afghan women and girls can:</h2>
-      {{ checks(["Access free online education, systematically denied to them under Taliban restrictions.", "Receive mental health support and community connection, helping them cope with isolation, trauma, and fear.", "Receive urgent, life-saving aid, including food, medicine, and financial assistance in emergencies.", "Reclaim their voices through courses in self-empowerment, English, data analytics, philosophy, meditation, and more."]) }}
+      <h2 style="margin-bottom:12px">What We&rsquo;ve Built Together</h2>
+      <p>For almost three years, Voices Unveiled has empowered Afghan girls and women with:</p>
+      {{ checks(data.built_together) }}
+      <p style="margin-top:18px"><strong>250+ students have learned, healed, and reimagined their futures. 100% report that their lives have been transformed.</strong></p>
+      <p>But without your urgent support, it could all disappear.</p>
     </div>
     <div>
-      {{ eyebrow('What we\'ve built together') }}
-      <h2 style="margin-bottom:18px">For almost three years, with you.</h2>
-      {{ checks(["Free online classes for students banned from school by the Taliban", "Mental health support during exile, isolation, and trauma to 20+ families", "13 elective courses in tech, science, humanities, and arts", "6 rounds of our Self-Empowerment Program", "Life-saving relief: food, medicine, financial support", "250+ students have learned, healed, and reimagined their futures"]) }}
+      <h2 style="margin-bottom:12px">Your Support Ensures Afghan Women and Girls Can:</h2>
+      {{ checks(data.support_ensures) }}
+      <p style="margin-top:18px">Every dollar keeps hope alive. Your generosity today protects their education, their dignity, and their dreams.</p>
+      <div class="cta-row">{{ btn('Give Now', '#choose', 'primary', 'lg') }}</div>
     </div>
   </div>
 </section>
+
 <section class="band ground">
   <div class="wrap">
-    {{ eyebrow('Their voices') }}
-    <h2 style="margin-bottom:14px">These are the lives your donation supports.</h2>
-    <div style="margin-bottom:28px">{{ safety_note() }}</div>
+    <h2 style="margin-bottom:12px">Their Voices</h2>
+    <p class="measure">These are lives your donation supports in creating a safe online space and a community where many can freely learn and express themselves &mdash; along with the emergency aid that keeps their families afloat through hunger, illness, and crisis.</p>
+    <p class="measure" style="margin-bottom:28px">We need your help to make sure their story doesn&rsquo;t end here.</p>
     <div class="grid3 reveal">
-      {{ testimonial(data.student_quotes[4], 'ivory', compact=true) }}
-      {{ testimonial(data.student_quotes[5], 'sage', compact=true) }}
-      {{ testimonial(data.student_quotes[3], 'ivory', compact=true) }}
+      {% for k in ['chalipa', 'dasa', 'ehsaneh'] %}{% set q = data.quotes[k] %}
+      <div class="story story--white">
+        <div class="ph"><img src="{{ q.image }}" alt="" loading="lazy"></div>
+        <div class="body"><blockquote>&ldquo;{{ q.quote }}&rdquo;</blockquote><div><div class="nm">{{ q.name }}</div><div class="co">{{ q.detail }}</div></div></div>
+      </div>
+      {% endfor %}
     </div>
-  </div>
-</section>
-<section class="band ground">
-  <div class="wrap">
-    {{ eyebrow('Questions') }}
-    <h2 style="margin-bottom:28px">Giving with confidence.</h2>
-    <div class="faq">
-      {% for f in data.faq %}<details{% if loop.first %} open{% endif %}><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>{% endfor %}
-    </div>
-    <p class="muted" style="margin-top:28px; max-width:720px">Thank you for your generous donation. Your support not only empowers the women of Afghanistan but also contributes to a global movement towards equality, education, and change. Every donation brings us closer to a world where every voice is heard and valued.</p>
+    <p class="muted" style="margin-top:32px; max-width:760px">Thank you for your generous donation to Voices Unveiled. Your support not only empowers the women of Afghanistan but also contributes to a global movement towards equality, education, and change. Thank you for making a difference &ndash; every donation brings us closer to a world where every voice is heard and valued.</p>
   </div>
 </section>
 {% endblock %}

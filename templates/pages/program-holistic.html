@@ -1,44 +1,42 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, tag, testimonial %}
+{% from 'partials/macros.html' import btn, eyebrow, testimonial %}
 {% block content %}
 <section class="band">
-  <div class="wrap page-hero">
-    {{ eyebrow('Programs · Mental health & academics') }}
-    <h1>Holistic and integrative education.</h1>
-    <p class="lead">Every woman and girl in Afghanistan deserves not just education, but the emotional strength, healing, and community support to truly thrive. Our approach is trauma-informed and culturally sensitive, helping students feel understood, not judged.</p>
+  <div class="wrap"><div class="photo photo--banner"><img src="/assets/img/official/holistic-banner.jpg" alt="Holistic and Integrative Education" loading="lazy"></div></div>
+  <div class="wrap page-hero" style="margin-top:36px">
+    {{ eyebrow('Programs · Holistic and Integrative Education') }}
+    <h1>At Voices Unveiled, we believe that every woman and girl in Afghanistan deserves not just education, but the emotional strength, healing, and community support to truly thrive.</h1>
+    <p class="lead">Our educational approach is trauma-informed and culturally sensitive, helping our students to feel understood, not judged. We aim to uplift spirits while strengthening academic skills.</p>
   </div>
-  <div class="wrap" style="margin-top:36px"><div class="photo photo--3x2" style="max-height:520px"><img src="/assets/img/writing-at-night.jpg" alt="A young woman in a headscarf writing in a notebook by lamplight" loading="lazy"></div></div>
 </section>
+
 <section class="band ground" id="mental-health">
   <div class="wrap split split--start">
     <div>
-      {{ eyebrow('Mental health support') }}
-      <h2 style="margin-bottom:18px">Healing, connecting, and reclaiming self-worth.</h2>
-      <p>Education is not just about acquiring knowledge; it is about healing, connecting, and reclaiming self-worth and creative expression. Many women and girls in Afghanistan continue to endure extreme isolation, violence, uncertainty, and trauma due to Taliban restrictions and gender apartheid. Our mental health support meets this reality with empathy, purpose, and deep respect for each individual's unique path forward.</p>
-      <p>Professional therapy is complemented by regular one-on-one support sessions for academic, familial, and professional goals.</p>
+      <h2 style="margin-bottom:18px">Mental Health Support</h2>
+      <p>We believe that education is not just about acquiring knowledge, it&rsquo;s about healing, connecting, and reclaiming self-worth and creative expression. Many women and girls in Afghanistan continue to endure extreme isolation, violence, uncertainty and trauma due to Taliban restrictions and gender apartheid. Our mental health support meets this reality with empathy, purpose, and deep respect for each individual&rsquo;s unique path forward.</p>
     </div>
     <div class="quote-grid" style="grid-template-columns:1fr">
-      {{ testimonial(data.student_quotes[13], 'sage', compact=true) }}
-      {{ testimonial({'quote': "This course helped me realize my worth and gave me the courage to speak up for myself. I consider it an opportunity for change. I want to keep learning, believing in myself, and inspire other Afghan girls to do the same.", 'name': 'Esma', 'age': 13, 'detail': 'Afghanistan'}, 'ivory', compact=true) }}
+      {{ testimonial(data.quotes.viana, 'sage', compact=true) }}
+      {{ testimonial(data.quotes.esma, 'ivory', compact=true) }}
     </div>
   </div>
 </section>
+
 <section class="band" id="academic">
   <div class="wrap split split--start">
     <div>
-      {{ eyebrow('Academic support') }}
-      <h2 style="margin-bottom:18px">Breaking through barriers to achievement.</h2>
-      <p>We empower students to break through barriers to academic achievement, establish clear objectives, and maintain their drive to succeed. Beyond our courses, we connect students with broader educational pathways and ensure they receive comprehensive support for lasting success, including internet funding so they can reliably join their classes from anywhere.</p>
-      <p>Free test-prep guides, scholarship eligibility guides, an English learning database, and a college-essay program round out the academic resources available to every student.</p>
+      <h2 style="margin-bottom:18px">Academic Support</h2>
+      <p>We empower students to break through barriers to academic achievement, establish clear objectives, and maintain their drive to succeed. Beyond our courses, we connect students with broader educational pathways and ensure they receive comprehensive support for lasting success.</p>
     </div>
-    {{ testimonial({'quote': "I live in a remote area of Afghanistan where all educational institutions for girls have been shut down. Despite my deep passion for learning, I've been denied access to even the most basic resources. I'm eager to overcome these barriers and pursue my academic dreams. If given the chance, I will work tirelessly to contribute to my community and beyond.", 'name': 'Mahin', 'age': 23, 'detail': 'Afghanistan'}, 'white', compact=true) }}
+    {{ testimonial(data.quotes.mahin, 'white', compact=true) }}
   </div>
 </section>
+
 <section class="band ground" id="electives">
   <div class="wrap">
-    {{ eyebrow('Elective courses') }}
-    <h2 style="margin-bottom:14px">Skills, creativity, and opportunity.</h2>
-    <p class="lead measure" style="margin-bottom:32px">In addition to our core empowerment curriculum, Voices Unveiled offers a variety of elective courses taught by dedicated volunteer instructors from around the world, designed to develop skills, inspire creativity, and expand opportunities according to student interest and demand.</p>
+    <h2 style="margin-bottom:14px">Elective Courses</h2>
+    <p class="lead measure" style="margin-bottom:32px">In addition to our core empowerment curriculum, Voices Unveiled offers a variety of elective courses, taught by dedicated volunteer instructors from around the world. These courses are designed to develop skills, inspire creativity, and expand opportunities according to student interest and demand for academic and professional goals.</p>
     {% for g in data.electives %}
     <h3 style="margin:28px 0 14px">{{ g.group }}</h3>
     <div class="grid3">
@@ -47,7 +45,17 @@
     {% endfor %}
   </div>
 </section>
+
 <section class="band">
-  <div class="wrap reveal">{{ testimonial(data.student_quotes[14], 'sage', 'Volunteer a workshop or elective', '/volunteer/') }}</div>
+  <div class="wrap reveal">{{ testimonial(data.quotes.najwa, 'sage') }}</div>
+</section>
+
+<section class="band ground">
+  <div class="wrap">
+    <div class="callout callout--terra reveal">
+      <div class="t"><h2>To join our community and volunteer a workshop or elective, visit:</h2><p><a href="/volunteer/">{{ site.base_url }}/volunteer/</a></p></div>
+      {{ btn('Become a Volunteer', '/volunteer/', 'primary', 'lg') }}
+    </div>
+  </div>
 </section>
 {% endblock %}

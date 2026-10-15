@@ -479,3 +479,11 @@ textarea.input { min-height: 132px; resize: vertical; }
 .feature-side { display: grid; gap: 18px; align-content: start; }
 @media (max-width: 900px) { .featured { grid-template-columns: 1fr; } .feature-side { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .feature-side { grid-template-columns: 1fr; } }
+
+/* ---- Añadidos: imágenes de cabecera del sitio original, listas en tarjetas, tarjetas enlazadas ---- */
+.photo--banner { aspect-ratio: 16 / 9; max-height: 520px; width: 100%; display: block; }
+.prose-list { margin: 10px 0 0; padding-left: 1.2em; font-size: 15px; line-height: 1.6; color: var(--text-muted); }
+.prose-list li { margin-bottom: .3em; }
+a.post-card { color: inherit; text-decoration: none; }
+a.post-card h3 { color: var(--text-strong); }
+.card .pullquote { font-size: 1.125rem; }

@@ -107,7 +107,7 @@
   var tiers = JSON.parse(form.getAttribute("data-tiers") || "[]");
   var monthlyTiers = JSON.parse(form.getAttribute("data-monthly-tiers") || "[]");
   var q = new URLSearchParams(location.search);
-  var state = { monthly: q.get("mode") !== "once", amount: Number(q.get("amount")) || 0, custom: false, step: 1 };
+  var state = { monthly: q.get("mode") === "monthly", amount: Number(q.get("amount")) || 0, custom: false, step: 1 };
   var grid = form.querySelector(".agrid"), impact = form.querySelector(".iline span");
   var customWrap = form.querySelector(".custom-amount"), customInput = form.querySelector("#custom");
   var tabs = form.querySelectorAll("[data-step-tab]"), steps = form.querySelectorAll("[data-step]");

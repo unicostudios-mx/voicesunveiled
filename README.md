@@ -43,14 +43,20 @@ sube el contenido de `site/` con las credenciales guardadas como secretos del re
 
 Las URLs antiguas del WordPress redirigen a las nuevas (ver `REDIRECTS` en `tools/build_site.py`).
 
-## Documentos de la organización implementados (sep 2026)
+## Criterio de contenido (oct 2026)
 
-- **Donate page (DAF/QCD):** donación mensual por defecto, opción "Other", secciones de donor-advised fund y
-  IRA/QCD con el nombre legal (Café de la Culture) y EIN visibles; nombre legal también en el pie.
-- **Website updates 6/26:** citas de Valarie Kaur, @crystaldawnalchemy y R. (13) añadidas a testimonios, portada e impacto.
-- **VU Courses:** página de educación holística alineada con el documento; foto sugerida incorporada.
-- **Website Notes 1/26:** diseño responsivo, un solo flujo de donación (única/mensual), testimonios completos.
-  El termómetro de donantes mensuales no es posible en un sitio estático (queda en backlog).
+Todos los textos del sitio son **copia literal** de las páginas publicadas en <https://voicesunveiled.org/>
+(menú, portada, About, Programs, Impact, Testimonials, Student Stories, Blog, Volunteer, Work With Us,
+Donate Now, Monthly Lifeline, Emergency Funds, Contact, WhatsApp, Privacy Policy, Guide). Lo único que cambia es
+el formato (design system "Voice & Dignity"). La Product Owner redacta los copys; cualquier texto nuevo debe
+venir de ella y editarse en `content/` o `templates/pages/`.
+
+Las imágenes originales están en `assets/img/official/` (optimizadas a JPG). `tools/legacy/` conserva las
+herramientas para descargar el WordPress original; `content/data.yml` indica de qué página sale cada bloque.
+
+**Respaldo de la versión anterior** (rediseño con copys propios, DAF/IRA, FAQ, cifras del reporte 2024, citas
+de los documentos 6/26): rama `backup/redesign-2026-09` y tag `v1-redesign-2026-09`. Para recuperar una
+sección: `git show backup/redesign-2026-09:templates/pages/donate.html`.
 
 ## Backlog
 
@@ -61,6 +67,8 @@ Las URLs antiguas del WordPress redirigen a las nuevas (ver `REDIRECTS` en `tool
 - **Formulario de contacto:** sin `contact_endpoint` en `site.yml`, abre el cliente de correo con el mensaje
   prellenado. Configurar un servicio (Formspree, Web3Forms) o endpoint propio.
 - **Formularios de Student Application y WhatsApp Community:** enlazan al WordPress original.
+- **Privacy Policy:** el original es el texto por defecto de WordPress (comentarios, cookies de login); se
+  copió tal cual. Conviene que la organización redacte uno propio.
 - **Newsletter:** usa el formulario alojado de Mailchimp (funciona sin backend).
 - **The Reclamation:** el botón de reserva lleva a la página de pago del WordPress original.
 - **Termómetro de donantes mensuales:** requiere datos en vivo de la plataforma de donación.
