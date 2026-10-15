@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% from 'partials/macros.html' import btn, eyebrow, tag, testimonial, impact_card, checks %}
 {% from 'partials/icons.html' import icon %}
-{% set pay = 'https://voicesunveiled.org/reclamation-payment.html' %}
+{% set pay = 'mailto:' ~ site.email ~ '?subject=The%20Reclamation%20waitlist' %}
 {% block content %}
 <section class="rec-hero">
   <img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" fetchpriority="high">
@@ -12,7 +12,7 @@
       <h1>The Reclamation</h1>
       <p class="sub">For women leaders, creatives, and changemakers ready to come home to themselves.</p>
       <p class="lead">The world has spent a long time telling you who to be. This is where you reclaim your power, your time, and your energy &mdash; in the company of women committed to doing the same.</p>
-      <div class="cta-row" style="margin:0 0 44px">{{ btn('Reserve your seat', pay, 'primary', 'lg', external=true) }}{{ btn('Read the invitation', '#invitation', 'secondary', 'lg', 'btn--on-dark') }}</div>
+      <div class="cta-row" style="margin:0 0 44px">{{ btn('Join the waitlist', pay, 'primary', 'lg') }}{{ btn('Read the invitation', '#invitation', 'secondary', 'lg', 'btn--on-dark') }}</div>
     </div>
   </div>
 </section>
@@ -151,7 +151,7 @@
         <div class="per">{{ t.per }}</div>
         <hr>
         <ul class="checks">{% for p in t.pts %}<li>{{ icon('check') }}<span>{{ p }}</span></li>{% endfor %}</ul>
-        <a class="btn {% if t.featured %}btn--soft{% else %}btn--primary{% endif %} btn--lg btn--block" href="{{ pay }}#{{ t.name | lower }}" target="_blank" rel="noopener">{{ t.cta }}</a>
+        <a class="btn {% if t.featured %}btn--soft{% else %}btn--primary{% endif %} btn--lg btn--block" href="{{ pay }}%20%28{{ t.name }}%29">Join the waitlist</a>
       </div>
       {% endfor %}
     </div>
@@ -163,7 +163,7 @@
   <div class="wrap split split--faq">
     <div>
       {{ eyebrow('Questions') }}
-      <h2>Good things to know before you reserve.</h2>
+      <h2>Good things to know before you join.</h2>
       <p class="muted" style="margin-top:20px">Still wondering if it's right for you? Write to us at <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
       <div class="photo photo--4x3" style="margin-top:28px"><img src="/assets/img/reclamation/group.jpg" alt="A cohort of women gathered together at golden hour" loading="lazy"></div>
     </div>
@@ -182,7 +182,7 @@
     <h2 style="font-size:clamp(2.25rem,6vw,3.75rem); margin-bottom:22px">Come discover what becomes possible for you.</h2>
     <p style="color:rgba(250,246,239,.85); font-size:18px; max-width:560px; margin:0 auto 12px">One live global cohort of women committed to putting some of it down &mdash; together.</p>
     <p style="font-family:var(--font-serif); font-style:italic; font-size:20px; color:var(--gold); margin-bottom:34px">Consider this your invitation.</p>
-    {{ btn('Choose your rate & reserve your seat', pay, 'primary', 'lg', external=true) }}
+    {{ btn('Join the waitlist', pay, 'primary', 'lg') }}
   </div></div>
 </section>
 {% endblock %}
