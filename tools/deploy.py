@@ -13,11 +13,19 @@ Variables de entorno requeridas:
 
 Uso:  tools/deploy.py [--dry-run] [--full]
   --dry-run  solo lista lo que subiría
-  --full     sube todo aunque el tamaño remoto coincida
+  --full     sube todo aunque el hash remoto coincida
+
+Para saber qué cambió, guarda en el servidor .deploy-manifest.json con el sha1 de cada archivo
+subido; solo se suben los archivos cuyo hash difiere. Sin manifiesto remoto se sube todo.
 """
+import hashlib
+import io
+import json
 import os
 import sys
 import posixpath
+
+MANIFEST = ".deploy-manifest.json"
 
 SITE = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "site"))
 HOST = os.environ.get("HOSTGATOR_FTP_HOST")
@@ -29,14 +37,22 @@ DRY = "--dry-run" in sys.argv
 LIST = "--list" in sys.argv  # solo muestra el directorio inicial y su contenido (diagnóstico)
 FULL = "--full" in sys.argv
 PRUNE = "--prune" in sys.argv  # borra en el servidor lo que ya no existe en site/
-KEEP = (".well-known", "cgi-bin", ".htpasswd")
+KEEP = (".well-known", "cgi-bin", ".htpasswd", MANIFEST)
+
+
+def sha1(path):
+    h = hashlib.sha1()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 16), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def local_files():
     for root, _d, files in os.walk(SITE):
         for n in files:
             p = os.path.join(root, n)
-            yield os.path.relpath(p, SITE).replace(os.sep, "/"), p, os.path.getsize(p)
+            yield os.path.relpath(p, SITE).replace(os.sep, "/"), p, sha1(p)
 
 
 class Sftp:
@@ -75,6 +91,17 @@ class Sftp:
 
     def put(self, local, remote):
         self.c.put(local, remote)
+
+    def read_bytes(self, remote):
+        try:
+            with self.c.open(remote, "rb") as f:
+                return f.read()
+        except IOError:
+            return None
+
+    def write_bytes(self, remote, data):
+        with self.c.open(remote, "wb") as f:
+            f.write(data)
 
     def walk(self, base):
         import stat
@@ -149,6 +176,17 @@ class Ftp:
         with open(local, "rb") as f:
             self.c.storbinary("STOR " + remote, f)
 
+    def read_bytes(self, remote):
+        buf = io.BytesIO()
+        try:
+            self.c.retrbinary("RETR " + remote, buf.write)
+        except Exception:
+            return None
+        return buf.getvalue()
+
+    def write_bytes(self, remote, data):
+        self.c.storbinary("STOR " + remote, io.BytesIO(data))
+
     def walk(self, base):
         out = []
         try:
@@ -183,29 +221,45 @@ def main():
     files = sorted(local_files())
     print(f"{len(files)} archivos locales; destino {HOST}:{PORT} → {REMOTE}")
     if DRY:
-        for rel, _p, size in files:
-            print(f"  {size:>9}  {rel}")
+        for rel, _p, digest in files:
+            print(f"  {digest[:10]}  {rel}")
         return
     client = Sftp() if PORT == 22 else Ftp()
     if LIST:
         client.listing()
         return
     client.mkdirs(REMOTE)
+    manifest_path = posixpath.join(REMOTE, MANIFEST) if REMOTE not in (".", "") else MANIFEST
+    remote_manifest = {}
+    if not FULL:
+        raw = client.read_bytes(manifest_path)
+        if raw:
+            try:
+                remote_manifest = json.loads(raw.decode("utf-8"))
+            except ValueError:
+                remote_manifest = {}
+        print(f"Manifiesto remoto: {len(remote_manifest)} archivos" if remote_manifest else "Sin manifiesto remoto: se sube todo")
+    new_manifest = {}
     uploaded = skipped = 0
-    for rel, path, size in files:
+    for rel, path, digest in files:
         remote = posixpath.join(REMOTE, rel) if REMOTE not in (".", "") else rel
         client.mkdirs(posixpath.dirname(remote))
-        if not FULL and client.remote_size(remote) == size:
+        if not FULL and remote_manifest.get(rel) == digest and client.remote_size(remote) is not None:
             skipped += 1
-            continue
-        client.put(path, remote)
-        uploaded += 1
-        if uploaded % 50 == 0:
-            print(f"  {uploaded} subidos…")
+        else:
+            client.put(path, remote)
+            uploaded += 1
+            if uploaded % 50 == 0:
+                print(f"  {uploaded} subidos…")
+        new_manifest[rel] = digest
+        if uploaded and uploaded % 25 == 0:
+            client.write_bytes(manifest_path, json.dumps(new_manifest, indent=0, sort_keys=True).encode("utf-8"))
+    client.write_bytes(manifest_path, json.dumps(new_manifest, indent=0, sort_keys=True).encode("utf-8"))
     print(f"Listo: {uploaded} subidos, {skipped} sin cambios")
     if PRUNE:
         base = REMOTE if REMOTE not in (".", "") else "."
         local_set = {posixpath.join(base, rel) if base != "." else rel for rel, _p, _s in files}
+        local_set.add(manifest_path)
         removed = 0
         for rp in client.walk(base):
             if rp in local_set or any(k in rp.split("/") for k in KEEP):

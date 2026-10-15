@@ -17,7 +17,7 @@ Se publica en <https://voicesunveiled.unicopartners.com.mx/> (HostGator).
 | `site/` | **Salida generada.** Es lo que se publica. No editar a mano. |
 | `design-system/` | Handoff de Claude Design con tokens, componentes y guías del diseño. |
 | `tools/build_site.py` | Genera `site/` a partir de contenido, plantillas y assets. |
-| `tools/deploy.py` | Sube `site/` a HostGator por SFTP/FTP (`--prune` borra en el servidor lo que ya no existe). |
+| `tools/deploy.py` | Sube `site/` a HostGator por SFTP/FTP. Compara el sha1 de cada archivo con `.deploy-manifest.json` en el servidor y solo sube lo que cambió (`--full` sube todo, `--prune` borra en el servidor lo que ya no existe). |
 | `tools/legacy/` | Herramientas de la primera fase (copia del WordPress original). |
 
 ## Flujo de trabajo

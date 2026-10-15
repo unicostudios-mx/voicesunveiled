@@ -90,7 +90,13 @@ def main():
     stories = load_md_dir("stories")
     posts = sorted(load_md_dir("blog"), key=lambda p: p["date"], reverse=True)
 
-    build_id = hashlib.sha1(str(dt.datetime.now()).encode()).hexdigest()[:8]
+    # El id de versión depende del contenido de CSS y JS: solo cambia cuando cambian,
+    # así el HTML no se reescribe en cada build y el navegador invalida su caché cuando toca.
+    h = hashlib.sha1()
+    for name in ("css/site.css", "js/site.js"):
+        with open(os.path.join(ASSETS, name), "rb") as f:
+            h.update(f.read())
+    build_id = h.hexdigest()[:8]
     today = dt.date.today()
 
     env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)
