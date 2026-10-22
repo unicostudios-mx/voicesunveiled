@@ -23,7 +23,7 @@
     <div style="margin-top:40px; display:grid; gap:22px">
       {% for q in data.featured_supporters %}
       {% if q.image %}
-      <div class="split split--start">
+      <div class="split">
         <div class="photo photo--natural"><img src="{{ q.image }}" alt="" loading="lazy"></div>
         {{ testimonial(q, 'ivory') }}
       </div>

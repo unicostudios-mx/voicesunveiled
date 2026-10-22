@@ -9,7 +9,7 @@
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:title" content="{{ page.title or site.name }}">
 <meta property="og:description" content="{{ page.description or site.description }}">
-<meta property="og:image" content="{{ site.base_url }}{{ page.image or '/assets/img/collage.jpg' }}">
+<meta property="og:image" content="{{ site.base_url }}{{ page.image or '/assets/img/official/home-banner.jpg' }}">
 <meta property="og:url" content="{{ site.base_url }}{{ page.url }}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
@@ -21,11 +21,35 @@
 {% block head %}{% endblock %}
 </head>
 <body>
+{% from 'partials/macros.html' import newsletter %}
+{% from 'partials/icons.html' import icon %}
 {% include 'partials/header.html' %}
 <main id="main">
 {% block content %}{% endblock %}
+{% if not no_newsletter %}
+<section class="band band--flush-top"><div class="wrap">{{ newsletter(site) }}</div></section>
+{% endif %}
 </main>
 {% include 'partials/footer.html' %}
+{% if not no_newsletter %}
+<div class="modal" id="news-modal" hidden role="dialog" aria-modal="true" aria-labelledby="news-title">
+  <div class="modal__scrim" data-modal-close></div>
+  <div class="modal__box modal__box--sm">
+    <button class="modal__close" type="button" data-modal-close aria-label="Close">{{ icon('x') }}</button>
+    <div class="modal__body">
+      <p class="eyebrow">Newsletter</p>
+      <h2 id="news-title">Join our newsletter</h2>
+      <p>Stay updated with our newsletter: student stories, program updates, and ways to help.</p>
+      <form class="nform" action="{{ site.mailchimp_action }}" method="post" target="_blank" novalidate data-newsletter>
+        <label class="sr-only" for="news-email">Email address</label>
+        <input class="input" type="email" name="EMAIL" id="news-email" placeholder="Your email" required>
+        <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="{{ site.mailchimp_honeypot }}" tabindex="-1" value=""></div>
+        <div class="modal__actions"><button class="btn btn--primary btn--lg" type="submit">Subscribe Here</button><button class="btn btn--ghost" type="button" data-modal-close>Maybe later</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
 <script src="/assets/js/site.js?v={{ build_id }}" defer></script>
 </body>
 </html>

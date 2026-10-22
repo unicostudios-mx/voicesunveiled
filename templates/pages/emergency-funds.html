@@ -3,28 +3,24 @@
 {% from 'partials/icons.html' import icon %}
 {% block content %}
 <section class="band">
-  <div class="wrap split split--start">
+  <div class="wrap split">
     <div class="page-hero" style="margin:0">
       {{ eyebrow('Get Involved · Emergency Funds') }}
       <h1>Support Emergency Medical and Relief Aid</h1>
-      <p class="lead">We are committed to raising funds to meet the critical food and medical needs of our students. True self-empowerment encompasses self-care, proper nutrition, and health.</p>
-      <ul class="levels" style="margin:20px 0">
-        {% for l in data.emergency_levels %}<li><b>{{ l.amount }}</b><span>{{ l.label }}</span></li>{% endfor %}
-      </ul>
-      <p class="muted small">No contribution is too big or small.</p>
+      <p class="lead">Your donation will provide critical support for urgent needs such as food and medical care for students facing emergencies. Join us in making a direct impact today.</p>
       <div class="cta-row">{{ btn('Donate', site.emergency_fund_url, 'primary', 'lg', external=true) }}{{ btn('About Emergency Assistance', '/programs/emergency-assistance/', 'ghost', 'lg') }}</div>
     </div>
-    <div class="photo photo--natural" style="max-width:360px; justify-self:center"><img src="/assets/img/official/emergency-fund.jpg" alt="" loading="lazy"></div>
+    <div class="photo photo--natural" style="max-width:340px; justify-self:center"><img src="/assets/img/official/emergency-fund.jpg" alt="" loading="lazy"></div>
   </div>
 </section>
 <section class="band ground">
   <div class="wrap">
-    <h2 style="margin-bottom:28px">Emergency Funds</h2>
-    <div class="grid3 reveal">
+    <h2 style="margin-bottom:28px">Current campaigns</h2>
+    <div class="grid2 reveal">
       {% for c in data.emergency_campaigns %}
-      <div class="story story--white story--natural">
-        <div class="ph"><img src="{{ c.image }}" alt="" loading="lazy"></div>
-        <div class="body"><div class="nm">{{ c.title }}</div><p>{{ c.body }}</p><a class="btn btn--secondary btn--sm" href="{{ c.url }}" target="_blank" rel="noopener">Donate {{ icon('external') }}</a></div>
+      <div class="card card--ivory" style="display:grid; grid-template-columns:minmax(120px, 200px) 1fr; gap:22px; align-items:center">
+        <div class="photo photo--natural"><img src="{{ c.image }}" alt="" loading="lazy"></div>
+        <div><h3 style="margin:0 0 8px">{{ c.title }}</h3><p style="margin-bottom:16px">{{ c.body }}</p><a class="btn btn--primary" href="{{ c.url }}" target="_blank" rel="noopener">Donate {{ icon('external') }}</a></div>
       </div>
       {% endfor %}
     </div>

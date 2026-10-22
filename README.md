@@ -58,6 +58,19 @@ herramientas para descargar el WordPress original; `content/data.yml` indica de 
 de los documentos 6/26): rama `backup/redesign-2026-09` y tag `v1-redesign-2026-09`. Para recuperar una
 sección: `git show backup/redesign-2026-09:templates/pages/donate.html`.
 
+## Pendientes en WordPress (GiveWP) — de los "New Website Edits October 2026" de Cara
+
+- **Formulario de donación única:** el botón de donar enlaza al formulario "Time is running out" (campaña de
+  fin de 2025: meta de $50,000, "7th semester"). Crear o ajustar en GiveWP un formulario general de donación
+  única sin esa campaña y actualizar `donate_url` en `content/site.yml`.
+- **Campañas antiguas:** Cara indica que ya no se apoya a la mayoría de esos estudiantes. Cerrar o despublicar
+  en GiveWP los formularios y páginas de Ava & Nima, Baiza, Nidal/Mahsa, Mira & Cyra, Rania, Roya, Soora, Ela y
+  Dursa (2025). En el sitio nuevo solo queda "Sana and Dursa's Urgent dental procedures"; confirmar si "Ali's
+  college fund" y "Emergency Funds for Sana" siguen activas y añadirlas a `emergency_campaigns` si procede.
+- **Copy de DAF / IRA:** ya está en `/donate/` del sitio nuevo. Si el WordPress sigue publicado, replicarlo en su
+  página Donate Now para que ambos coincidan.
+- **Popup de The Reclamation:** sigue activo en la portada del WordPress; quitarlo allí también (programa en pausa).
+
 ## Backlog
 
 - **Donaciones:** se procesan en el WordPress original con GiveWP + Stripe (decisión de oct 2026: Nico administra

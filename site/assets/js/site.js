@@ -101,3 +101,29 @@
 })();
 
 
+
+/* ---- Popup "Join our newsletter" ---- */
+(function () {
+  "use strict";
+  var modal = document.getElementById("news-modal");
+  if (!modal) return;
+  var KEY = "vu-newsletter-dismissed", DAYS = 30, shown = false;
+  var dismissed = 0;
+  try { dismissed = Number(localStorage.getItem(KEY) || 0); } catch (e) {}
+  if (dismissed && Date.now() - dismissed < DAYS * 864e5) return;
+  function remember() { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+  function close() { modal.hidden = true; document.body.style.overflow = ""; remember(); }
+  function open() {
+    if (shown) return; shown = true;
+    modal.hidden = false; document.body.style.overflow = "hidden";
+    var inp = modal.querySelector("input[type=email]"); if (inp) inp.focus();
+  }
+  modal.querySelectorAll("[data-modal-close]").forEach(function (el) { el.addEventListener("click", close); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+  modal.querySelector("form").addEventListener("submit", function () { remember(); setTimeout(function () { modal.hidden = true; document.body.style.overflow = ""; }, 300); });
+  var timer = setTimeout(open, 12000);
+  window.addEventListener("scroll", function onScroll() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h > 0 && window.scrollY / h > 0.45) { clearTimeout(timer); open(); window.removeEventListener("scroll", onScroll); }
+  }, { passive: true });
+})();

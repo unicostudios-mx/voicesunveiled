@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% from 'partials/macros.html' import btn, eyebrow, newsletter, veil_art %}
+{% from 'partials/macros.html' import btn, eyebrow %}
 {% block content %}
 <section class="band">
   <div class="wrap"><div class="photo photo--banner hero-banner"><img src="/assets/img/official/home-banner.jpg" alt="Voices Unveiled: holistic education and empowerment for Afghan women. Online courses, arts, creative writing, health, mental health, community building." fetchpriority="high"></div></div>
@@ -19,34 +19,13 @@
 <section class="band ground" id="featured">
   <div class="wrap">
     {{ eyebrow('Featured') }}
-    <h2 style="margin-bottom:28px">July 2026 Update</h2>
-    <div class="featured reveal">
-      <article class="feature-card">
-        <a class="feature-card__media" href="{{ site.reclamation_url }}"><img src="/assets/img/reclamation/hero.jpg" alt="A woman on the shore at sunrise, arms raised to the light" loading="lazy"></a>
-        <div class="feature-card__body">
-          <span class="tag tag--gold">Live &amp; online</span>
-          <h3>Introducing The Reclamation &mdash; a 12-week global immersion for women</h3>
-          <p>Born from our work with Afghan women and now open to women everywhere: a live workshop to reclaim your voice, your boundaries, and your wholeness. Read the latest program update, then explore the full experience.</p>
-          <div class="cta-row" style="margin-top:18px">{{ btn('Explore The Reclamation →', site.reclamation_url, 'primary') }}{{ btn('Read the July 2026 update →', site.reclamation_update_url, 'ghost', external=true) }}</div>
-        </div>
-      </article>
-      <div class="feature-side">
-        {% for m in data.media[:2] %}
-        <div class="media-card">
-          <span class="tag tag--terracotta" style="align-self:flex-start">{{ m.tag }}</span>
-          {% if m.kind == 'audio' %}<div class="audio"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy"></iframe></div>
-          {% else %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>{% endif %}
-          <h3>{{ m.title }}</h3>
-          <p>{{ m.body }}</p>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="grid2 reveal" style="margin-top:22px">
-      {% for m in data.media[2:4] %}
+    <h2 style="margin-bottom:28px">Voices Unveiled in the news</h2>
+    <div class="grid2 reveal">
+      {% for m in data.media %}
       <div class="media-card">
         <span class="tag tag--terracotta" style="align-self:flex-start">{{ m.tag }}</span>
         {% if m.kind == 'video' %}<div class="video"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        {% elif m.kind == 'audio' %}<div class="audio"><iframe src="{{ m.embed }}" title="{{ m.title }}" loading="lazy"></iframe></div>
         {% else %}<a class="photo photo--natural" href="{{ m.url }}" target="_blank" rel="noopener"><img src="{{ m.image }}" alt="" loading="lazy"></a>{% endif %}
         <h3>{{ m.title }}</h3>
         <p>{{ m.body }}</p>
@@ -58,7 +37,7 @@
 </section>
 
 <section class="band">
-  <div class="wrap split split--start">
+  <div class="wrap split">
     <div>
       <p>Since the Taliban took control in 2021, women in Afghanistan have faced gender apartheid. They are prisoners of war in their own homes, banned from school, work and all social life. Female artistic expression has been outlawed. Educated women are now confined to only domestic duties, forced marriages, and child-bearing.</p>
       <p>Women must wear a full burka and be accompanied by a male guardian to leave their homes. Discussions about emotions, health, and sexuality are forbidden, and mental health support is inaccessible.</p>
@@ -66,14 +45,15 @@
       <p><strong>Voices Unveiled is here to provide online education, empowerment and mental health support to women in Afghanistan and neighboring countries.</strong></p>
       <div class="cta-row">{{ btn('Sponsor a Student', '/donate/', 'primary', 'lg') }}</div>
     </div>
-    <div class="photo photo--natural" style="max-width:460px; justify-self:center"><img src="/assets/img/official/home-afghan-women.jpg" alt="Afghan women in headscarves" loading="lazy"></div>
+    <div class="photo photo--natural" style="max-width:420px; justify-self:center"><img src="/assets/img/official/home-afghan-women.jpg" alt="Afghan women in headscarves" loading="lazy"></div>
   </div>
 </section>
 
 <section class="band ground">
   <div class="wrap">
-    <a class="photo photo--banner reveal" href="/impact/" aria-label="Voices Unveiled Impact Report"><img src="/assets/img/official/home-impact-banner.jpg" alt="Voices Unveiled Impact Report" loading="lazy"></a>
-    <div style="margin-top:20px">{{ btn('Read Now', '/impact/', 'primary', 'lg') }}</div>
+    <h2 style="margin-bottom:20px">2025 Impact Report</h2>
+    <a class="photo photo--banner reveal" href="{{ site.report_2025_url }}" aria-label="Read the 2025 Impact Report"><img src="/assets/img/official/home-impact-banner.jpg" alt="Voices Unveiled Impact Report" loading="lazy"></a>
+    <div class="cta-row" style="margin-top:20px">{{ btn('Read Now', site.report_2025_url, 'primary', 'lg') }}{{ btn('All impact reports', '/impact/', 'ghost', 'lg') }}</div>
   </div>
 </section>
 
@@ -87,9 +67,5 @@
       <a class="post-card" href="/impact/testimonials/#students"><div class="ph"><img src="/assets/img/official/home-students.jpg" alt="" loading="lazy"></div><div class="body"><h3>Hear from our students</h3></div></a>
     </div>
   </div>
-</section>
-
-<section class="band band--flush-top">
-  <div class="wrap">{{ newsletter(site) }}</div>
 </section>
 {% endblock %}

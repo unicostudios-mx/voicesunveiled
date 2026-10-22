@@ -9,11 +9,8 @@
 </section>
 
 <section class="band ground">
-  <div class="wrap split split--start">
-    <div>
-      <div class="photo photo--natural" style="max-width:420px"><img src="/assets/img/official/about-ariana.jpg" alt="" loading="lazy"></div>
-      <div style="margin-top:18px">{{ testimonial(data.quotes.ariana, 'ivory', compact=true) }}</div>
-    </div>
+  <div class="wrap split">
+    <div class="photo photo--natural" style="max-width:380px; justify-self:center"><img src="/assets/img/official/about-ariana.jpg" alt="" loading="lazy"></div>
     <div>
       <p>Voices Unveiled launched in February 2023, answering a desperate call from Afghan refugee women in the wake of the Taliban's resurgence post-US troop withdrawal. Their plea was simple: provide free online education in Self-Empowerment and Feminism to Afghan women and girls sidelined from society. Our mission expanded swiftly, reaching beyond borders to empower women in Afghanistan, bolstering mental health and fostering connection in the face of adversity.</p>
       <h2 style="margin:28px 0 10px">Mission</h2>
@@ -22,27 +19,12 @@
       <p>Voices Unveiled envisions a world where the silenced are heard, where empathy fuels action, and where compassionate leaders rise to drive change. We're committed to building a global community founded on justice, equality, and the profound impact of self-expression, education, and empowerment.</p>
     </div>
   </div>
+  <div class="wrap reveal" style="margin-top:40px">{{ testimonial(data.quotes.ariana, 'ivory', 'Learn More', '/programs/self-empowerment-course/') }}</div>
 </section>
 
-<section class="band">
-  <div class="wrap split split--start">
-    <div class="media-card">
-      <div class="video"><iframe src="{{ data.media[2].embed }}" title="{{ data.media[2].title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    </div>
-    <div>
-      <h2 style="margin-bottom:14px">Voices Unveiled on Channel 9 NBC News</h2>
-      <p>{{ data.media[2].body }}</p>
-      <div class="cta-row">{{ btn('Learn More', '/programs/self-empowerment-course/', 'primary', 'lg') }}</div>
-    </div>
-  </div>
-</section>
-
-<section class="band ground" id="founder">
-  <div class="wrap split split--start">
-    <div>
-      <div class="photo photo--natural" style="max-width:360px"><img src="/assets/img/official/cara-cruickshank.jpg" alt="Cara Cruickshank" loading="lazy"></div>
-      <p class="muted small" style="margin-top:12px">Cara Cruickshank</p>
-    </div>
+<section class="band" id="founder">
+  <div class="wrap split">
+    <div class="photo photo--natural" style="max-width:360px; justify-self:center"><img src="/assets/img/official/cara-cruickshank.jpg" alt="Cara Cruickshank" loading="lazy"></div>
     <div>
       {{ eyebrow('Our Founder') }}
       <h2 style="margin-bottom:6px">Cara Cruickshank</h2>

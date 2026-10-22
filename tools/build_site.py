@@ -132,15 +132,15 @@ def main():
         add(f"/blog/{p['slug']}/", "pages/post.html", p["title"], p.get("excerpt"), "Blog", p.get("image"), post=p, related=related)
     add("/volunteer/", "pages/volunteer.html", "Volunteer", "We are a grassroots organization built on volunteer work and heart. Here are several ways you can contribute.", "Get Involved")
     add("/work-with-us/", "pages/work-with-us.html", "Work With Us", "If you're passionate about gender equality, digital safety and education, and you want your skills to directly support women in crisis, we'd love to hear from you.", "Get Involved")
-    add("/donate/", "pages/donate.html", "Donate Now", "This is our moment to choose hope. Every dollar keeps hope alive.", "Get Involved")
+    add("/donate/", "pages/donate.html", "Donate", "Support Afghan women's education, every month. Monthly, one-time, DAF and IRA gifts.", "Get Involved")
     add("/donate/monthly/", "pages/donate-monthly.html", "Become a Monthly Lifeline", "Your ongoing support fuels education, safety, and opportunity for Afghan women and girls, month after month.", "Get Involved")
     add("/donate/emergency-funds/", "pages/emergency-funds.html", "Support Emergency Medical and Relief Aid", "Emergency funds for students and families in crisis.", "Get Involved")
     add("/contact/", "pages/contact.html", "Contact", "Get in touch with Voices Unveiled.", "Get Involved")
     add("/whatsapp-community/", "pages/whatsapp.html", "Whatsapp Community", "Join the Voices Unveiled WhatsApp Community.", "Get Involved")
     add("/privacy/", "pages/privacy.html", "Privacy Policy", "Privacy Policy - Voices Unveiled.", None)
     add("/safety-guide/", "pages/safety-guide.html", "Guide", "Online safety guide for students.", None)
-    add("/reclamation/", "pages/reclamation.html", "The Reclamation: a 12-week global immersion", "A live, intimate workshop for women leaders, creatives, and changemakers ready to come home to themselves.", None, "/assets/img/reclamation/hero.jpg")
-    add("/404/", "pages/404.html", "Page not found", None, None)
+    add("/reclamation/", "pages/reclamation.html", "The Reclamation: a 12-week global immersion", "A live, intimate workshop for women leaders, creatives, and changemakers ready to come home to themselves.", None, "/assets/img/reclamation/hero.jpg", no_newsletter=True)
+    add("/404/", "pages/404.html", "Page not found", None, None, no_newsletter=True)
 
     for url, template, page, extra in pages:
         html = env.get_template(template).render(page=page, **base_ctx, **extra)

@@ -47,23 +47,20 @@ electives:
       - { name: "Meditation", body: "A supportive space for students to build inner peace and resilience through mindfulness, breathing exercises, and reflection, helping them manage stress, calm anxiety, and navigate difficulties with emotional strength." }
       - { name: "Stress Management", body: "This class explores Post-Traumatic Stress Disorder (PTSD)—its causes, symptoms, and effects on the brain and emotions. Students will also learn evidence-based strategies for managing stress, including guided imagery exercises and techniques for creating a personal safe space." }
 
-# Página "Donate Now" → Choose Your Impact
+# Donación única: niveles del formulario de GiveWP "Time is running out".
 donation_tiers:
   - { amount: 25, impact: "Internet access for one student for one semester" }
   - { amount: 50, impact: "Course materials + internet for one student" }
   - { amount: 100, impact: "Emergency intervention" }
-  - { amount: 300, impact: "Covers one student's trimester of transformation" }
-  - { amount: 600, impact: "Funds one trimester for two students" }
-  - { amount: 1000, impact: "Supports one year of education, coaching, counselling and support" }
+  - { amount: 250, impact: "Almost a full trimester of transformation for one student" }
+  - { amount: 500, impact: "A full trimester for one student, plus emergency support" }
   - { amount: 0, label: "Other", impact: "Choose your own amount" }
 
-# Página "Become a Monthly Lifeline" → Choose Your Impact (imagen) + texto
+# Donación mensual: niveles del documento "Donate page for VU website" de Cara ($25 / $50 / $100 / Other).
 monthly_tiers:
-  - { amount: 20, impact: "Hope Sustainer: supports internet access & core materials" }
+  - { amount: 25, impact: "Supports internet access & core materials, month after month" }
   - { amount: 50, impact: "Freedom Builder: powers consistent education" }
   - { amount: 100, impact: "Life Changer: funds education + major emergency interventions" }
-  - { amount: 200, impact: "Mission Champion: fuels expansion and innovation across programs" }
-  - { amount: 300, impact: "Sponsors a student for one trimester, or provides food for a family for one month" }
   - { amount: 0, label: "Other", impact: "Or choose your own monthly amount." }
 
 # Página "Empowerment Course"
@@ -107,14 +104,9 @@ monthly_benefits:
   - Invitations to virtual events with Afghan women in our programs
   - Confidence that your support continues, no matter what
 
-# Campañas de emergencia publicadas (formularios GiveWP en el WordPress original).
+# Campañas de emergencia vigentes (formularios GiveWP). Cara (oct 2026): las campañas anteriores ya no se apoyan.
 emergency_campaigns:
-  - { title: "Sana and Dursa’s Urgent dental procedures", body: "Two students need urgent dental procedures. Your donation will provide urgent relief and essential resources as they face a critical situation.", image: "/assets/img/official/emergency-sana-dursa.jpg", url: "https://voicesunveiled.org/donations/sanas-urgent-dental-procedures/" }
-  - { title: "Emergency Funds for Ava and Nima", body: "Your donation will provide urgent relief, safety, and essential resources as they face a critical situation.", image: "/assets/img/official/emergency-ava-nima.jpg", url: "https://voicesunveiled.org/emergency-funds-for-ava-and-nima/" }
-  - { title: "Emergency Funds for Baiza", body: "Your donation will provide urgent relief and essential resources as she faces a critical situation.", image: "/assets/img/official/emergency-baiza.jpg", url: "https://voicesunveiled.org/emergency-funds-for-baiza/" }
-  - { title: "Emergency Funds for Nidal", body: "Make a donation to provide urgent relief and essential resources to Nidal as she faces a critical situation.", image: "/assets/img/official/emergency-nidal.jpg", url: "https://voicesunveiled.org/emergency-funds-for-mahsa-copy/" }
-  - { title: "Emergency Funds for Mira and Cyra", body: "Your donation will provide urgent relief, safety, and essential resources for Mira and Cyra as they face a critical situation.", image: "/assets/img/official/emergency-mira-cyra.jpg", url: "https://voicesunveiled.org/emergency-funds-for-mira-and-cyra/" }
-  - { title: "Emergency Funds for Rania", body: "Your donation will provide urgent relief and essential resources as she faces a critical situation.", image: "/assets/img/official/emergency-rania.jpg", url: "https://voicesunveiled.org/emergency-funds-for-rania/" }
+  - { title: "Sana and Dursa’s Urgent dental procedures", body: "Sana and Dursa need urgent dental care, and we’re raising funds to cover their procedures. Every donation, big or small, helps them get the treatment they need. Please consider donating or sharing this campaign. Thank you for your support! ❤️", image: "/assets/img/official/emergency-sana-dursa.jpg", url: "https://voicesunveiled.org/donations/sanas-urgent-dental-procedures/" }
 
 # Página "Student Testimonials" (Impact → Testimonials → Students), en el orden original.
 student_quotes:
@@ -212,18 +204,8 @@ guest_speakers:
     image: /assets/img/official/zainab-salbi.jpg
     quote: "I am so touched by the work Voices Unveiled does. Everyone should do anything they can to support them."
 
-# Portada: podcasts y prensa, en el orden del sitio original.
+# Portada: prensa y podcasts (orden pedido por Cara, oct 2026: ROOM y NBC antes que los podcasts).
 media:
-  - kind: audio
-    title: Voices Unveiled on Catskill Radio
-    body: Listen to our latest conversation with Catskill Radio.
-    embed: https://share.transistor.fm/e/b49d5b4b
-    tag: New podcast
-  - kind: video
-    title: Voices Unveiled interview on Madness Cafe Podcast
-    body: “Voices Unveiled” featured on the Madness Café Podcast — a powerful conversation on women’s empowerment, identity, and resilience across cultures.
-    embed: https://www.youtube.com/embed/K-RBtwREAHE?rel=0&modestbranding=1
-    tag: Podcast
   - kind: video
     title: Voices Unveiled interview on Channel 9 NBC News
     body: Colorado’s 9NEWS features Voices Unveiled Founder Cara Cruickshank on our beginnings and why our work is urgently needed.
@@ -235,3 +217,14 @@ media:
     url: https://analytic-room.com/community-projects/voices-unveiled/
     image: /assets/img/room-feature.jpg
     tag: Press
+
+  - kind: audio
+    title: Voices Unveiled on Catskill Radio
+    body: Listen to our latest conversation with Catskill Radio.
+    embed: https://share.transistor.fm/e/b49d5b4b
+    tag: New podcast
+  - kind: video
+    title: Voices Unveiled interview on Madness Cafe Podcast
+    body: “Voices Unveiled” featured on the Madness Café Podcast — a powerful conversation on women’s empowerment, identity, and resilience across cultures.
+    embed: https://www.youtube.com/embed/K-RBtwREAHE?rel=0&modestbranding=1
+    tag: Podcast
