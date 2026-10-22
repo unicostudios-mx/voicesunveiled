@@ -60,10 +60,11 @@ sección: `git show backup/redesign-2026-09:templates/pages/donate.html`.
 
 ## Backlog
 
-- **Donaciones:** `/donate/now/` es una demo del checkout (monto, donante, pago, confirmación) que no procesa
-  pagos. Cuando exista la cuenta en la plataforma de donación (Zeffy / Givebutter / Stripe), reemplazar el paso de
-  pago por su formulario embebido. Las campañas de emergencia siguen enlazando al WordPress original
-  (`emergency_campaigns` en `content/data.yml`; `legacy_donate_url` en `site.yml`).
+- **Donaciones:** se procesan en el WordPress original con GiveWP + Stripe (decisión de oct 2026: Nico administra
+  el WordPress y crea las campañas). Los botones enlazan a los formularios de GiveWP (`donate_url`, `monthly_url`,
+  `emergency_fund_url` en `site.yml`; `emergency_campaigns` en `data.yml`). Nueva campaña: crear el formulario en
+  GiveWP y añadir la entrada en `emergency_campaigns`. Cuando `voicesunveiled.org` apunte al sitio nuevo, el
+  WordPress debe mudarse a un subdominio (p. ej. `donate.voicesunveiled.org`) y actualizarse el webhook de Stripe.
 - **Formulario de contacto:** sin `contact_endpoint` en `site.yml`, abre el cliente de correo con el mensaje
   prellenado. Configurar un servicio (Formspree, Web3Forms) o endpoint propio.
 - **Formularios de Student Application y WhatsApp Community:** enlazan al WordPress original.

@@ -33,6 +33,7 @@ RedirectMatch 301 ^/z-live-broadcast-for-change/?$ /about/#media
 RedirectMatch 301 ^/hello-world/?$ /blog/
 RedirectMatch 301 ^/new-blog-post/?$ /blog/
 RedirectMatch 301 ^/student-application/?$ https://voicesunveiled.org/student-application/
+RedirectMatch 301 ^/donate/now/?$ https://voicesunveiled.org/donations/time-is-running-out/
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpeg "access plus 30 days"

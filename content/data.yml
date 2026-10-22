@@ -109,6 +109,7 @@ monthly_benefits:
 
 # Campañas de emergencia publicadas (formularios GiveWP en el WordPress original).
 emergency_campaigns:
+  - { title: "Sana and Dursa’s Urgent dental procedures", body: "Two students need urgent dental procedures. Your donation will provide urgent relief and essential resources as they face a critical situation.", image: "/assets/img/official/emergency-sana-dursa.jpg", url: "https://voicesunveiled.org/donations/sanas-urgent-dental-procedures/" }
   - { title: "Emergency Funds for Ava and Nima", body: "Your donation will provide urgent relief, safety, and essential resources as they face a critical situation.", image: "/assets/img/official/emergency-ava-nima.jpg", url: "https://voicesunveiled.org/emergency-funds-for-ava-and-nima/" }
   - { title: "Emergency Funds for Baiza", body: "Your donation will provide urgent relief and essential resources as she faces a critical situation.", image: "/assets/img/official/emergency-baiza.jpg", url: "https://voicesunveiled.org/emergency-funds-for-baiza/" }
   - { title: "Emergency Funds for Nidal", body: "Make a donation to provide urgent relief and essential resources to Nidal as she faces a critical situation.", image: "/assets/img/official/emergency-nidal.jpg", url: "https://voicesunveiled.org/emergency-funds-for-mahsa-copy/" }
